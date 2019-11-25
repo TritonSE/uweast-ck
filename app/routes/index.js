@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
 });
 
 // app routes
+router.use('/menu', require('./menu'));
 router.use('/example', require('./example'));
 
 module.exports = router;

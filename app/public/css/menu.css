@@ -60,7 +60,7 @@ h2 {
     font-size: 20px;
     color: white;
     font-weight: bold;
-    text-decoration: none
+    text-decoration: none;
 }
 
 #subtract {
@@ -75,4 +75,19 @@ h2 {
     padding-left: 30px;
     padding-right: 30px;
     font-weight: bolder;
+    font-size: 20px;
+}
+
+.btn-dark {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.add-cart {
+    font-weight: bold;
+}
+
+#add-price {
+    position: absolute;
+    right: 25px;
 }

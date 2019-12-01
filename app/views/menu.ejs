@@ -28,31 +28,37 @@
             <p id="menuInfo"></p>
         </div>-->
         
-        <!--Button trigger modal; change later-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button>
+        <!--Button trigger modal: CHANGE LATER-->
+        <div class="container">
+            <h2>Appetizers</h2>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#itemModal">
+                    Sample menu item
+                </button>
+            </div>
         
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
                 <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="row">
+                        <div class="col-md-7"> <!--Sample Image of Pancakes-->
+                            <img style="width: 100%; border-radius: 25px" src="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/48-3-large.jpg">
+                            <br></br>
+                            <p style="color:grey; font-weight: bold">Dietary Information</p>
+                        </div>
+                        <div class="col-md-5">
+                            <h2 style="color:grey; font-weight: bolder">Food Name</h2>
+                            <h2 style="color:grey; font-weight: 300">Item Description</h2>
+                            <div class="price">$$$</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             </div>
+        </div>
+
         </div>
     </body>
 

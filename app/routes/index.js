@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Default landing page
 router.get('/', (req, res, next) => {
-    res.render('index');
+  res.render('index');
 });
 
 // app routes

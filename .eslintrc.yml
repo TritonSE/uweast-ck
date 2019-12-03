@@ -25,4 +25,4 @@ rules:
     - "error"
     - consistent: true
   guard-for-in: "off"
-  no-restricted-syntax: "on"
+  no-restricted-syntax: "off"

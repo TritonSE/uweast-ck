@@ -1,5 +1,5 @@
 module.exports = {
-    config: require('./config'),
-    logger: require('./logger'),
-    routes: require('./routes'),
+  config: require('./config'),
+  logger: require('./logger'),
+  routes: require('./routes'),
 };

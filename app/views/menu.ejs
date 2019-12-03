@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Landing Page</title>
+        <title>Menu Page for UWEAST - CK</title>
         <meta charset="utf-8">
 
         <link rel="stylesheet" type="text/css" href="/css/example.css">
@@ -13,15 +13,16 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
-        <div class="example">
-            <a href="/example">Let's have a look at another example page</a>
-        </div>
+        <div class="menuExample">
+            This menu is so great!
 
-        <div class="contact">
-            <a href="/contact">Contact Us</a>
-        </div>
-        <div class="example">
-            <a href="/menu">Let's have a look at the menu page</a>
+            <br>
+
+            <button id="sendMenuData">I want fries!</button>
+            <br>
+            <p id="menuInfo"></p>
         </div>
     </body>
+
+    <script src="/js/menu.js"></script>
 </html>

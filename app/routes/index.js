@@ -13,4 +13,8 @@ router.use('/example', require('./example'));
 router.use('/contact', require('./contact'));
 router.use('/home', require('./home'));
 
+router.use('/about', require('./about'));
+
+router.use('/orders', require('./orders'));
+
 module.exports = router;

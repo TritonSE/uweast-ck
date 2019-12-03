@@ -9,5 +9,6 @@ router.get('/', (req, res, next) => {
 
 // app routes
 router.use('/example', require('./example'));
+router.use('/contact', require('./contact'));
 
 module.exports = router;

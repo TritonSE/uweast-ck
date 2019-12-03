@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Page for UWEAST - CK</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="/css/example.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    </head>
+
+    <body>
+        <!-- Takes navbar ejs and inserts it here. -->
+        <%- include partials/navbar.ejs %>
+
+        <div class="example">
+            home page!
+
+            <br>
+
+            <button id="sendData">Try me!</button>
+            <br>
+            <p id="info"></p>
+        </div>
+    </body>
+
+    <script src="/js/home.js"></script>
+</html>

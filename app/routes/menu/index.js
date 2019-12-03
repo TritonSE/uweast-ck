@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
-  res.render('example');
+  res.render('menu');
 });
 
 // Post data, log data to terminal.

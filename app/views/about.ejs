@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Landing Page</title>
+        <title>About Page for UWEAST - CK</title>
         <meta charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="/css/example.css">
         <link rel="stylesheet" type="text/css" href="/css/about.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
@@ -14,13 +13,16 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
-        <div class="example">
-            <a href="/example">Let's have a look at another example page</a>
-        </div>
         <div class="about">
-            <a href="/about">About</a>
-        <div class="orders">
-            <a href="/orders">Orders</a>
+            Our Mission
+
+            <br>
+
+            <button id="sendData">See more info</button>
+            <br>
+            <p id="info"></p>
         </div>
     </body>
+
+    <script src="/js/about.js"></script>
 </html>

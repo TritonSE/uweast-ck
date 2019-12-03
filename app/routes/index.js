@@ -10,4 +10,8 @@ router.get('/', (req, res, next) => {
 // app routes
 router.use('/example', require('./example'));
 
+router.use('/about', require('./about'));
+
+router.use('/orders', require('./orders'));
+
 module.exports = router;

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orders Page for UWEAST - CK</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="/css/orders.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    </head>
+
+    <body>
+        <!-- Takes navbar ejs and inserts it here. -->
+        <%- include partials/navbar.ejs %>
+
+        <div class="orders">
+            Orders
+
+            <br>
+
+            <button id="sendData">See more info</button>
+            <br>
+            <p id="info"></p>
+        </div>
+    </body>
+
+    <script src="/js/orders.js"></script>
+</html>

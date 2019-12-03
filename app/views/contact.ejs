@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample Contact Page</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="/css/contact.css">
+        <link rel="stylesheet" type="text/css" href="/css/example.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    </head>
+    <body>
+        <!-- Takes navbar ejs and inserts it here. -->
+        <%- include partials/navbar.ejs %>
+        
+        <h1>Contact Us</h1>
+        <p>Name: 
+            <input id="name" type="text">
+        </p>
+        <p>Message: 
+            <input id="message" type="text">
+        </p>
+        <input id="button" type="submit" value="Send">
+    </body>
+
+    <script src="/js/contact.js"></script>
+</html>

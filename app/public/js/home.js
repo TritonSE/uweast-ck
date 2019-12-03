@@ -1,6 +1,6 @@
 window.onload = function() { 
-    const button = this.document.getElementById('sendMenuData');
-    const para = this.document.getElementById('menuInfo');
+    const button = this.document.getElementById('sendData');
+    const para = this.document.getElementById('info');
     
     // Post request to page.
     button.onclick = function() {

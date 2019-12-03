@@ -10,5 +10,6 @@ router.get('/', (req, res, next) => {
 // app routes
 router.use('/menu', require('./menu'));
 router.use('/example', require('./example'));
+router.use('/home', require('./home'));
 
 module.exports = router;

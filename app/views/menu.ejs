@@ -15,47 +15,98 @@
         <%- include partials/navbar.ejs %>
 
         <!-- Jumbotron -->
-        <div class="jumbotron" style="background-size: cover;">
-            <div class="container" style="width: 35%; margin-top: 5%; padding: 5%; background-color: white; border-radius: 2%;">
-                <h5 style="text-align: center;">Order Food Online Now!</h5>
-                <input class="form-control" type="search" placeholder="Search for a dish...">
-            </div>
-        </div>       
+        <div class="main-content-container">
+            <div class="jumbotron" style="background-size: cover;">
+                <div class="container" style="width: 35%; margin-top: 5%; padding: 5%; background-color: white; border-radius: 2%;">
+                    <h5 style="text-align: center;">Order Food Online Now!</h5>
+                    <input class="form-control" type="search" placeholder="Search for a dish...">
+                </div>
+            </div>   
 
-        <div class="menuExample">
-            This menu is so great!
+            <div class="lower-content-container">
+                <!-- Sidebar -->
+                <div class="lower-left-container">
+                    <div id="sidebar">
+                        <ul class="nav">
+                        <li>
+                            <a href="#">
+                            Whole Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            Appetizers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            Main Dishes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            Sides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            Drinks
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="lower-mid-container">
+                    <div class="appetizers">
+                        <h1>Appetizers</h1>
+                        <div class="appetizer-body">
+                            <div class="item-1">
+                                <div class="item-left">
+                                    img
+                                </div>
+                                <div class="item-right">
+                                    <div>
+                                        item 1 
+                                    </br> description
+                                </div>
+                                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                                    +
+                                                </button>
+                                </div>
+                            </div>
+                            <div class="item-1">
+                                item 2
+                            </div>
+                            <div class="item-1">
+                                item 3  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-dishes">
+                        <h1>Main Dishes</h1>
+                    </div>
+                    <div class="menuExample">
+                        This menu is so great!
+                    </div>
+    
+                    <!-- <div class="container">
+                        <h1>Appetizers</h1>
+                        <div class="text-center"> 
+                            <button type="button" id="modal-trig" class="btn btn-primary">
+                                Sample menu item
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="lower-right-container">
+                    right side container 
+                </div>
+            </div>  
+
         </div>
 
-        <!-- Sidebar -->
-        <div id="sidebar">
-            <ul class="nav">
-            <li>
-                <a href="#">
-                Whole Menu
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                Appetizers
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                Main Dishes
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                Sides
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                Drinks
-                </a>
-            </li>
-            </ul>
-        </div>
+
 
         <!--<div class="menuExample"> // Example code
             This menu is so awesome!
@@ -68,13 +119,6 @@
         </div>-->
         
         
-        <div class="container">
-            <h1>Appetizers</h1>
-            <div class="text-center"> <!--Button trigger modal: CHANGE LATER-->
-                <button type="button" id="modal-trig" class="btn btn-primary">
-                    Sample menu item
-                </button>
-            </div>
         
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
@@ -175,7 +219,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+            <!-- </div> -->
         </div>
 
         </div>

@@ -92,35 +92,98 @@ h2 {
     right: 25px;
 }
 
+.lower-content-container {
+    display: flex;
+    flex-direction: row;
+}
+
 /* Sidebar Styles */
 #sidebar {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 250px;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    /* width: 500px; */
+    /* z-index: 1000; */
+    /* position: fixed;     */
+    /* left: 250px; */
+    /* width: 250px; */
+    /* height: 100%; */
+    /* margin-left: -250px; */
+    /* overflow-y: auto; */
     background: #37474F;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-  }
-  
-  #sidebar .nav a{
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar .nav a{
     background: none;
     border-bottom: 1px solid #455A64;
     color: #CFD8DC;
     font-size: 14px;
+    /* margin-left: 10px; */
     padding: 16px 24px;
-  }
-  
-  #sidebar .nav a:hover{
+}
+
+#sidebar .nav a:hover{
     background: none;
     color: #ECEFF1;
-  }
-  
-  #sidebar .nav a i{
+}
+
+#sidebar .nav a i{
     margin-right: 16px;
-  }
+}
+
+.lower-mid-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.appetizers {
+    border-bottom: 1px solid grey;
+}
+
+
+.appetizer-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.item-1 {
+    border: 1px solid black;
+    border-radius: 5px;
+    /* padding: 20px; */
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+
+}
+
+.item-left {
+    border-right: 1px solid black;
+    margin-right: 5px;
+    width: 50px;
+}
+
+.item-right {
+    position: relative;
+}
+
+.modal-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.lower-right-container {
+    width: 300px;
+}

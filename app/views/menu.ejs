@@ -37,12 +37,61 @@
         
         
         <div class="container">
-            <h1>Appetizers</h1>
-            <div class="text-center"> <!--Button trigger modal: CHANGE LATER-->
-                <button type="button" id="modal-trig" class="btn btn-primary">
-                    Sample menu item
-                </button>
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h1>Appetizers</h1>
+                <div class="text-center"> <!--Button trigger modal: CHANGE LATER-->
+                    <br>
+                    <button type="button" id="modal-trig" class="btn btn-primary">
+                        Sample menu item
+                    </button>
+                </div>
             </div>
+
+            <!-- Order Summary Bar -->
+            <div id="order-summary-div" class="col-3">
+                <div class="order-summary">
+                    Order Summary
+                </div>
+                <div>
+                    <div class="fixed-scroll">
+                        <div class="summary-item row">
+                            <span class="thumbnail thumb-img">1</span>
+                            <p> Food Name<br>
+                            <span style="font-style: italic;">Options</span></p>
+                            <span class="thumbnail summary-price">$00.00</span>
+                        </div>
+                        <hr class="divider">
+                        <div class="summary-item row">
+                            <span class="thumbnail thumb-img">2</span>
+                            <p> Food Name<br>
+                            <span style="font-style: italic;">Options</span></p>
+                            <span class="thumbnail summary-price">$00.00</span>
+                        </div>
+                        <div class="summary-item row">
+                            <span class="thumbnail thumb-img">3</span>
+                            <p> Food Name<br>
+                            <span style="font-style: italic;">Options</span></p>
+                            <span class="thumbnail summary-price">$00.00</span>
+                        </div>
+                        <div class="summary-item row">
+                            <span class="thumbnail thumb-img">4</span>
+                            <p> Food Name<br>
+                            <span style="font-style: italic;">Options</span></p>
+                            <span class="thumbnail summary-price">$00.00</span>
+                        </div>
+                    </div>
+                    <div class="order-totals">
+                        <br>
+                        Subtotal: $00.00<br>
+                        Total: $00.00
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <span>Total Price</span><span id="add-price">$00.00</span>
+                </div>
+            </div>
+        </div>
         
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
@@ -128,13 +177,13 @@
                                     <p class="detail">Quantity</p>
                                 </div>
                                 <div class="quantity-buttons d-flex justify-content-center">
-                                    <button class="num btn" id="subtract">-</button>
+                                    <button class="num" id="subtract">-</button>
                                     <span id="quantity">1</span>
-                                    <button class="num btn" id="add">+</button>
+                                    <button class="num" id="add">+</button>
                                 </div>
                             </div>
                             
-                            <button type="button" class="btn btn-dark id="cartButton">
+                            <button type="button" class="btn btn-dark" id="cartButton">
                                 <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                             </button>
 

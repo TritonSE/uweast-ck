@@ -2,10 +2,6 @@ h2 {
     color: grey;
 }
 
-.container { 
-    
-}
-
 .price {
     background-color: lightgray;
     color: black;
@@ -100,13 +96,13 @@ h2 {
     width: 200px;
     position: fixed;
     z-index: 1;
-    bottom: 50px;
+    bottom: 25px;
     left: 25px;
     text-align: center;
     font-weight: bold;
 }
 
-.filter a {
+.filter p {
     display: block;
     margin: 5px;
     padding: 10px;
@@ -120,8 +116,8 @@ h2 {
     position: fixed;
     z-index: 1;
     right: 0px;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;
+    right: 25px;
     height: 200px;
     padding: 10px;
     background-color: #FFFFFF;

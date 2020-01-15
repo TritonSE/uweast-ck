@@ -1,0 +1,10 @@
+.navbar-nav .nav-item .nav-link {
+    color: white;
+    font-size: 2vh;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar-brand img {
+    width: 100%;
+}

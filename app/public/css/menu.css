@@ -92,11 +92,33 @@ h2 {
     right: 25px;
 }
 
+.filter {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    bottom: 25px;
+    left: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.filter p {
+    margin: 5px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 2px solid #F1F1F1;
+    color: black;
+}
+
 #order-summary-div {
+    background-color: white;
     float: right;
     height: auto;
-    width: 100%;
     padding: 1%;
+    right: 25px;
+    bottom: 25px;
+    position: fixed;
+    z-index: 1;
 }
 
 .order-summary {

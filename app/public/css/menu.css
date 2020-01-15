@@ -2,6 +2,10 @@ h2 {
     color: grey;
 }
 
+.container { 
+    
+}
+
 .price {
     background-color: lightgray;
     color: black;
@@ -90,4 +94,36 @@ h2 {
 #add-price {
     position: absolute;
     right: 25px;
+}
+
+.filter {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    bottom: 50px;
+    left: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.filter a {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 2px solid #F1F1F1;
+    color: black;
+}
+
+.order-summary {
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    right: 0px;
+    bottom: 20px;
+    right: 20px;
+    height: 200px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 2px solid #F1F1F1;
 }

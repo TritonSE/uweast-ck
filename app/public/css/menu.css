@@ -103,7 +103,6 @@ h2 {
 }
 
 .filter p {
-    display: block;
     margin: 5px;
     padding: 10px;
     background-color: #FFFFFF;
@@ -111,15 +110,70 @@ h2 {
     color: black;
 }
 
-.order-summary {
-    width: 250px;
+#order-summary-div {
+    background-color: white;
+    float: right;
+    height: auto;
+    padding: 1%;
+    right: 25px;
+    bottom: 25px;
     position: fixed;
     z-index: 1;
-    right: 0px;
-    bottom: 25px;
-    right: 25px;
-    height: 200px;
+}
+
+.order-summary {
+    background-color: lightgray;
+    font-weight: bold;
     padding: 10px;
-    background-color: #FFFFFF;
-    border: 2px solid #F1F1F1;
+    text-align: left;
+}
+
+.order-totals {
+    text-align: right;
+    font-size: 70%;
+    padding-bottom: 5px;
+}
+
+.fixed-scroll {
+    height: 100px;
+    overflow: auto;
+}
+
+.summary-item {
+    font-size: 80%;
+}
+
+hr.divider {
+    margin: 0em;
+}
+
+#test {
+    padding: 0px;
+    margin: 0px;
+}
+
+.thumbnail {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: lightgrey;
+    font-weight: bold;
+    justify-content: center;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.thumb-img {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.summary-price {
+    margin-left: 80px;
+    margin-top: 5px;
+    width: auto;
 }

@@ -14,7 +14,15 @@ window.onload = function() {
 
         para.innerText = 'Data sent!';
     }*/
-    
+    $('.filter-item').click(function() {
+        if (this.id === 'whole-menu') {
+            $('.menu').show();
+        } else {
+            let clickClass = this.id;
+            $("."+clickClass).toggle();
+        }
+    })
+
     var quantity = 1;
     $('#modal-trig').click(function() {
         $('#itemModal').modal('show');

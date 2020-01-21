@@ -218,6 +218,18 @@ h2 {
     color: black;
 }
 
+.filter-item {
+    background-color: #FFFFFF;
+}
+
+.filter p:hover {
+    background-color: lightgray;
+}
+
+.filter p.on {
+    background-color: lightgray;
+}
+
 #order-summary-div {
     background-color: white;
     float: right;

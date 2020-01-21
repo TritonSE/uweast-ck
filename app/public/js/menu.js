@@ -21,6 +21,8 @@ window.onload = function() {
             let clickClass = this.id;
             $("."+clickClass).toggle();
         }
+        console.log(this.id)
+        $(".filter p").toggleClass('on');
     })
 
     var quantity = 1;

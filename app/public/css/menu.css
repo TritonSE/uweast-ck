@@ -106,9 +106,6 @@ h2 {
     padding: 0px 24px;
 }
 
-.appetizers {
-    border-bottom: 1px solid grey;
-}
 
 
 .appetizer-body {
@@ -286,7 +283,6 @@ hr.divider {
     width: auto;
 }
 
-.main-dishes{
-    padding-bottom: 80px;
+.menu-category{
     border-bottom: 1px solid grey;
 }

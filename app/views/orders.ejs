@@ -12,17 +12,29 @@
     <body>
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
-
-        <div class="orders">
-            Orders
-
-            <br>
-
-            <button id="sendData">See more info</button>
-            <br>
-            <p id="info"></p>
-        </div>
     </body>
 
     <script src="/js/orders.js"></script>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+      </head>
+      <body>
+        <table id="example">
+          <thead>
+            <tr><th>Orders to be fulfilled</th><th>Name</th><th>Contact Info</th><th>Date Ordered</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Food name</td></tr>
+            <tr><td>Food name</td></tr>
+            <tr><td>Food name</td></tr>
+          </tbody>
+        </table>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+        $(function(){
+          $("#example").dataTable();
+        })
+        </script>
+      </body>
 </html>

@@ -285,3 +285,8 @@ hr.divider {
     margin-top: 5px;
     width: auto;
 }
+
+.main-dishes{
+    padding-bottom: 80px;
+    border-bottom: 1px solid grey;
+}

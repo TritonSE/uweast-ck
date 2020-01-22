@@ -15,14 +15,13 @@ window.onload = function() {
         para.innerText = 'Data sent!';
     }*/
     $('.filter-item').click(function() {
+        let clickClass = this.id;
         if (this.id === 'whole-menu') {
             $('.menu').show();
         } else {
-            let clickClass = this.id;
-            $("."+clickClass).toggle();
+            $("."+clickClass).show();
         }
-        console.log(this.id)
-        $(".filter p").toggleClass('on');
+        $(this).toggleClass('on');
     })
 
     var quantity = 1;

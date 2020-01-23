@@ -48,6 +48,10 @@ h2 {
     padding-top: 10px;
 }
 
+.quantity-buttons div:hover {
+    cursor: pointer;
+}
+
 .num {
     width: 30px;
     height: 30px;

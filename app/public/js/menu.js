@@ -1,20 +1,4 @@
-window.onload = function() { 
-    /*const button = this.document.getElementById('sendMenuData'); /// Example code
-    const para = this.document.getElementById('menuInfo');
-    
-    // Post request to page.
-    button.onclick = function() {
-        console.log("clicked!");
-        $.post('/menu', {
-            menuExample: 'fries',
-            otherMenuExample: 'moreFries'
-        }, function(data) {
-            console.log(data);
-        });
-
-        para.innerText = 'Data sent!';
-    }*/
-    
+window.onload = function() {
     var quantity = 1;
     $('#modal-trig').click(function() {
         $('#itemModal').modal('show');
@@ -22,18 +6,12 @@ window.onload = function() {
     });
 
     function setQuantity(quant) {
-        console.log("quantity is "+quant)
         $('#quantity').html(quant);
         $('#cart-text').html("Add "+quant+" to cart");
-        console.log("set quantity to "+quant);
     }
 
     $('#subtract').click(function() {
-        if (quantity > 1) {
-            setQuantity(--quantity);
-        } else {
-            console.log("tried to subtract from 1");
-        }
+        setQuantity(--quantity);
     });
 
     $('#add').click(function() {
@@ -44,8 +22,29 @@ window.onload = function() {
         quantity = 1;
 
         $('.form-check-input').prop('checked', false);
-        console.log("cleared radio and checkbox");
-
         $('#specialInstructionsText').val("");
-    })
+    });
 }
+
+$("#submitOrder").submit(function(event) {
+    const form = $('#submitOrder');
+    if (!form[0].checkValidity()) {
+        return;
+    };
+
+    event.preventDefault();
+    const responses = form.serializeArray();
+    const quantity = parseInt(document.getElementById('quantity').innerText);
+    const size = responses[0].value;
+
+    var sides = []
+    for (var key in responses) {
+        if (responses[key].name === 'side') sides.push(responses[key].value);
+    }
+    
+    $.post("/menu", {
+        size,
+        sides,
+        quantity
+    });
+});

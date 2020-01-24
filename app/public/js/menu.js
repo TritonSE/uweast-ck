@@ -36,6 +36,7 @@ $("#submitOrder").submit(function(event) {
     const responses = form.serializeArray();
     const quantity = parseInt(document.getElementById('quantity').innerText);
     const size = responses[0].value;
+    const instructions = responses[responses.length - 1].value;
 
     var sides = []
     for (var key in responses) {
@@ -45,6 +46,9 @@ $("#submitOrder").submit(function(event) {
     $.post("/menu", {
         size,
         sides,
-        quantity
+        quantity,
+        instructions
     });
+
+    $('#itemModal').modal('hide')
 });

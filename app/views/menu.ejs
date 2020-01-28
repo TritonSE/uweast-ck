@@ -33,10 +33,7 @@
                                     img
                                 </div>
                                 <div class="item-right">
-                                    <div>
-                                        food name
-                                    </br> description
-                                </div>
+                                    <div>food name</br> description</div>
                                                 <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                                     +
                                                 </button>
@@ -55,6 +52,7 @@
                                                 <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                                     +
                                                 </button>
+                                     <div class = "item-price">$$$</div>
                                 </div>
                             </div>
                             <div class="item-1">
@@ -69,6 +67,7 @@
                                                 <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                                     +
                                                 </button>
+                                        <div class = "item-price">$$$</div>
                                 </div>
                             </div>
                         </div>
@@ -84,61 +83,63 @@
                     </div>
 
                 </div>
-            </div>  
 
-        <!-- Sample filter (left) *TEMPORARY* -->
-        <div class="filter">
-            <p>Whole Menu</p>
-            <p>Appetizers</p>
-            <p>Main Dishes</p>
-            <p>Sides</p>
-            <p>Drinks</p>
-        </div>
+                <!-- Sample filter (left) *TEMPORARY* -->
+                <div class="filter">
+                    <p>Whole Menu</p>
+                    <p>Appetizers</p>
+                    <p>Main Dishes</p>
+                    <p>Sides</p>
+                    <p>Drinks</p>
+                </div>
         
-        <!-- Sample order summary (right) -->
-        <div id="order-summary-div" class="col-3">
-            <div class="order-summary">
-                Order Summary
-            </div>
-            <div>
-                <div class="fixed-scroll">
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">1</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <hr class="divider">
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">2</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">3</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">4</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
+                <!-- Sample order summary (right) -->
+                <div class = "lower-right-container">
+                    <div id="order-summary-div" class="col-3">
+                        <div class="order-summary">
+                            Order Summary
+                        </div>
+                        <div>
+                            <div class="fixed-scroll">
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">1</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <hr class="divider">
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">2</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">3</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">4</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                            </div>
+                            <div class="order-totals">
+                                <br>
+                                Subtotal: $00.00<br>
+                                Tax: $00.00
+                            </div>
+                        </div>
+                        <div class="order-summary">
+                            <span>Total Price</span><span id="add-price">$00.00</span>
+                        </div>
                     </div>
                 </div>
-                <div class="order-totals">
-                    <br>
-                    Subtotal: $00.00<br>
-                    Tax: $00.00
-                </div>
-            </div>
-            <div class="order-summary">
-                <span>Total Price</span><span id="add-price">$00.00</span>
             </div>
         </div>
-        
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">

@@ -75,18 +75,12 @@ window.onload = function() {
     });
 
     function setQuantity(quant) {
-        console.log("quantity is "+quant)
         $('#quantity').html(quant);
         $('#cart-text').html("Add "+quant+" to cart");
-        console.log("set quantity to "+quant);
     }
 
     $('#subtract').click(function() {
-        if (quantity > 1) {
-            setQuantity(--quantity);
-        } else {
-            console.log("tried to subtract from 1");
-        }
+        setQuantity(--quantity);
     });
 
     $('#add').click(function() {
@@ -97,8 +91,33 @@ window.onload = function() {
         quantity = 1;
 
         $('.form-check-input').prop('checked', false);
-        console.log("cleared radio and checkbox");
-
         $('#specialInstructionsText').val("");
-    })
+    });
 }
+
+$("#submitOrder").submit(function(event) {
+    const form = $('#submitOrder');
+    if (!form[0].checkValidity()) {
+        return;
+    };
+
+    event.preventDefault();
+    const responses = form.serializeArray();
+    const quantity = parseInt(document.getElementById('quantity').innerText);
+    const size = responses[0].value;
+    const instructions = responses[responses.length - 1].value;
+
+    var sides = []
+    for (var key in responses) {
+        if (responses[key].name === 'side') sides.push(responses[key].value);
+    }
+    
+    $.post("/menu", {
+        size,
+        sides,
+        quantity,
+        instructions
+    });
+
+    $('#itemModal').modal('hide')
+});

@@ -17,12 +17,32 @@ window.onload = function() {
     $('.filter-item').click(function() {
         let clickClass = this.id;
         if (this.id === 'whole-menu') {
-            $('.menu').show();
+            if ($(this).hasClass('on')) {
+                $(this).removeClass('on');
+            } else {
+                $('.filter-item').removeClass('on');
+                $(this).addClass('on');
+                $('.menu').show();
+            }
         } else {
-            $("."+clickClass).show();
+            if ($(this).hasClass('on')) {
+                $('.'+clickClass).hide();
+                $(this).removeClass('on');
+            } else {
+                $('#whole-menu').removeClass('on');
+                $('.menu').hide();
+                $('.'+clickClass).show();
+                $('.filter-item').each(function(i, obj) {
+                    let objClass = obj.id;
+                    if ($('#'+objClass).hasClass('on')) {
+                        $('.'+objClass).show();
+                    }
+                })
+                $(this).addClass('on');
+            }
         }
-        $(this).toggleClass('on');
-    })
+        
+    });
 
     var quantity = 1;
     $('#modal-trig').click(function() {

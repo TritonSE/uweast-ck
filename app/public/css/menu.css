@@ -224,6 +224,7 @@ h2 {
 
 .filter p:hover {
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .filter p.on {

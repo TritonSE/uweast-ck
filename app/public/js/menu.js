@@ -22,7 +22,7 @@ window.onload = function() {
             } else {
                 $('.filter-item').removeClass('on');
                 $(this).addClass('on');
-                $('.menu').show();
+                $('.menu-category').show();
             }
         } else {
             if ($(this).hasClass('on')) {
@@ -30,7 +30,7 @@ window.onload = function() {
                 $(this).removeClass('on');
             } else {
                 $('#whole-menu').removeClass('on');
-                $('.menu').hide();
+                $('.menu-category').hide();
                 $('.'+clickClass).show();
                 $('.filter-item').each(function(i, obj) {
                     let objClass = obj.id;

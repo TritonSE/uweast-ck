@@ -97,7 +97,7 @@ h2 {
 }
 
 .lower-content-container {
-    background-color: #EAECEE;
+    /* background-color: #EAECEE; */
     display: flex;
     flex-direction: row;
 }
@@ -210,6 +210,19 @@ h2 {
     background-color: #FFFFFF;
     border: 2px solid #F1F1F1;
     color: black;
+}
+
+.filter-item {
+    background-color: #FFFFFF;
+}
+
+.filter p:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.filter p.on {
+    background-color: lightgray;
 }
 
 .lower-right-container {

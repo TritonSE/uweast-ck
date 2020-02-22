@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/menu.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
     </head>
 
     <body>
@@ -15,237 +14,243 @@
         <%- include partials/navbar.ejs %>
 
         <!-- Jumbotron -->
-        <div class="main-content-container">
-            <div class="jumbotron" style="background-size: cover;">
-                <div class="container" style="width: 35%; margin-top: 5%; padding: 5%; background-color: white; border-radius: 2%;">
-                    <h5 style="text-align: center;">Order Food Online Now!</h5>
-                    <input class="form-control" type="search" placeholder="Search for a dish...">
-                </div>
-            </div>   
+    <div class="main-content-container">
+        <div class="jumbotron" style="background-size: cover;">
+            <div class="container" style="width: 35%; margin-top: 5%; padding: 5%; background-color: white; border-radius: 2%;">
+                <h5 style="text-align: center;">Order Food Online Now!</h5>
+                <input class="form-control" type="search" placeholder="Search for a dish...">
+            </div>
+        </div>   
 
-            <div class="lower-content-container">
-                <div class="lower-mid-container">
-                    <div class="menu-category">
-                        <h1>Appetizers</h1>
-                        <div class="appetizer-body">
-                            <div class="item-1">
-                                <div class="item-left">
-                                    img
-                                </div>
-                                <div class="item-right">
-                                    <div>
-                                        food name
-                                    </br> description
-                                </div>
-                                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                                    +
-                                                </button>
-                                    <div class = "item-price">$$$</div>
-                                </div>
+        <div class="lower-content-container">
+            <div class="lower-mid-container">
+                <div class="appetizers menu-category">
+                    <h1>Appetizers</h1>
+                    <div class="appetizer-body">
+                        <div class="menu-thumbnail">
+                            <div class="item-left">
+                                img
                             </div>
-                            <div class="item-1">
-                                <div class="item-left">
-                                    img
-                                </div>
-                                <div class="item-right">
-                                    <div>
-                                        food name
-                                    </br> description
-                                </div>
-                                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                                    +
-                                                </button>
-                                </div>
+                            <div class="item-right">
+                                <div>food name</br> description</div>
+                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                    +
+                                </button>
+                                <div class = "item-price">$$$</div>
                             </div>
-                            <div class="item-1">
-                                <div class="item-left">
-                                    img
-                                </div>
-                                <div class="item-right">
-                                    <div>
-                                        food name
-                                    </br> description
-                                </div>
-                                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                                    +
-                                                </button>
-                                </div>
+                        </div>
+                        <div class="menu-thumbnail">
+                            <div class="item-left">
+                                img
+                            </div>
+                            <div class="item-right">
+                                <div>
+                                    food name
+                                </br> description
+                            </div>
+                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                    +
+                                </button>
+                                <div class = "item-price">$$$</div>
+                            </div>
+                        </div>
+                        <div class="menu-thumbnail">
+                            <div class="item-left">
+                                img
+                            </div>
+                            <div class="item-right">
+                                <div>
+                                    food name
+                                </br> description
+                            </div>
+                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                    +
+                                </button>
+                                <div class = "item-price">$$$</div>
                             </div>
                         </div>
                     </div>
-                    <div class="menu-category">
-                        <h1>Main Dishes</h1>
-                    </div>
-                    <div class="menu-category">
-                        <h1>Sides</h1>
-                    </div>
-                    <div class="menu-category">
-                        <h1>Drinks</h1>
-                    </div>
+                </div>
 
+                <div class="main-dishes menu-category">
+                    <h1>Main Dishes</h1>
                 </div>
-            </div>  
 
-        <!-- Sample filter (left) *TEMPORARY* -->
-        <div class="filter">
-            <p>Whole Menu</p>
-            <p>Appetizers</p>
-            <p>Main Dishes</p>
-            <p>Sides</p>
-            <p>Drinks</p>
-        </div>
+                <div class="sides menu-category">
+                    <h1>Sides</h1>
+                </div>
+
+                <div class="drinks menu-category">
+                    <h1>Drinks</h1>
+                </div>
+
+                <!-- Sample filter (left) *TEMPORARY* -->
+                <div class="filter">
+                    <p class="filter-item" id="whole-menu">Whole Menu</p>
+                    <p class="filter-item" id="appetizers">Appetizers</p>
+                    <p class="filter-item" id="main-dishes">Main Dishes</p>
+                    <p class="filter-item" id="sides">Sides</p>
+                    <p class="filter-item" id="drinks">Drinks</p>
+                </div>
         
-        <!-- Sample order summary (right) -->
-        <div id="order-summary-div" class="col-3">
-            <div class="order-summary">
-                Order Summary
-            </div>
-            <div>
-                <div class="fixed-scroll">
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">1</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <hr class="divider">
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">2</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">3</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
-                    </div>
-                    <div class="summary-item row">
-                        <span class="thumbnail thumb-img">4</span>
-                        <p> Food Name<br>
-                        <span style="font-style: italic;">Options</span></p>
-                        <span class="thumbnail summary-price">$00.00</span>
+                <!-- Sample order summary (right) -->
+                <div class = "lower-right-container">
+                    <div id="order-summary-div" class="col-3">
+                        <div class="order-summary">
+                            Order Summary
+                        </div>
+                        <div>
+                            <div class="fixed-scroll">
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">1</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <hr class="divider">
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">2</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">3</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                                <div class="summary-item row">
+                                    <span class="thumbnail thumb-img">4</span>
+                                    <p> Food Name<br>
+                                    <span style="font-style: italic;">Options</span></p>
+                                    <span class="thumbnail summary-price">$00.00</span>
+                                </div>
+                            </div>
+                            <div class="order-totals">
+                                <br>
+                                Subtotal: $00.00<br>
+                                Tax: $00.00
+                            </div>
+                        </div>
+                        <div class="order-summary">
+                            <span>Total Price</span><span id="add-price">$00.00</span>
+                        </div>
                     </div>
                 </div>
-                <div class="order-totals">
-                    <br>
-                    Subtotal: $00.00<br>
-                    Tax: $00.00
-                </div>
-            </div>
-            <div class="order-summary">
-                <span>Total Price</span><span id="add-price">$00.00</span>
             </div>
         </div>
-        
+
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-7"> <!--Sample Image of Pancakes-->
-                            <img style="width: 100%; border-radius: 25px" src="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/48-3-large.jpg">
-                            <br></br>
-                            <p style="color:grey; font-weight: bold">Dietary Information</p>
+                <div class="modal-content">
+                    <form id="submitOrder" action="/menu" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-7"> <!--Sample Image of Pancakes-->
+                                    <img style="width: 100%; border-radius: 25px" src="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/48-3-large.jpg">
+                                    <br></br>
+                                    <p style="color:grey; font-weight: bold">Dietary Information</p>
+                                </div>
+
+                                <div class="col-md-5"> <!--Info Column-->
+                                    <h2 style="font-weight: bolder">Food Name</h2>
+                                    <h2 style="font-weight: 300">Item Description</h2>
+
+                                    <div class="item-details"> <!--Choosing Size with radio buttons-->
+                                        <div class="item-details-box">
+                                            <p class="detail">Choose Size</p>
+                                            <p class="req-or-opt">Required</p>
+                                        </div>
+                                        <div class="forms">
+                                            <div class="form-check"> 
+                                                <input class="form-check-input" type="radio" name="size" id="small" value="Small" required>
+                                                <label class="form-check-label" for="sizeRadios1">
+                                                    Small
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="size" id="medium" value="Medium">
+                                                <label class="form-check-label" for="sizeRadios2">
+                                                    Medium
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="size" id="large" value="Large">
+                                                <label class="form-check-label" for="sizeRadios3">
+                                                    Large
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-details"> <!--Choosing Sides with checkboxes-->
+                                        <div class="item-details-box">
+                                            <p class="detail">Sides</p>
+                                            <p class="req-or-opt">Optional</p>
+                                        </div>
+                                        <div class="forms">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="side" id="ex1" value="XX">
+                                                <label class="form-check-label" for="sideBox1">
+                                                    XX
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="side" id="ex2" value="YY">
+                                                <label class="form-check-label" for="sideBox2">
+                                                    YY
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="side" id="ex3" value="ZZ">
+                                                <label class="form-check-label" for="sideBox3">
+                                                    ZZ
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-details"> <!--Providing special instructions-->
+                                        <div class="item-details-box">
+                                            <p class="detail">Special Instructions</p>
+                                            <p class="req-or-opt">Optional</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="3" form="submitOrder" name="special-instructions"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-details"> <!--Controlling quantity-->
+                                        <div class="item-details-box">
+                                            <p class="detail">Quantity</p>
+                                        </div>
+                                        <div class="quantity-buttons d-flex justify-content-center">
+                                            <div class="num" id="subtract">-</div>
+                                                <span id="quantity">1</span>
+                                            <div class="num" id="add">+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-dark" id="cartButton">
+                                    <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
+                                </button>
+
+                                <div class="price">$$$</div>
+                            </div>
                         </div>
-                        <div class="col-md-5"> <!--Info Column-->
-                            <h2 style="font-weight: bolder">Food Name</h2>
-                            <h2 style="font-weight: 300">Item Description</h2>
-
-                            <div class="item-details"> <!--Choosing Size with radio buttons-->
-                                <div class="item-details-box">
-                                    <p class="detail">Choose Size</p>
-                                    <p class="req-or-opt">Required</p>
-                                </div>
-                                <div class="forms">
-                                    <div class="form-check"> 
-                                        <input class="form-check-input" type="radio" name="sizeRadios" id="small" value="sm">
-                                        <label class="form-check-label" for="sizeRadios1">
-                                            Small
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="sizeRadios" id="medium" value="med">
-                                        <label class="form-check-label" for="sizeRadios2">
-                                            Medium
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="sizeRadios" id="large" value="lg">
-                                        <label class="form-check-label" for="sizeRadios3">
-                                            Large
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item-details"> <!--Choosing Sides with checkboxes-->
-                                <div class="item-details-box">
-                                    <p class="detail">Sides</p>
-                                    <p class="req-or-opt">Optional</p>
-                                </div>
-                                <div class="forms">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="sideBox" id="ex1" value="XX">
-                                        <label class="form-check-label" for="sideBox1">
-                                            XX
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="sideBox" id="ex2" value="YY">
-                                        <label class="form-check-label" for="sideBox2">
-                                            YY
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="sideBox" id="ex3" value="ZZ">
-                                        <label class="form-check-label" for="sideBox3">
-                                            ZZ
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item-details"> <!--Providing special instructions-->
-                                <div class="item-details-box">
-                                    <p class="detail">Special Instructions</p>
-                                    <p class="req-or-opt">Optional</p>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="specialInstructionsText" rows="3"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="item-details"> <!--Controlling quantity-->
-                                <div class="item-details-box">
-                                    <p class="detail">Quantity</p>
-                                </div>
-                                <div class="quantity-buttons d-flex justify-content-center">
-                                    <button class="num" id="subtract">-</button>
-                                    <span id="quantity">1</span>
-                                    <button class="num" id="add">+</button>
-                                </div>
-                            </div>
-                            
-                            <button type="button" class="btn btn-dark" id="cartButton">
-                                <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
-                            </button>
-
-                            <div class="price">$$$</div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <!-- </div> -->
         </div>
+    </div>
 
-        </div>
     </body>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="/js/menu.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/js/menu.js"></script>
 </html>

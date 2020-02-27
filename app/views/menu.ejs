@@ -154,8 +154,8 @@
                                 </div>
 
                                 <div class="col-md-5"> <!--Info Column-->
-                                    <h2 style="font-weight: bolder">Food Name</h2>
-                                    <h2 style="font-weight: 300">Item Description</h2>
+                                    <h2 id="name" style="font-weight: bolder">Food Name</h2>
+                                    <h2 id="descrption" style="font-weight: 300">Item Description</h2>
 
                                     <div class="item-details"> <!--Choosing Size with radio buttons-->
                                         <div class="item-details-box">
@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-dark" id="cartButton">
+                                <button type="submit" class="btn btn-dark" id="cartButton" onclick=cartCookies()>
                                     <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                                 </button>
 
@@ -246,7 +246,70 @@
         </div>
     </div>
 
+    
     </body>
+
+    
+
+    <script type="text/javascript">
+        var today = new Date();
+        var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
+        var cart_items = "";
+
+        function setCookie(name, value) {
+            document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+        }
+
+        function helper() {
+            // name (string)
+            var name = document.getElementById('name').textContent;
+
+            // size (string)
+            var size = "";
+            if (document.getElementById('small').checked) { size = "small"; }
+            if (document.getElementById('medium').checked) { size = "medium"; }
+            if (document.getElementById('large').checked) { size = "large"; }
+
+            // sides (array)
+            var sides = [];
+            if (document.getElementById('ex1').checked) { 
+                sides.push(document.getElementById('ex1').value);
+            }
+            if (document.getElementById('ex2').checked) { 
+                sides.push(document.getElementById('ex2').value);
+            }
+            if (document.getElementById('ex3').checked) { 
+                sides.push(document.getElementById('ex3').value);
+            }
+
+            // special instructions (string)
+            var instructions = submitOrder.elements["special-instructions"].value;
+
+            // quantity 
+            var quantity = document.getElementById('quantity').textContent;
+
+            var cart_object = '{ "name": "' + name + '","size": "' + size + '", "sides:" [' + sides + '], "instructions:" "' + instructions + '"}';
+            cart_items+=cart_object + ",";
+            return cart_object;
+        }
+
+        function cartCookies(){
+            var start = ' "cart": ['
+            var cart_object = helper();
+            var end = ']'
+
+            console.log(cart_items);
+            var cart_final = start + cart_items + end;
+            
+
+            // var obj = JSON.parse(cart_final);
+            // console.log(obj);
+            console.log(cart_final);
+
+            
+            setCookie("cart", cart_final);
+        }
+    </script>
 
     <script src="/js/menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

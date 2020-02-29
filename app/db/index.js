@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const config = require('../config');
+const uri = config.db.uri;
 const { Item } = require('./models/item');
 
-mongoose.connect(config.db.uri, { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
 
 // database
 db.once('open', _ => {
-    console.log('Database connected:', url);
+    console.log('Database connected:', uri);
 });
 
 db.on('error', err => {

@@ -1,23 +1,18 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-    _id: String,
     name: String,
     description: String,
     price: Number,
     category: String,
     image: String,
     cuisine: String,
-    tags: [{
-        type: String,
-    }],
+    tags: [String],
     vegan: Boolean,
     vegetarian: Boolean,
     glutenFree: Boolean,
-    ingredients: [{
-        type: String,
-    }]
+    ingredients: [String],
 });
-const Item = mongoose.model('menu_items', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
-module.exports = Item;
+module.exports = { Item };

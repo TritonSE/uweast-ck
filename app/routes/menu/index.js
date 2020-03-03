@@ -4,32 +4,18 @@ const log = require('../../logger');
 
 const router = express.Router();
 
-// Regular get, no params or extra routing.
+// Regular get for all menu items
 router.get('/', (req, res, next) => {
-  const menu_items = [];
+  const items = [];
   db.getAllMenuItems().then((allItems) => {
-    console.log("All items: ", allItems);
+    console.log("All items: ", allItems.length);
     
     for (const key in allItems) {
       const childData = allItems[key];
       console.log("Child data: ", childData);
-      
-      menu_items.push(childData);
-      /*menu_items.push({
-        name: childData.name,
-        description: childData.description,
-        price: childData.price,
-        category: childData.category,
-        image: childData.image,
-        cuisine: childData.cuisine,
-        tags: childData.tags,
-        vegan: childData.vegan,
-        vegetarian: childData.vegetarian,
-        glutenfree: childData.glutenfree,
-        ingredients = childData.ingredients,
-      })*/
+      items.push(childData);
     }
-    res.render('menu', {menu_items});
+    res.render('menu', {items});
   }).catch((error) => {
     log.error(error);
   });

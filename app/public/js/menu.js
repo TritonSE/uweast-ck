@@ -80,7 +80,9 @@ window.onload = function() {
     }
 
     $('#subtract').click(function() {
-        setQuantity(--quantity);
+        if (quantity > 0) {
+            setQuantity(--quantity);
+        } 
     });
 
     $('#add').click(function() {

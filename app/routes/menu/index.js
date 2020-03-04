@@ -8,19 +8,14 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   const items = [];
   db.getAllMenuItems().then((allItems) => {
-    console.log("All items: ", allItems.length);
-    
     for (const key in allItems) {
       const childData = allItems[key];
       items.push(childData);
     }
-    console.log(items);
-    res.render('menu', {items});
+    res.render('menu', { items });
   }).catch((error) => {
     log.error(error);
   });
-  
-  //res.render('menu');
 });
 
 // Post data, log data to terminal.

@@ -14,7 +14,28 @@
         <%- include partials/navbar.ejs %>
 
         <!-- **** Databse testing **** -->
-        <%= name %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th> 
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% items.forEach(function(item) { %>
+                    <tr>
+                        <td><%= item.name %></a></td>
+                        <td><%= item.description %></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.category %></td>
+                    </tr>
+                <% }); %>
+
+            </tbody>
+        </table>
 
         <!-- Jumbotron -->
     <div class="main-content-container">

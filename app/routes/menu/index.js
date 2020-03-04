@@ -28,11 +28,12 @@ router.get('/', (req, res, next) => {
       })
     }
     console.log(items);
-    res.render('items', {items});
+    res.render('menu', {items});
   }).catch((error) => {
     log.error(error);
   });
-  res.render('menu');
+  
+  //res.render('menu');
 });
 
 // Post data, log data to terminal.

@@ -1,11 +1,11 @@
-  const express = require('express');
+const express = require('express');
 // const log = require('../../logger');
 
 const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
-  console.log(req.cookies);
+  //console.log(req.cookies);
   res.render('menu');
 });
 

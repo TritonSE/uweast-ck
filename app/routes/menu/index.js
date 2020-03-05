@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
-  //console.log(req.cookies);
+  // console.log(req.cookies);
   res.render('menu');
 });
 
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   try {
     // Attempt to push new order into cart.
-    const {cart} = req.cookies;
+    const { cart } = req.cookies;
     cart.push(req.body);
     res.cookie('cart', cart);
 

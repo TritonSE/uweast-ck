@@ -1,11 +1,21 @@
 const express = require('express');
-// const log = require('../../logger');
+const db = require('../../db');
+const log = require('../../logger');
 
 const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
-  res.render('menu');
+  const items = [];
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+      items.push(childData);
+    }
+    res.render('menu', { items });
+  }).catch((error) => {
+    log.error(error);
+  });
 });
 
 // Post data, log data to terminal.

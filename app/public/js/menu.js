@@ -68,6 +68,8 @@ window.onload = function() {
         
     });
 
+    /* Functions to handle adding/subtracting quantity of items to cart */
+    // NOTE: MAKE MORE EFFICIENT, CLEANER
     var quantity = 1;
     $('#modal-trig').click(function() {
         $('#itemModal').modal('show');
@@ -80,7 +82,9 @@ window.onload = function() {
     }
 
     $('#subtract').click(function() {
-        setQuantity(--quantity);
+        if (quantity > 0) {
+            setQuantity(--quantity);
+        } 
     });
 
     $('#add').click(function() {

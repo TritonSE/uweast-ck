@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 const { Item } = require('./models/item');
+// const { Payment } = require('./models/payment');
 
 const { uri } = config.db;
 

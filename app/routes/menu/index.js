@@ -15,8 +15,6 @@ router.post('/', (req, res) => {
     const { cart } = req.cookies;
     cart.push(req.body);
     res.cookie('cart', cart);
-
-    res.cookie('cart', req.cookies.cart.push(req.body));
   } catch (TypeError) {
     // If pushing fails, then cookie needs to be created with new list.
     res.cookie('cart', [req.body]);

@@ -181,8 +181,8 @@
                                 </div>
 
                                 <div class="col-md-5"> <!--Info Column-->
-                                    <h2 style="font-weight: bolder">Food Name</h2>
-                                    <h2 style="font-weight: 300">Item Description</h2>
+                                    <h2 id="name" style="font-weight: bolder">Food Name</h2>
+                                    <h2 id="descrption" style="font-weight: 300">Item Description</h2>
 
                                     <div class="item-details"> <!--Choosing Size with radio buttons-->
                                         <div class="item-details-box">
@@ -260,7 +260,7 @@
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-dark" id="cartButton">
+                                <button type="submit" class="btn btn-dark" id="cartButton" onclick=cartCookies()>
                                     <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                                 </button>
 
@@ -273,7 +273,12 @@
         </div>
     </div>
 
+    
     </body>
+
+    
+
+    
 
     <script src="/js/menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

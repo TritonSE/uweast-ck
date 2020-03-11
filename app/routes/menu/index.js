@@ -18,9 +18,17 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// Post data, log data to terminal.
+// Post menu request, add to cart.
 router.post('/', (req, res) => {
-  // console.log(req.body);
+  try {
+    // Attempt to push new order into cart.
+    const { cart } = req.cookies;
+    cart.push(req.body);
+    res.cookie('cart', cart);
+  } catch (TypeError) {
+    // If pushing fails, then cookie needs to be created with new list.
+    res.cookie('cart', [req.body]);
+  }
   res.json({ error: null });
 });
 

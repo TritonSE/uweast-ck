@@ -111,13 +111,12 @@ $("#submitOrder").submit(function(event) {
     for (var key in responses) {
         if (responses[key].name === 'side') sides.push(responses[key].value);
     }
-    
-    $.post("/menu", {
-        size,
-        sides,
-        quantity,
-        instructions
-    });
+    const menuData = {size, sides, quantity, instructions};
+    $.post("/menu", menuData);
 
     $('#itemModal').modal('hide')
 });
+
+
+
+

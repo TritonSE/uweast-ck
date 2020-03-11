@@ -96,43 +96,27 @@
                 <!-- Sample order summary (right) -->
                 <div class = "lower-right-container">
                     <div id="order-summary-div" class="col-3">
+                        <!-- use the foreach loop from line 74 from the second live weller link-->
+
                         <div class="order-summary">
                             Order Summary
                         </div>
                         <div>
                             <div class="fixed-scroll">
+                            <% var count = 1; %>
+                            <% cart.forEach(function(item) { %>
                                 <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">1</span>
+                                    <span class="thumbnail thumb-img"><%= count %></span>
                                     <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
+                                    <span style="font-style: italic;"> <%= item.size %></span>
+                                    <%= item.sides%>
+                                    <%= item.quantity%>
+                                    <%= item.instructions%></span></p>
                                     <span class="thumbnail summary-price">$00.00</span>
                                 </div>
                                 <hr class="divider">
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">2</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">3</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">4</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                            </div>
-                            <div class="order-totals">
-                                <br>
-                                Subtotal: $00.00<br>
-                                Tax: $00.00
-                            </div>
-                        </div>
+                                <% count = count + 1; %>
+                                <% }); %>
                         <div class="order-summary">
                             <span>Total Price</span><span id="add-price">$00.00</span>
                         </div>

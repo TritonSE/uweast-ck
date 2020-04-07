@@ -10,4 +10,8 @@ module.exports = {
   logging: {
     level: 'info',
   },
+
+  db: {
+    uri: process.env.MONGODB_URI,
+  },
 };

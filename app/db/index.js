@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
-const uri = config.db.uri;
 const { Item } = require('./models/item');
+const { uri } = config.db;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 

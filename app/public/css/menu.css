@@ -116,6 +116,7 @@ h2 {
 .category-body {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .menu-thumbnail {
@@ -126,7 +127,7 @@ h2 {
     display: flex;
     flex-direction: row;
     height: 150px;
-    width: 33%
+    width: 32%
 
 }
 

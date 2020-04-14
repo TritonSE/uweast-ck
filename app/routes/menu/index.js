@@ -32,9 +32,9 @@ router.get('/', (req, res, next) => {
   }).catch((error) => {
     log.error(error);
   });
-  
   //res.render('menu');
 });
+
 
 // Post data, log data to terminal.
 router.post('/', (req, res) => {

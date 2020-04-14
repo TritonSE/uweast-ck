@@ -8,11 +8,9 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   const items = [];
   db.getAllMenuItems().then((allItems) => {
-    console.log("All items: ", allItems.length);
-    
     for (const key in allItems) {
       const childData = allItems[key];
-      
+
       items.push({
         name: childData.name,
         description: childData.description,
@@ -25,14 +23,13 @@ router.get('/', (req, res, next) => {
         vegetarian: childData.vegetarian,
         glutenFree: childData.glutenFree,
         ingredients: childData.ingredients,
-      })
+      });
     }
-    console.log(items);
-    res.render('menu', {items});
+    res.render('menu', { items });
   }).catch((error) => {
     log.error(error);
   });
-  //res.render('menu');
+  // res.render('menu');
 });
 
 

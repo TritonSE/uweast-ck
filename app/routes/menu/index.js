@@ -25,9 +25,7 @@ router.get('/', (req, res, next) => {
         glutenFree: childData.glutenFree,
         ingredients: childData.ingredients,
       });
-
       items.push(childData);
-
     }
     res.render('menu', { items });
   }).catch((error) => {
@@ -35,8 +33,6 @@ router.get('/', (req, res, next) => {
   });
   // res.render('menu');
 });
-
-
 
 // Post menu request, add to cart.
 router.post('/', (req, res) => {

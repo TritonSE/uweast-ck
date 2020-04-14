@@ -13,6 +13,32 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
+        <!-- **** Databse testing **** -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th> 
+                    <th>Category</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% items.forEach(function(item) { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.description %></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.category %></td>
+                        <td><%= item.image %></td> <!--Must insert into <img src=> tag for this to work-->
+                    </tr>
+                <% }); %>
+
+            </tbody>
+        </table>
+
         <!-- Jumbotron -->
     <div class="main-content-container">
         <div class="jumbotron" style="background-size: cover;">
@@ -202,6 +228,7 @@
                                 </div>
 
                                 <div class="col-md-5"> <!--Info Column-->
+                                
                                     <h2 style="font-weight: bolder"><%= item.name %></h2>
                                     <h2 style="font-weight: 300"><%= item.description %></h2>
 
@@ -281,7 +308,7 @@
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-dark" id="cartButton">
+                                <button type="submit" class="btn btn-dark" id="cartButton" onclick=cartCookies()>
                                     <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                                 </button>
 
@@ -295,7 +322,12 @@
         <% }); %>
     </div>
 
+    
     </body>
+
+    
+
+    
 
     <script src="/js/menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

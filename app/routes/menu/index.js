@@ -11,6 +11,7 @@ router.get('/', (req, res, next) => {
     for (const key in allItems) {
       const childData = allItems[key];
 
+
       items.push({
         name: childData.name,
         description: childData.description,
@@ -24,6 +25,9 @@ router.get('/', (req, res, next) => {
         glutenFree: childData.glutenFree,
         ingredients: childData.ingredients,
       });
+
+      items.push(childData);
+
     }
     res.render('menu', { items });
   }).catch((error) => {
@@ -33,9 +37,18 @@ router.get('/', (req, res, next) => {
 });
 
 
-// Post data, log data to terminal.
+
+// Post menu request, add to cart.
 router.post('/', (req, res) => {
-  // console.log(req.body);
+  try {
+    // Attempt to push new order into cart.
+    const { cart } = req.cookies;
+    cart.push(req.body);
+    res.cookie('cart', cart);
+  } catch (TypeError) {
+    // If pushing fails, then cookie needs to be created with new list.
+    res.cookie('cart', [req.body]);
+  }
   res.json({ error: null });
 });
 

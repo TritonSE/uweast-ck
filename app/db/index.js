@@ -11,6 +11,7 @@ function getAllMenuItems() {
   return Item.find({}).exec();
 }
 
+
 function getItemByCategory(cat) {
   return Item.find({ category: cat }).exec();
 }

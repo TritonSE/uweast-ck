@@ -50,65 +50,108 @@
 
         <div class="lower-content-container">
             <div class="lower-mid-container">
+
+                <!-- Appetizers -->
                 <div class="appetizers menu-category">
                     <h1>Appetizers</h1>
-                    <div class="appetizer-body">
-                        <div class="menu-thumbnail">
-                            <div class="item-left">
-                                img
-                            </div>
-                            <div class="item-right">
-                                <div>food name</br> description</div>
-                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                    +
-                                </button>
-                                <div class = "item-price">$$$</div>
-                            </div>
-                        </div>
-                        <div class="menu-thumbnail">
-                            <div class="item-left">
-                                img
-                            </div>
-                            <div class="item-right">
-                                <div>
-                                    food name
-                                </br> description
-                            </div>
-                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                    +
-                                </button>
-                                <div class = "item-price">$$$</div>
-                            </div>
-                        </div>
-                        <div class="menu-thumbnail">
-                            <div class="item-left">
-                                img
-                            </div>
-                            <div class="item-right">
-                                <div>
-                                    food name
-                                </br> description
-                            </div>
-                                <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
-                                    +
-                                </button>
-                                <div class = "item-price">$$$</div>
-                            </div>
-                        </div>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.category == "Appetizers") { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src=images/<%= item.image %> alt="<%=item.name %>">
+                                    </div>
+                                    
+                                    <div class="item-right" id="<%= itemVar %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                            +
+                                        </button>
+                                        <div class = "item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
                     </div>
                 </div>
 
+                <!-- Main Dishes -->
                 <div class="main-dishes menu-category">
                     <h1>Main Dishes</h1>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.category == "Main Dishes") { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
+                                    </div>
+                                    <div class="item-right" id="<%= itemVar %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                            +
+                                        </button>
+                                        <div class = "item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
                 </div>
 
+                <!-- Sides -->
                 <div class="sides menu-category">
                     <h1>Sides</h1>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.category == "Sides") { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src=images/<%= item.image %>" alt="<%= item.name %>">
+                                    </div>
+                                    <div class="item-right" id="<%= itemVar %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                            +
+                                        </button>
+                                        <div class = "item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
                 </div>
 
+                <!-- Drinks -->
                 <div class="drinks menu-category">
                     <h1>Drinks</h1>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.category == "Drinks") { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
+                                    </div>
+                                    <div class="item-right" id="<%= itemVar; %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                            +
+                                        </button>
+                                        <div class = "item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
                 </div>
+
 
                 <!-- Sample filter (left) *TEMPORARY* -->
                 <div class="filter">
@@ -168,21 +211,26 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
+        <% items.forEach(function(item) { %>
+        <% var itemVar = item.name.replace(/\s/g, ''); %>
+        <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="submitOrder" action="/menu" method="POST">
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-7"> <!--Sample Image of Pancakes-->
-                                    <img style="width: 100%; border-radius: 25px" src="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/48-3-large.jpg">
+                                <div class="col-md-7">
+                                    <img style="width: 100%; border-radius: 25px" src="/app/views/images/<%= item.name %>.jpg">
                                     <br></br>
                                     <p style="color:grey; font-weight: bold">Dietary Information</p>
+                                    <p><b>Ingredients: </b> <%= item.ingredients %></p>
+                                    <p><b>Tags: </b> <%= item.tags %></p>
                                 </div>
 
                                 <div class="col-md-5"> <!--Info Column-->
-                                    <h2 id="name" style="font-weight: bolder">Food Name</h2>
-                                    <h2 id="descrption" style="font-weight: 300">Item Description</h2>
+                                
+                                    <h2 style="font-weight: bolder"><%= item.name %></h2>
+                                    <h2 style="font-weight: 300"><%= item.description %></h2>
 
                                     <div class="item-details"> <!--Choosing Size with radio buttons-->
                                         <div class="item-details-box">
@@ -264,13 +312,14 @@
                                     <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                                 </button>
 
-                                <div class="price">$$$</div>
+                                <div class="price">$<%= item.price %></div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <% }); %>
     </div>
 
     

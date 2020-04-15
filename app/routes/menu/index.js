@@ -10,12 +10,28 @@ router.get('/', (req, res, next) => {
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
+
+
+      items.push({
+        name: childData.name,
+        description: childData.description,
+        price: childData.price,
+        category: childData.category,
+        image: childData.image,
+        cuisine: childData.cuisine,
+        tags: childData.tags,
+        vegan: childData.vegan,
+        vegetarian: childData.vegetarian,
+        glutenFree: childData.glutenFree,
+        ingredients: childData.ingredients,
+      });
       items.push(childData);
     }
     res.render('menu', { items });
   }).catch((error) => {
     log.error(error);
   });
+  // res.render('menu');
 });
 
 // Post menu request, add to cart.

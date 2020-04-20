@@ -13,7 +13,8 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
-        <!-- **** Databse testing **** -->
+         <!--    DUMMY TABLE
+        **** Databse testing ****
         <table>
             <thead>
                 <tr>
@@ -26,7 +27,7 @@
             </thead>
             <tbody>
 
-            <!--    DUMMY TABLE
+           
                 <% items.forEach(function(item) { %>
                     <tr>
                         <td><%= item.name %></td>
@@ -35,10 +36,10 @@
                         <td><%= item.category %></td>
                         <td><%= item.image %></td>  // Must insert into <img src=> tag for this to work
                     </tr>
-                <% }); %> -->
+                <% }); %> 
 
             </tbody>
-        </table>
+        </table> -->
 
         <!-- Jumbotron -->
     <div class="main-content-container">
@@ -61,7 +62,7 @@
                             <% if (item.category == "Appetizers") { %>
                                 <div class="menu-thumbnail">
                                     <div class="item-left">
-                                        <img src=images/<%= item.image %> alt="<%=item.name %>">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
                                     </div>
                                     
                                     <div class="item-right" id="<%= itemVar %>">
@@ -70,7 +71,7 @@
                                         <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -95,7 +96,7 @@
                                         <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -112,7 +113,7 @@
                             <% if (item.category == "Sides") { %>
                                 <div class="menu-thumbnail">
                                     <div class="item-left">
-                                        <img src=images/<%= item.image %>" alt="<%= item.name %>">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
                                     </div>
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
@@ -120,7 +121,7 @@
                                         <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -145,7 +146,7 @@
                                         <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -221,7 +222,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <img style="width: 100%; border-radius: 25px" src="/app/views/images/<%= item.name %>.jpg">
+                                    <img style="width: 100%; border-radius: 25px" src="images/<%= item.image %>">
                                     <br></br>
                                     <p style="color:grey; font-weight: bold">Dietary Information</p>
                                     <p><b>Ingredients: </b> <%= item.ingredients %></p>

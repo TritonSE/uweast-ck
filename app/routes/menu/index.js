@@ -1,17 +1,20 @@
 const express = require('express');
-const db = require('../../db');
-const log = require('../../logger');
+// const log = require('../../logger');
 
 const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
+  res.render('menu');
+});
+
+// Post data, log data to terminal.
+router.post('/', (req, res) => {
+  // console.log(req.body);
   const items = [];
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
-
-
       items.push({
         name: childData.name,
         description: childData.description,
@@ -34,18 +37,27 @@ router.get('/', (req, res, next) => {
   // res.render('menu');
 });
 
-// Post menu request, add to cart.
-router.post('/', (req, res) => {
+function getCart(req) {
   try {
-    // Attempt to push new order into cart.
     const { cart } = req.cookies;
-    cart.push(req.body);
-    res.cookie('cart', cart);
+    return cart;
   } catch (TypeError) {
-    // If pushing fails, then cookie needs to be created with new list.
-    res.cookie('cart', [req.body]);
+    return [];
   }
+}
+
+function updateCart(req, res) {
+  const cart = getCart(req);
+  cart.push(req.body);
+  res.cookie('cart', cart);
+}
+
+// Post menu request, add to cart.
+router.post('/', (req, res, next) => {
+  updateCart(req, res);
+  router.get('/', (req, res, next));
   res.json({ error: null });
 });
 
 module.exports = router;
+

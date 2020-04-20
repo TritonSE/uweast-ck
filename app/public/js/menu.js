@@ -83,15 +83,6 @@ window.onload = function() {
         setQuantity(1);
     });
 
-
-
-    
-
-
-
-
-    
-
     function setQuantity(quant) {
         $('#quantity').html(quant);
         $('#cart-text').html("Add "+quant+" to cart");

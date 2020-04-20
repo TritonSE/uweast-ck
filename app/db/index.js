@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 const { Item } = require('./models/item');
- const { Payment } = require('./models/payment');
+const { Payment } = require('./models/payment');
 
 const { uri } = config.db;
 
@@ -18,8 +18,8 @@ function addNewPayment(info) {
     subtotal: info.subtotal,
     tax: info.tax,
     tip: info.tip,
-    total: info.total
-  })
+    total: info.total,
+  });
 }
 
-module.exports = { getAllMenuItems, addNewPayment }
+module.exports = { getAllMenuItems, addNewPayment };

@@ -77,7 +77,7 @@ window.onload = function() {
      * is formatted as #itemModal-<item.name>. Each of them is shown
      * depending on which button is pressed
      */
-    $(document).on('click', '#modal-trig', function() {
+    $(document).on('click', '.modal-trig', function() {
         var parent = $(this).parent().get(0);
         $('#itemModal-' + parent.id).modal('show');
         setQuantity(1);

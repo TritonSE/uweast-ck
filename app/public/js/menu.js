@@ -85,6 +85,7 @@ window.onload = function() {
 
     function setQuantity(quant) {
         $('.quantity').html(quant);
+        $('.hidden-input').val(quant);
         $('.cart-text').html("Add "+quant+" to cart");
     }
 

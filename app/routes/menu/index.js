@@ -1,5 +1,7 @@
 const express = require('express');
 // const log = require('../../logger');
+const db = require('../../db');
+const log = require('../../logger');
 
 const router = express.Router();
 
@@ -32,6 +34,7 @@ router.post('/', (req, res) => {
     }
     res.render('menu', { items });
   }).catch((error) => {
+    console.log(req.body);
     log.error(error);
   });
   // res.render('menu');
@@ -60,4 +63,3 @@ router.post('/', (req, res, next) => {
 });
 
 module.exports = router;
-

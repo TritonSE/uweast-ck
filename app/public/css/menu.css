@@ -91,7 +91,7 @@ h2 {
     font-weight: bold;
 }
 
-#add-price {
+.add-price {
     position: absolute;
     right: 25px;
 }
@@ -306,4 +306,9 @@ hr.divider {
 
 .menu-category{
     border-bottom: 1px solid grey;
+}
+
+.submit-btn {
+    width: 200px;
+    margin-left: 35%;
 }

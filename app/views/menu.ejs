@@ -218,7 +218,7 @@
         <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="submitOrder" action="/menu" method="POST">
+                    <form action="/menu" method="POST">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-7">
@@ -241,19 +241,19 @@
                                         </div>
                                         <div class="forms">
                                             <div class="form-check"> 
-                                                <input class="form-check-input" type="radio" name="size" id="small" value="Small" required>
+                                                <input class="form-check-input" type="radio" name="size" value="Small" required>
                                                 <label class="form-check-label" for="sizeRadios1">
                                                     Small
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="size" id="medium" value="Medium">
+                                                <input class="form-check-input" type="radio" name="size" value="Medium">
                                                 <label class="form-check-label" for="sizeRadios2">
                                                     Medium
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="size" id="large" value="Large">
+                                                <input class="form-check-input" type="radio" name="size" value="Large">
                                                 <label class="form-check-label" for="sizeRadios3">
                                                     Large
                                                 </label>
@@ -268,19 +268,19 @@
                                         </div>
                                         <div class="forms">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex1" value="XX">
+                                                <input class="form-check-input" type="checkbox" name="side" value="XX">
                                                 <label class="form-check-label" for="sideBox1">
                                                     XX
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex2" value="YY">
+                                                <input class="form-check-input" type="checkbox" name="side" value="YY">
                                                 <label class="form-check-label" for="sideBox2">
                                                     YY
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex3" value="ZZ">
+                                                <input class="form-check-input" type="checkbox" name="side" value="ZZ">
                                                 <label class="form-check-label" for="sideBox3">
                                                     ZZ
                                                 </label>
@@ -294,7 +294,7 @@
                                             <p class="req-or-opt">Optional</p>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="3" form="submitOrder" name="special-instructions"></textarea>
+                                            <textarea class="form-control" rows="3" name="special-instructions"></textarea>
                                         </div>
                                     </div>
 
@@ -303,15 +303,15 @@
                                             <p class="detail">Quantity</p>
                                         </div>
                                         <div class="quantity-buttons d-flex justify-content-center">
-                                            <div class="num" id="subtract">-</div>
-                                                <span id="quantity">1</span>
-                                            <div class="num" id="add">+</div>
+                                            <div class="num subtract">-</div>
+                                                <span class="quantity">1</span>
+                                            <div class="num add">+</div>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-dark" id="cartButton" onclick=cartCookies()>
-                                    <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
+                                <button type="submit" class="btn btn-dark">
+                                    <div class="add-cart"><span class="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
                                 </button>
 
                                 <div class="price">$<%= item.price %></div>

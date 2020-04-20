@@ -84,17 +84,18 @@ window.onload = function() {
     });
 
     function setQuantity(quant) {
-        $('#quantity').html(quant);
-        $('#cart-text').html("Add "+quant+" to cart");
+        $('.quantity').html(quant);
+        $('.cart-text').html("Add "+quant+" to cart");
     }
 
-    $('#subtract').click(function() {
-        if (quantity > 0) {
+    $('.subtract').click(function() {
+        if (quantity > 1) {
             setQuantity(--quantity);
         } 
     });
 
-    $('#add').click(function() {
+    $('.add').click(function() {
+        console.log("add clicked");
         setQuantity(++quantity);
     });
 
@@ -104,33 +105,36 @@ window.onload = function() {
         $('.form-check-input').prop('checked', false);
         $('#specialInstructionsText').val("");
     });
-}
 
-$("#submitOrder").submit(function(event) {
-    const form = $('#submitOrder');
-    if (!form[0].checkValidity()) {
-        return;
-    };
+    $('#submitOrder').submit(function(event) {
+        console.log("submit order");
+        
+        const form = $('#submitOrder');
+        if (!form[0].checkValidity()) {
+            return;
+        };
 
-    event.preventDefault();
-    const responses = form.serializeArray();
-    const quantity = parseInt(document.getElementById('quantity').innerText);
-    const size = responses[0].value;
-    const instructions = responses[responses.length - 1].value;
+        event.preventDefault();
+        const responses = form.serializeArray();
+        const quantity = parseInt(document.getElementById('quantity').innerText);
+        const size = responses[0].value;
+        const instructions = responses[responses.length - 1].value;
 
-    var sides = []
-    for (var key in responses) {
-        if (responses[key].name === 'side') sides.push(responses[key].value);
-    }
-    
-    $.post("/menu", {
-        size,
-        sides,
-        quantity,
-        instructions
+        var sides = []
+        for (var key in responses) {
+            if (responses[key].name === 'side') sides.push(responses[key].value);
+        }
+        
+        $.post("/menu", {
+            size,
+            sides,
+            quantity,
+            instructions
+        });
+
+        $('#itemModal').modal('hide')
     });
 
-    $('#itemModal').modal('hide')
-});
+    // submit payment function .then() {} --> calls submitOrder post request
+}
 
-// submit payment function .then() {} --> calls submitOrder post request

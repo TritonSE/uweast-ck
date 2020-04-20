@@ -125,3 +125,5 @@ $("#submitOrder").submit(function(event) {
 
     $('#itemModal').modal('hide')
 });
+
+// submit payment function .then() {} --> calls submitOrder post request

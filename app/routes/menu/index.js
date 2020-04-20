@@ -32,4 +32,7 @@ router.post('/', (req, res) => {
   res.json({ error: null });
 });
 
+// make new post request for getting cart, return req.cookies through res.json
+// make new post request for submitting cart
+
 module.exports = router;

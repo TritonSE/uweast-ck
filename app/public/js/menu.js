@@ -95,7 +95,6 @@ window.onload = function() {
     });
 
     $('.add').click(function() {
-        console.log("add clicked");
         setQuantity(++quantity);
     });
 

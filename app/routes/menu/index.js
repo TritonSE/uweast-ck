@@ -35,17 +35,17 @@ router.get('/', (req, res, next) => {
 });
 
 function getCart(req) {
-  const { cart } = req.cookies;
-  if (cart == undefined){
-    return []
-  }
-  else{
+  try {
+    const { cart } = req.cookies;
     return cart;
+  } catch (TypeError) {
+    return [];
   }
 }
 
 function updateCart(req, res) {
-  const cart = getCart(req);
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
   cart.push(req.body);
   res.cookie('cart', cart);
 }
@@ -53,7 +53,6 @@ function updateCart(req, res) {
 // Post menu request, add to cart.
 router.post('/', (req, res, next) => {
   updateCart(req, res);
-  router.get('/', (req, res, next));
   res.json({ error: null });
 });
 

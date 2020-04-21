@@ -35,11 +35,12 @@ router.get('/', (req, res, next) => {
 });
 
 function getCart(req) {
-  try {
-    const { cart } = req.cookies;
+  const { cart } = req.cookies;
+  if (cart == undefined){
+    return []
+  }
+  else{
     return cart;
-  } catch (TypeError) {
-    return [];
   }
 }
 

@@ -7,12 +7,13 @@ const router = express.Router();
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
+  const cart = [];
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
       items.push(childData);
     }
-    res.render('menu', { items });
+    res.render('menu',{ items, cart });
   }).catch((error) => {
     log.error(error);
   });

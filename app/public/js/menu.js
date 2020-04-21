@@ -68,11 +68,29 @@ window.onload = function() {
         
     });
 
+    /* Functions to handle adding/subtracting quantity of items to cart */
+    // NOTE: MAKE MORE EFFICIENT, CLEANER
     var quantity = 1;
-    $('#modal-trig').click(function() {
-        $('#itemModal').modal('show');
+    /**
+     * Each parent element of the button clicked (class item-right) has an 
+     * id of the item's name without whitespaces. Each of the modal boxes
+     * is formatted as #itemModal-<item.name>. Each of them is shown
+     * depending on which button is pressed
+     */
+    $(document).on('click', '#modal-trig', function() {
+        var parent = $(this).parent().get(0);
+        $('#itemModal-' + parent.id).modal('show');
         setQuantity(1);
     });
+
+
+
+    
+
+
+
+
+    
 
     function setQuantity(quant) {
         $('#quantity').html(quant);
@@ -80,7 +98,9 @@ window.onload = function() {
     }
 
     $('#subtract').click(function() {
-        setQuantity(--quantity);
+        if (quantity > 0) {
+            setQuantity(--quantity);
+        } 
     });
 
     $('#add').click(function() {

@@ -1,16 +1,50 @@
 const express = require('express');
-// const log = require('../../logger');
+const db = require('../../db');
+const log = require('../../logger');
 
 const router = express.Router();
 
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
-  res.render('menu');
+  const items = [];
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+
+
+      items.push({
+        name: childData.name,
+        description: childData.description,
+        price: childData.price,
+        category: childData.category,
+        image: childData.image,
+        cuisine: childData.cuisine,
+        tags: childData.tags,
+        vegan: childData.vegan,
+        vegetarian: childData.vegetarian,
+        glutenFree: childData.glutenFree,
+        ingredients: childData.ingredients,
+      });
+      items.push(childData);
+    }
+    res.render('menu', { items });
+  }).catch((error) => {
+    log.error(error);
+  });
+  // res.render('menu');
 });
 
-// Post data, log data to terminal.
+// Post menu request, add to cart.
 router.post('/', (req, res) => {
-  // console.log(req.body);
+  try {
+    // Attempt to push new order into cart.
+    const { cart } = req.cookies;
+    cart.push(req.body);
+    res.cookie('cart', cart);
+  } catch (TypeError) {
+    // If pushing fails, then cookie needs to be created with new list.
+    res.cookie('cart', [req.body]);
+  }
   res.json({ error: null });
 });
 

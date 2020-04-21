@@ -13,32 +13,6 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
-        <!-- **** Databse testing **** -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th> 
-                    <th>Category</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <% items.forEach(function(item) { %>
-                    <tr>
-                        <td><%= item.name %></td>
-                        <td><%= item.description %></td>
-                        <td><%= item.price %></td>
-                        <td><%= item.category %></td>
-                        <td><%= item.image %></td> <!--Must insert into <img src=> tag for this to work-->
-                    </tr>
-                <% }); %>
-
-            </tbody>
-        </table>
-
         <!-- Jumbotron -->
     <div class="main-content-container">
         <div class="jumbotron" style="background-size: cover;">

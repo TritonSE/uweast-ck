@@ -80,6 +80,7 @@ window.onload = function() {
     $(document).on('click', '.modal-trig', function() {
         var parent = $(this).parent().get(0);
         $('#itemModal-' + parent.id).modal('show');
+        quantity = 1;
         setQuantity(1);
     });
 
@@ -107,32 +108,53 @@ window.onload = function() {
     });
 
     $('#submitOrder').submit(function(event) {
-        console.log("submit order");
+        //console.log("submit order");
         
         const form = $('#submitOrder');
+
+        //console.log(form[0].elements);
+
+        /*var text = "";
+
+        for (i = 0; i < form.length ;i++) {
+            text += form.elements[i].value + "<br>";
+        }
+
+        console.log(text);
+
         if (!form[0].checkValidity()) {
             return;
-        };
+        };*/
 
         event.preventDefault();
-        const responses = form.serializeArray();
-        const quantity = parseInt(document.getElementById('quantity').innerText);
-        const size = responses[0].value;
-        const instructions = responses[responses.length - 1].value;
+        var responses = form.serializeArray();
+        quantity = parseInt(document.getElementsByClassName('quantity')[0].innerText);
+        //const size = responses[0].value;
+        //const instructions = responses[responses.length - 1].value;
+        var size = '';
+        var instructions = '';
+
+        console.log(responses);
 
         var sides = []
         for (var key in responses) {
             if (responses[key].name === 'side') sides.push(responses[key].value);
+            if (responses[key].name === 'size') size = responses[key].value;
+            if (responses[key].name === 'instructions' && responses[key].value !== '') {
+                instructions = responses[key].value;
+            }
         }
+
+        //console.log(size, sides, instructions, quantity);
         
         $.post("/menu", {
             size,
             sides,
-            quantity,
-            instructions
+            instructions,
+            quantity
         });
 
-        $('#itemModal').modal('hide')
+        $('.modal').modal('hide');
     });
 
     // submit payment function .then() {} --> calls submitOrder post request

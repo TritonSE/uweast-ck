@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
-
-
       items.push({
         name: childData.name,
         description: childData.description,
@@ -31,7 +29,6 @@ router.get('/', (req, res, next) => {
   }).catch((error) => {
     log.error(error);
   });
-  // res.render('menu');
 });
 
 // Post menu request, add to cart.
@@ -46,6 +43,17 @@ router.post('/', (req, res) => {
     res.cookie('cart', [req.body]);
   }
   res.json({ error: null });
+});
+
+router.post('/getCart', (req, res) => {
+  var cart = undefined;
+  try {
+    cart = req.cookies.cart;
+  }
+  catch {
+    cart = [];
+  }
+  res.jsonp({ cart });
 });
 
 module.exports = router;

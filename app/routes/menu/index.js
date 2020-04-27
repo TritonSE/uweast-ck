@@ -23,6 +23,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   try {
     // Attempt to push new order into cart.
+    console.log(req.body);
     res.status(204).send();
     /* COOKIE CODE
     

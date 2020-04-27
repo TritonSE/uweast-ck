@@ -82,7 +82,6 @@ window.onload = function() {
     /* Functions to handle adding/subtracting quantity of items to cart */
     // NOTE: MAKE MORE EFFICIENT, CLEANER
     var quantity = 1;
-    var itemsInCart = [];
     var curName = '';
     var curPrice = 0.0;
 
@@ -137,8 +136,6 @@ window.onload = function() {
     }
 
     $('.submitOrder').submit(function(event) {
-        //console.log("submit order");
-        
         const form = $('.submitOrder');
         var responses = form.serializeArray();
 
@@ -159,54 +156,12 @@ window.onload = function() {
         }
 
         const item = new Item(curName, curPrice, size, sides, instructions, quantity);
-        itemsInCart.push(item);
-
-        console.log(itemsInCart);
-
         curName = '';
         curPrice = 0.0;
 
-        //console.log(form[0].elements);
-
-        /*var text = "";
-
-        for (i = 0; i < form.length ;i++) {
-            text += form.elements[i].value + "<br>";
-        }
-
-        console.log(text);
-
-        if (!form[0].checkValidity()) {
-            return;
-        };
-
-        event.preventDefault();
-        var responses = form.serializeArray();
-        quantity = parseInt(document.getElementsByClassName('quantity')[0].innerText);
-        //const size = responses[0].value;
-        //const instructions = responses[responses.length - 1].value;
-        var size = '';
-        var instructions = '';
-
-        console.log(responses);
-
-        var sides = []
-        for (var key in responses) {
-            if (responses[key].name === 'side') sides.push(responses[key].value);
-            if (responses[key].name === 'size') size = responses[key].value;
-            if (responses[key].name === 'instructions' && responses[key].value !== '') {
-                instructions = responses[key].value;
-            }
-        }
-
-        //console.log(size, sides, instructions, quantity);
+        console.log(item);
         
-        $.post("/menu", {
-            size,
-            sides,
-            instructions,
-            quantity
-        });*/
+        $.post("/menu", item);  // this is the part that isn't working yet
 
         $('.modal').modal('hide');
 

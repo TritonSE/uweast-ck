@@ -23,13 +23,20 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   try {
     // Attempt to push new order into cart.
+    res.status(204).send();
+    /* COOKIE CODE
+    
     const { cart } = req.cookies;
     cart.push(req.body);
     res.cookie('cart', cart);
     console.log(cart);
+    res.status(204).send(cart);*/
   } catch (TypeError) {
     // If pushing fails, then cookie needs to be created with new list.
-    res.cookie('cart', [req.body]);
+
+    /*res.cookie('cart', [req.body]);
+    const { cart } = req.cookies;
+    res.status(204).send(cart); */
   }
 });
 

@@ -107,10 +107,10 @@ window.onload = function() {
         $('#specialInstructionsText').val("");
     });
 
-    $('#submitOrder').submit(function(event) {
+    $('.submitOrder').submit(function(event) {
         //console.log("submit order");
         
-        const form = $('#submitOrder');
+        const form = $('.submitOrder');
 
         //console.log(form[0].elements);
 
@@ -124,7 +124,7 @@ window.onload = function() {
 
         if (!form[0].checkValidity()) {
             return;
-        };*/
+        };
 
         event.preventDefault();
         var responses = form.serializeArray();
@@ -154,7 +154,7 @@ window.onload = function() {
             quantity
         });
 
-        $('.modal').modal('hide');
+        $('.modal').modal('hide'); */
     });
 
     // submit payment function .then() {} --> calls submitOrder post request

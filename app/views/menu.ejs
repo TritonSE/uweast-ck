@@ -213,7 +213,7 @@
         </div>
 
         <!-- Modal -->
-        <form id="submitOrder" action="/menu" method="POST">
+        <form class="submitOrder" action="/menu" method="POST">
         <% items.forEach(function(item) { %>
         <% var itemVar = item.name.replace(/\s/g, ''); %>
         <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
@@ -312,8 +312,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <button type="submit" class="btn btn-dark submit-btn">
+                                <button type="submit" class="btn btn-dark submit-btn" data-dismiss="modal">
                                     <div class="add-cart"><span class="cart-text">Add 1 to cart</span><span class="add-price">$00.00</span></div>
                                 </button>
 

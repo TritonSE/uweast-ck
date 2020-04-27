@@ -1,3 +1,14 @@
+class Item {
+    constructor(name, price, size, sides, special, amt) {
+        this.name = name;
+        this.price = price;
+        this.size = size;
+        this.sides = sides;
+        this.instructions = special;
+        this.quantity = amt;
+    }
+}
+
 window.onload = function() { 
     /*const button = this.document.getElementById('sendMenuData'); /// Example code
     const para = this.document.getElementById('menuInfo');
@@ -71,17 +82,30 @@ window.onload = function() {
     /* Functions to handle adding/subtracting quantity of items to cart */
     // NOTE: MAKE MORE EFFICIENT, CLEANER
     var quantity = 1;
+    var itemsInCart = [];
+    var curName = '';
+    var curPrice = 0.0;
+
     /**
      * Each parent element of the button clicked (class item-right) has an 
      * id of the item's name without whitespaces. Each of the modal boxes
      * is formatted as #itemModal-<item.name>. Each of them is shown
      * depending on which button is pressed
+     * 
+     * siblings key
+     * 0 - item-name
+     * 1 - item-cuisine
+     * 2 - item-price
      */
     $(document).on('click', '.modal-trig', function() {
         var parent = $(this).parent().get(0);
+        curName = $(this).siblings()[0].innerText;  
+            // [0] matches to item-name
+        curPrice = parseFloat(($(this).siblings()[2].innerText).substring(1)); 
+            // [2] matches to item-price
         $('#itemModal-' + parent.id).modal('show');
         quantity = 1;
-        setQuantity(1);
+        setQuantity(quantity);
     });
 
     function setQuantity(quant) {
@@ -107,10 +131,40 @@ window.onload = function() {
         $('#specialInstructionsText').val("");
     });
 
+    function clearForms() {
+        $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+        $(':checkbox, :radio').prop('checked', false);
+    }
+
     $('.submitOrder').submit(function(event) {
         //console.log("submit order");
         
         const form = $('.submitOrder');
+        var responses = form.serializeArray();
+
+        if (!form[0].checkValidity()) {
+            return;
+        };
+
+        var size = '';
+        var sides = [];
+        var instructions = '';
+
+        for (var key in responses) {
+            if (responses[key].name === 'side') sides.push(responses[key].value);
+            if (responses[key].name === 'size') size = responses[key].value;
+            if (responses[key].name === 'instructions' && responses[key].value !== '') {
+                instructions = responses[key].value;
+            }
+        }
+
+        const item = new Item(curName, curPrice, size, sides, instructions, quantity);
+        itemsInCart.push(item);
+
+        console.log(itemsInCart);
+
+        curName = '';
+        curPrice = 0.0;
 
         //console.log(form[0].elements);
 
@@ -152,9 +206,11 @@ window.onload = function() {
             sides,
             instructions,
             quantity
-        });
+        });*/
 
-        $('.modal').modal('hide'); */
+        $('.modal').modal('hide');
+
+        clearForms(); 
     });
 
     // submit payment function .then() {} --> calls submitOrder post request

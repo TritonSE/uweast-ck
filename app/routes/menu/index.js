@@ -19,27 +19,39 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// Post menu request, add to cart.
-router.post('/', (req, res) => {
-  //console.log(req.body);
-
-  //const menuData
-  //render in here
-  //first live weller link in here, look at line 22, the markets.push on line 28
-  //instead of name address, etc, put size, sides, quantity, instructions
-  
- 
+function getCart(req) {
   try {
-    // Attempt to push new order into cart.
     const { cart } = req.cookies;
-    cart.push(req.body);
-    res.cookie('cart', cart);
+    return cart;
   } catch (TypeError) {
-    // If pushing fails, then cookie needs to be created with new list.
-    res.cookie('cart', [req.body]);
+    return [];
   }
-  res.render('menu', { cart });
-  res.json({ error: null });
+}
+
+function updateCart(req, res) {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  cart.push(req.body.item);
+  // console.log(cart); -- linter
+  res.cookie('cart', cart);
+}
+
+/**
+ * Post request for adding menu item to cart
+ */
+router.post('/', (req, res, next) => {
+  updateCart(req, res);
+  // res.jsonp({ error: null });
+  res.status(204).send();
+});
+
+/**
+ * Post request for requesting the JSON of the current cart
+ */
+router.post('/getCart', (req, res) => {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  res.jsonp({ cart });
 });
 
 

@@ -1,3 +1,14 @@
+class Item {
+    constructor(name, price, size, sides, special, amt) {
+        this.name = name;
+        this.price = price;
+        this.size = size;
+        this.sides = sides;
+        this.instructions = special;
+        this.quantity = amt;
+    }
+}
+
 window.onload = function() { 
     /*const button = this.document.getElementById('sendMenuData'); /// Example code
     const para = this.document.getElementById('menuInfo');
@@ -71,23 +82,44 @@ window.onload = function() {
     /* Functions to handle adding/subtracting quantity of items to cart */
     // NOTE: MAKE MORE EFFICIENT, CLEANER
     var quantity = 1;
-    $('#modal-trig').click(function() {
-        $('#itemModal').modal('show');
-        setQuantity(1);
+    var curName = '';
+    var curPrice = 0.0;
+
+    /**
+     * Each parent element of the button clicked (class item-right) has an 
+     * id of the item's name without whitespaces. Each of the modal boxes
+     * is formatted as #itemModal-<item.name>. Each of them is shown
+     * depending on which button is pressed
+     * 
+     * siblings key
+     * 0 - item-name
+     * 1 - item-cuisine
+     * 2 - item-price
+     */
+    $(document).on('click', '.modal-trig', function() {
+        var parent = $(this).parent().get(0);
+        curName = $(this).siblings()[0].innerText;  
+            // [0] matches to item-name
+        curPrice = parseFloat(($(this).siblings()[2].innerText).substring(1)); 
+            // [2] matches to item-price
+        $('#itemModal-' + parent.id).modal('show');
+        quantity = 1;
+        setQuantity(quantity);
     });
 
     function setQuantity(quant) {
-        $('#quantity').html(quant);
-        $('#cart-text').html("Add "+quant+" to cart");
+        $('.quantity').html(quant);
+        $('.hidden-input').val(quant);
+        $('.cart-text').html("Add "+quant+" to cart");
     }
 
-    $('#subtract').click(function() {
-        if (quantity > 0) {
+    $('.subtract').click(function() {
+        if (quantity > 1) {
             setQuantity(--quantity);
         } 
     });
 
-    $('#add').click(function() {
+    $('.add').click(function() {
         setQuantity(++quantity);
     });
 
@@ -97,30 +129,44 @@ window.onload = function() {
         $('.form-check-input').prop('checked', false);
         $('#specialInstructionsText').val("");
     });
-}
 
-$("#submitOrder").submit(function(event) {
-    const form = $('#submitOrder');
-    if (!form[0].checkValidity()) {
-        return;
-    };
-
-    event.preventDefault();
-    const responses = form.serializeArray();
-    const quantity = parseInt(document.getElementById('quantity').innerText);
-    const size = responses[0].value;
-    const instructions = responses[responses.length - 1].value;
-
-    var sides = []
-    for (var key in responses) {
-        if (responses[key].name === 'side') sides.push(responses[key].value);
+    function clearForms() {
+        $(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+        $(':checkbox, :radio').prop('checked', false);
     }
-    const menuData = {size, sides, quantity, instructions};
-    $.post("/menu", menuData);
 
-    $('#itemModal').modal('hide')
-});
+    $('.submit-btn').click(function() {
+        const form = $('.submitOrder');
+        var responses = form.serializeArray();
 
+        if (!form[0].checkValidity()) {
+            return;
+        };
 
+        var size = '';
+        var sides = [];
+        var instructions = '';
 
+        for (var key in responses) {
+            if (responses[key].name === 'side') sides.push(responses[key].value);
+            if (responses[key].name === 'size') size = responses[key].value;
+            if (responses[key].name === 'instructions' && responses[key].value !== '') {
+                instructions = responses[key].value;
+            }
+        }
 
+        const item = new Item(curName, curPrice, size, sides, instructions, quantity);
+        curName = '';
+        curPrice = 0.0;
+
+        clearForms(); 
+        
+        $.post("/menu", {item}).then(function() {
+            $.post("/menu/getCart").then(function(back) {
+                // console.log(back); -- linter
+            });
+            $('.modal').modal('hide');
+        });  // this is the part that isn't working yet
+
+    })
+}

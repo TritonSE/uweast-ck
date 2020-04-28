@@ -135,7 +135,7 @@ window.onload = function() {
         $(':checkbox, :radio').prop('checked', false);
     }
 
-    $('.submitOrder').submit(function(event) {
+    $('.submit-btn').click(function() {
         const form = $('.submitOrder');
         var responses = form.serializeArray();
 
@@ -158,15 +158,15 @@ window.onload = function() {
         const item = new Item(curName, curPrice, size, sides, instructions, quantity);
         curName = '';
         curPrice = 0.0;
+
+        clearForms(); 
         
         $.post("/menu", {item}).then(function() {
             $.post("/menu/getCart").then(function(back) {
                 console.log(back);
             });
+            $('.modal').modal('hide');
         });  // this is the part that isn't working yet
 
-        $('.modal').modal('hide');
-
-        clearForms(); 
     })
 }

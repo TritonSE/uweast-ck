@@ -46,11 +46,10 @@ router.post('/', (req, res) => {
 });
 
 router.post('/getCart', (req, res) => {
-  var cart = undefined;
+  let cart;
   try {
     cart = req.cookies.cart;
-  }
-  catch {
+  } catch (Exception) {
     cart = [];
   }
   res.jsonp({ cart });

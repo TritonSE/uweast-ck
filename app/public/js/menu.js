@@ -161,13 +161,14 @@ window.onload = function() {
 
         console.log(item);
         
-        $.post("/menu", item);  // this is the part that isn't working yet
+        $.post("/menu", {item});  // this is the part that isn't working yet
 
         $('.modal').modal('hide');
 
         clearForms(); 
-    });
 
-    // submit payment function .then() {} --> calls submitOrder post request
+        $.post("/menu/getCart").then(function(back) {
+            console.log(back);
+        });
+    })
 }
-

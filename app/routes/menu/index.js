@@ -16,32 +16,40 @@ router.get('/', (req, res, next) => {
   }).catch((error) => {
     log.error(error);
   });
-  // res.render('menu');
 });
 
-// Post menu request, add to cart.
-router.post('/', (req, res) => {
+function getCart(req) {
   try {
-    // Attempt to push new order into cart.
-    console.log(req.body);
-    res.status(204).send();
-    /* COOKIE CODE
-    
     const { cart } = req.cookies;
-    cart.push(req.body);
-    res.cookie('cart', cart);
-    console.log(cart);
-    res.status(204).send(cart);*/
+    return cart;
   } catch (TypeError) {
-    // If pushing fails, then cookie needs to be created with new list.
-
-    /*res.cookie('cart', [req.body]);
-    const { cart } = req.cookies;
-    res.status(204).send(cart); */
+    return [];
   }
+}
+
+function updateCart(req, res) {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  cart.push(req.body);
+  res.cookie('cart', cart);
+}
+
+/**
+ * Post request for adding menu item to cart
+ */
+router.post('/', (req, res, next) => {
+  console.log(req.body);
+  updateCart(req, res);
+  res.json({ error: null });
 });
 
-// make new post request for getting cart, return req.cookies through res.json
-// make new post request for submitting cart
+/**
+ * Post request for requesting the JSON of the current cart
+ */
+router.post('/getCart', (req, res) => {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  res.jsonp({ cart });
+});
 
 module.exports = router;

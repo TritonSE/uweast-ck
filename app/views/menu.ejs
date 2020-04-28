@@ -13,7 +13,8 @@
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
-        <!-- **** Databse testing **** -->
+         <!--    DUMMY TABLE
+        **** Databse testing ****
         <table>
             <thead>
                 <tr>
@@ -26,18 +27,19 @@
             </thead>
             <tbody>
 
+           
                 <% items.forEach(function(item) { %>
                     <tr>
                         <td><%= item.name %></td>
                         <td><%= item.description %></td>
                         <td><%= item.price %></td>
                         <td><%= item.category %></td>
-                        <td><%= item.image %></td> <!--Must insert into <img src=> tag for this to work-->
+                        <td><%= item.image %></td>  // Must insert into <img src=> tag for this to work
                     </tr>
-                <% }); %>
+                <% }); %> 
 
             </tbody>
-        </table>
+        </table> -->
 
         <!-- Jumbotron -->
     <div class="main-content-container">
@@ -60,16 +62,16 @@
                             <% if (item.category == "Appetizers") { %>
                                 <div class="menu-thumbnail">
                                     <div class="item-left">
-                                        <img src=images/<%= item.image %> alt="<%=item.name %>">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
                                     </div>
                                     
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -91,10 +93,10 @@
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -111,15 +113,15 @@
                             <% if (item.category == "Sides") { %>
                                 <div class="menu-thumbnail">
                                     <div class="item-left">
-                                        <img src=images/<%= item.image %>" alt="<%= item.name %>">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
                                     </div>
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -141,10 +143,10 @@
                                     <div class="item-right" id="<%= itemVar; %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" id="modal-trig" class="btn btn-primary modal-btn">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
                                             +
                                         </button>
-                                        <div class = "item-price">$<%= item.price %></div>
+                                        <div class="item-price">$<%= item.price %></div>
                                     </div>
                                 </div>
                             <% } %>
@@ -203,7 +205,7 @@
                             </div>
                         </div>
                         <div class="order-summary">
-                            <span>Total Price</span><span id="add-price">$00.00</span>
+                            <span>Total Price</span><span class="add-price">$00.00</span>
                         </div>
                     </div>
                 </div>
@@ -211,16 +213,17 @@
         </div>
 
         <!-- Modal -->
+        <form class="submitOrder">
         <% items.forEach(function(item) { %>
         <% var itemVar = item.name.replace(/\s/g, ''); %>
         <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="submitOrder" action="/menu" method="POST">
+                    
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <img style="width: 100%; border-radius: 25px" src="/app/views/images/<%= item.name %>.jpg">
+                                    <img style="width: 100%; border-radius: 25px" src="images/<%= item.image %>">
                                     <br></br>
                                     <p style="color:grey; font-weight: bold">Dietary Information</p>
                                     <p><b>Ingredients: </b> <%= item.ingredients %></p>
@@ -229,8 +232,10 @@
 
                                 <div class="col-md-5"> <!--Info Column-->
                                 
-                                    <h2 style="font-weight: bolder"><%= item.name %></h2>
+                                    <h2 style="font-weight: bolder" class="name"><%= item.name %></h2>
                                     <h2 style="font-weight: 300"><%= item.description %></h2>
+
+                                    
 
                                     <div class="item-details"> <!--Choosing Size with radio buttons-->
                                         <div class="item-details-box">
@@ -239,19 +244,19 @@
                                         </div>
                                         <div class="forms">
                                             <div class="form-check"> 
-                                                <input class="form-check-input" type="radio" name="size" id="small" value="Small" required>
+                                                <input class="form-check-input" type="radio" name="size" value="Small" required>
                                                 <label class="form-check-label" for="sizeRadios1">
                                                     Small
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="size" id="medium" value="Medium">
+                                                <input class="form-check-input" type="radio" name="size" value="Medium">
                                                 <label class="form-check-label" for="sizeRadios2">
                                                     Medium
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="size" id="large" value="Large">
+                                                <input class="form-check-input" type="radio" name="size" value="Large">
                                                 <label class="form-check-label" for="sizeRadios3">
                                                     Large
                                                 </label>
@@ -266,19 +271,19 @@
                                         </div>
                                         <div class="forms">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex1" value="XX">
+                                                <input class="form-check-input" type="checkbox" name="side" value="XX">
                                                 <label class="form-check-label" for="sideBox1">
                                                     XX
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex2" value="YY">
+                                                <input class="form-check-input" type="checkbox" name="side" value="YY">
                                                 <label class="form-check-label" for="sideBox2">
                                                     YY
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="side" id="ex3" value="ZZ">
+                                                <input class="form-check-input" type="checkbox" name="side" value="ZZ">
                                                 <label class="form-check-label" for="sideBox3">
                                                     ZZ
                                                 </label>
@@ -292,7 +297,7 @@
                                             <p class="req-or-opt">Optional</p>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="3" form="submitOrder" name="special-instructions"></textarea>
+                                            <textarea class="form-control" rows="3" name="special"></textarea>
                                         </div>
                                     </div>
 
@@ -301,25 +306,25 @@
                                             <p class="detail">Quantity</p>
                                         </div>
                                         <div class="quantity-buttons d-flex justify-content-center">
-                                            <div class="num" id="subtract">-</div>
-                                                <span id="quantity">1</span>
-                                            <div class="num" id="add">+</div>
+                                            <div class="num subtract">-</div>
+                                                <span class="quantity">1</span>
+                                            <div class="num add">+</div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <button type="submit" class="btn btn-dark" id="cartButton" onclick=cartCookies()>
-                                    <div class="add-cart"><span id="cart-text">Add 1 to cart</span><span id="add-price">$00.00</span></div>
+                                <button class="btn btn-dark submit-btn">
+                                    <div class="add-cart"><span class="cart-text">Add 1 to cart</span><span class="add-price">$00.00</span></div>
                                 </button>
 
-                                <div class="price">$<%= item.price %></div>
-                            </div>
+                            <div class="price">$<%= item.price %></div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
         <% }); %>
+
+        </form>
     </div>
 
     

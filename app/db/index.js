@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 const { Item } = require('./models/item');
-// const { Payment } = require('./models/payment');
+const { Payment } = require('./models/payment');
 
 const { uri } = config.db;
 
@@ -11,21 +11,15 @@ function getAllMenuItems() {
   return Item.find({}).exec();
 }
 
-
-function getItemByCategory(cat) {
-  return Item.find({ category: cat }).exec();
+function addNewPayment(info) {
+  Payment.create({
+    quantity: info.quantity,
+    items: info.items,
+    subtotal: info.subtotal,
+    tax: info.tax,
+    tip: info.tip,
+    total: info.total,
+  });
 }
 
-function getItemByName(nm) {
-  return Item.find({ name: nm }).exec();
-}
-
-function getItemByPrice(pr) {
-  return Item.find({ price: pr }).exec();
-}
-
-function getItemByTag(tg) {
-  return Item.find({ tags: tg }).exec();
-}
-
-module.exports = { getAllMenuItems, getItemByCategory, getItemByName, getItemByPrice, getItemByTag };
+module.exports = { getAllMenuItems, addNewPayment };

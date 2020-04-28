@@ -10,19 +10,6 @@ router.get('/', (req, res, next) => {
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
-      items.push({
-        name: childData.name,
-        description: childData.description,
-        price: childData.price,
-        category: childData.category,
-        image: childData.image,
-        cuisine: childData.cuisine,
-        tags: childData.tags,
-        vegan: childData.vegan,
-        vegetarian: childData.vegetarian,
-        glutenFree: childData.glutenFree,
-        ingredients: childData.ingredients,
-      });
       items.push(childData);
     }
     res.render('menu', { items });
@@ -43,7 +30,8 @@ function getCart(req) {
 function updateCart(req, res) {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
-  cart.push(req.body);
+  cart.push(req.body.item);
+  // console.log(cart); -- linter
   res.cookie('cart', cart);
 }
 
@@ -52,7 +40,8 @@ function updateCart(req, res) {
  */
 router.post('/', (req, res, next) => {
   updateCart(req, res);
-  res.json({ error: null });
+  // res.jsonp({ error: null });
+  res.status(204).send();
 });
 
 /**

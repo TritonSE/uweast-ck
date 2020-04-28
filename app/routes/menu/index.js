@@ -31,7 +31,7 @@ function updateCart(req, res) {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
   cart.push(req.body.item);
-  console.log(cart);
+  // console.log(cart); -- linter
   res.cookie('cart', cart);
 }
 
@@ -40,7 +40,7 @@ function updateCart(req, res) {
  */
 router.post('/', (req, res, next) => {
   updateCart(req, res);
-  //res.jsonp({ error: null });
+  // res.jsonp({ error: null });
   res.status(204).send();
 });
 

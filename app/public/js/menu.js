@@ -163,7 +163,7 @@ window.onload = function() {
         
         $.post("/menu", {item}).then(function() {
             $.post("/menu/getCart").then(function(back) {
-                console.log(back);
+                // console.log(back); -- linter
             });
             $('.modal').modal('hide');
         });  // this is the part that isn't working yet

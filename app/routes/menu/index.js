@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
-
-
       items.push({
         name: childData.name,
         description: childData.description,
@@ -31,21 +29,39 @@ router.get('/', (req, res, next) => {
   }).catch((error) => {
     log.error(error);
   });
-  // res.render('menu');
 });
 
-// Post menu request, add to cart.
-router.post('/', (req, res) => {
+function getCart(req) {
   try {
-    // Attempt to push new order into cart.
     const { cart } = req.cookies;
-    cart.push(req.body);
-    res.cookie('cart', cart);
+    return cart;
   } catch (TypeError) {
-    // If pushing fails, then cookie needs to be created with new list.
-    res.cookie('cart', [req.body]);
+    return [];
   }
+}
+
+function updateCart(req, res) {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  cart.push(req.body);
+  res.cookie('cart', cart);
+}
+
+/**
+ * Post request for adding menu item to cart
+ */
+router.post('/', (req, res, next) => {
+  updateCart(req, res);
   res.json({ error: null });
+});
+
+/**
+ * Post request for requesting the JSON of the current cart
+ */
+router.post('/getCart', (req, res) => {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  res.jsonp({ cart });
 });
 
 module.exports = router;

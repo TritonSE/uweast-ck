@@ -158,17 +158,15 @@ window.onload = function() {
         const item = new Item(curName, curPrice, size, sides, instructions, quantity);
         curName = '';
         curPrice = 0.0;
-
-        console.log(item);
         
-        $.post("/menu", {item});  // this is the part that isn't working yet
+        $.post("/menu", {item}).then(function() {
+            $.post("/menu/getCart").then(function(back) {
+                console.log(back);
+            });
+        });  // this is the part that isn't working yet
 
         $('.modal').modal('hide');
 
         clearForms(); 
-
-        $.post("/menu/getCart").then(function(back) {
-            console.log(back);
-        });
     })
 }

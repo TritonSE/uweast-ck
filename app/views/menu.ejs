@@ -213,7 +213,7 @@
         </div>
 
         <!-- Modal -->
-        <form class="submitOrder" action="/menu" method="POST">
+        <form class="submitOrder">
         <% items.forEach(function(item) { %>
         <% var itemVar = item.name.replace(/\s/g, ''); %>
         <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">

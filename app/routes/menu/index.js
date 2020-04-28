@@ -7,7 +7,9 @@ const router = express.Router();
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
-  const cart = [];
+  var cart = getCart(req);
+  if (cart === undefined) cart = [];
+  console.log(cart);
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
@@ -41,7 +43,6 @@ function updateCart(req, res) {
  */
 router.post('/', (req, res, next) => {
   updateCart(req, res);
-  // res.jsonp({ error: null });
   res.status(204).send();
 });
 

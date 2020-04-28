@@ -67,15 +67,15 @@ h2 {
     text-decoration: none;
 }
 
-#subtract {
+.subtract {
     background-color: red;
 }
 
-#add {
+.add {
     background-color: #32CD32;
 }
 
-#quantity {
+.quantity {
     padding-left: 30px;
     padding-right: 30px;
     font-weight: bolder;
@@ -91,7 +91,7 @@ h2 {
     font-weight: bold;
 }
 
-#add-price {
+.add-price {
     position: absolute;
     right: 25px;
 }
@@ -113,9 +113,10 @@ h2 {
 
 
 
-.appetizer-body {
+.category-body {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .menu-thumbnail {
@@ -126,7 +127,7 @@ h2 {
     display: flex;
     flex-direction: row;
     height: 150px;
-    width: 33%
+    width: 32%
 
 }
 
@@ -305,4 +306,9 @@ hr.divider {
 
 .menu-category{
     border-bottom: 1px solid grey;
+}
+
+.submit-btn {
+    width: 200px;
+    margin-left: 35%;
 }

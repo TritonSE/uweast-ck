@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema({
-  items: [Array], // how to do this to hold Item objects?
+  quantity: Number,
+  items: String, // payment ID, orders database, hash something possible?
+  /* name: String,
+    size: String,
+    special: String,
+    */
+  // }, // how to do this to hold Item objects?
+  // size...
   subtotal: Number,
   tax: Number,
   tip: Number,

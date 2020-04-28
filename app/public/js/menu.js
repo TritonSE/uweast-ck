@@ -83,15 +83,6 @@ window.onload = function() {
         setQuantity(1);
     });
 
-
-
-    
-
-
-
-
-    
-
     function setQuantity(quant) {
         $('#quantity').html(quant);
         $('#cart-text').html("Add "+quant+" to cart");
@@ -137,7 +128,10 @@ $("#submitOrder").submit(function(event) {
         sides,
         quantity,
         instructions
+    }).then(function() {
+        console.log(form.parent());
+        $('#itemModal-').modal('hide'); // Fix when Viren's PR is in
     });
 
-    $('#itemModal').modal('hide')
+    
 });

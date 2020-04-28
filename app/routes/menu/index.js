@@ -31,17 +31,25 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// Post menu request, add to cart.
-router.post('/', (req, res) => {
+function getCart(req) {
   try {
-    // Attempt to push new order into cart.
     const { cart } = req.cookies;
-    cart.push(req.body);
-    res.cookie('cart', cart);
+    return cart;
   } catch (TypeError) {
-    // If pushing fails, then cookie needs to be created with new list.
-    res.cookie('cart', [req.body]);
+    return [];
   }
+}
+
+function updateCart(req, res) {
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  cart.push(req.body);
+  res.cookie('cart', cart);
+}
+
+// Post menu request, add to cart.
+router.post('/', (req, res, next) => {
+  updateCart(req, res);
   res.json({ error: null });
 });
 

@@ -133,5 +133,7 @@ $("#submitOrder").submit(function(event) {
         $('#itemModal-').modal('hide'); // Fix when Viren's PR is in
     });
 
-    
+    $.post("/menu/getCart").then(function(back) {
+        console.log(back);
+    });
 });

@@ -47,19 +47,20 @@ function updateCart(req, res) {
   res.cookie('cart', cart);
 }
 
-// Post menu request, add to cart.
+/**
+ * Post request for adding menu item to cart
+ */
 router.post('/', (req, res, next) => {
   updateCart(req, res);
   res.json({ error: null });
 });
 
+/**
+ * Post request for requesting the JSON of the current cart
+ */
 router.post('/getCart', (req, res) => {
-  let cart;
-  try {
-    cart = req.cookies.cart;
-  } catch (Exception) {
-    cart = [];
-  }
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
   res.jsonp({ cart });
 });
 

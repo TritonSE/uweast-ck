@@ -63,6 +63,7 @@ router.post('/getCart', (req, res) => {
 
 /**
  * Post request for adding order to database
+ * Ideally, this would happen in the index.js for the cart route, but the functionality is set up
  */
 router.post('/submitOrder', (req, res) => {
   const body = req.body;

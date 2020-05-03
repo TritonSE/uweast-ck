@@ -184,6 +184,9 @@ window.onload = function() {
 
     })
 
+    /**
+     * Order gets posted
+     */
     $('#cart-submit').click(function() {
         $.post("/menu/getCart").then(function(res) {
             var items = res;
@@ -191,6 +194,7 @@ window.onload = function() {
             var tax = calculateTax(subtotal);
             var total = calculateTotal(subtotal);
             $.post("/menu/submitOrder", {items, subtotal, tax, total});
+                // maybe change this URL to be to the cart page
         });
     })
 }

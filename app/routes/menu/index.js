@@ -31,7 +31,6 @@ function updateCart(req, res) {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
   cart.push(req.body.item);
-  // console.log(cart); -- linter
   res.cookie('cart', cart);
 }
 
@@ -51,6 +50,14 @@ router.post('/getCart', (req, res) => {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
   res.jsonp({ cart });
+});
+
+/**
+ * Post request for adding order to database
+ */
+router.post('/submitOrder', (req, res) => {
+  console.log(req);
+  res.status(204).send();
 });
 
 module.exports = router;

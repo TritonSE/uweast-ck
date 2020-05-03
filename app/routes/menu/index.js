@@ -4,6 +4,15 @@ const log = require('../../logger');
 
 const router = express.Router();
 
+class Info {
+  constructor(items, subtotal, tax, total) {
+    this.items = items;
+    this.subtotal = subtotal;
+    this.tax = tax;
+    this.total = total;
+  }
+}
+
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
@@ -56,7 +65,9 @@ router.post('/getCart', (req, res) => {
  * Post request for adding order to database
  */
 router.post('/submitOrder', (req, res) => {
-  console.log(req);
+  const body = req.body;
+  const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
+  db.addNewPayment(info);
   res.status(204).send();
 });
 

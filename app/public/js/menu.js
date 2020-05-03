@@ -186,11 +186,11 @@ window.onload = function() {
 
     $('#cart-submit').click(function() {
         $.post("/menu/getCart").then(function(res) {
-            var subtotal = calculateSubtotal(res);
+            var items = res;
+            var subtotal = calculateSubtotal(items);
             var tax = calculateTax(subtotal);
             var total = calculateTotal(subtotal);
-            console.log(res, subtotal, tax, total);
-            $.post("/menu/submitOrder", {res, subtotal, tax, total});
+            $.post("/menu/submitOrder", {items, subtotal, tax, total});
         });
     })
 }

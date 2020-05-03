@@ -66,7 +66,7 @@ router.post('/getCart', (req, res) => {
  * Ideally, this would happen in the index.js for the cart route, but the functionality is set up
  */
 router.post('/submitOrder', (req, res) => {
-  const body = req.body;
+  const { body } = req;
   const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
   db.addNewPayment(info);
   res.status(204).send();

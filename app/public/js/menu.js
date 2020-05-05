@@ -167,7 +167,7 @@ window.onload = function() {
         for (var key in responses) {
             if (responses[key].name === 'side') sides.push(responses[key].value);
             if (responses[key].name === 'size') size = responses[key].value;
-            if (responses[key].name === 'instructions' && responses[key].value !== '') {
+            if (responses[key].name === 'special' && responses[key].value !== '') {
                 instructions = responses[key].value;
             }
         }

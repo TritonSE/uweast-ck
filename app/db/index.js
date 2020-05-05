@@ -12,14 +12,7 @@ function getAllMenuItems() {
 }
 
 function addNewPayment(info) {
-  Payment.create({
-    quantity: info.quantity,
-    items: info.items,
-    subtotal: info.subtotal,
-    tax: info.tax,
-    tip: info.tip,
-    total: info.total,
-  });
+  Payment.create(info);
 }
 
 module.exports = { getAllMenuItems, addNewPayment };

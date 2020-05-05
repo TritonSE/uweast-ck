@@ -97,7 +97,7 @@ window.onload = function() {
      * 2 - item-price
      */
     $(document).on('click', '.modal-trig', function() {
-        var parent = $(this).parent().get(0);
+        let parent = $(this).parent().get(0);
         curName = $(this).siblings()[0].innerText;  
             // [0] matches to item-name
         curPrice = parseFloat(($(this).siblings()[2].innerText).substring(1)); 
@@ -111,6 +111,23 @@ window.onload = function() {
         $('.quantity').html(quant);
         $('.hidden-input').val(quant);
         $('.cart-text').html("Add "+quant+" to cart");
+    }
+
+    function calculateSubtotal(array) {
+        let subtotal = 0.0;
+        for (const element in array['cart']) {
+            const item = array['cart'][element];
+            subtotal += item.quantity*item.price;
+        }
+        return subtotal;
+    }
+
+    function calculateTax(subtotal) {
+        return parseFloat((0.08*subtotal).toFixed(2));  // CA tax is 8%
+    }
+
+    function calculateTotal(subtotal) {
+        return parseFloat((subtotal+parseFloat(calculateTax(subtotal))).toFixed(2));   // CA tax is 8%
     }
 
     $('.subtract').click(function() {
@@ -137,20 +154,20 @@ window.onload = function() {
 
     $('.submit-btn').click(function() {
         const form = $('.submitOrder');
-        var responses = form.serializeArray();
+        let responses = form.serializeArray();
 
         if (!form[0].checkValidity()) {
             return;
         };
 
-        var size = '';
-        var sides = [];
-        var instructions = '';
+        let size = '';
+        let sides = [];
+        let instructions = '';
 
         for (var key in responses) {
             if (responses[key].name === 'side') sides.push(responses[key].value);
             if (responses[key].name === 'size') size = responses[key].value;
-            if (responses[key].name === 'instructions' && responses[key].value !== '') {
+            if (responses[key].name === 'special' && responses[key].value !== '') {
                 instructions = responses[key].value;
             }
         }
@@ -162,11 +179,22 @@ window.onload = function() {
         clearForms(); 
         
         $.post("/menu", {item}).then(function() {
-            $.post("/menu/getCart").then(function(back) {
-                // console.log(back); -- linter
-            });
             $('.modal').modal('hide');
-        });  // this is the part that isn't working yet
+        }); 
 
+    })
+
+    /**
+     * Order gets posted
+     */
+    $('#cart-submit').click(function() {
+        $.post("/menu/getCart").then(function(res) {
+            var items = res;
+            var subtotal = calculateSubtotal(items);
+            var tax = calculateTax(subtotal);
+            var total = calculateTotal(subtotal);
+            $.post("/menu/submitOrder", {items, subtotal, tax, total});
+                // maybe change this URL to be to the cart page
+        });
     })
 }

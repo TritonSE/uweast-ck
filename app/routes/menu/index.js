@@ -4,6 +4,15 @@ const log = require('../../logger');
 
 const router = express.Router();
 
+class Info {
+  constructor(items, subtotal, tax, total) {
+    this.items = items;
+    this.subtotal = subtotal;
+    this.tax = tax;
+    this.total = total;
+  }
+}
+
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
@@ -31,7 +40,6 @@ function updateCart(req, res) {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
   cart.push(req.body.item);
-  // console.log(cart); -- linter
   res.cookie('cart', cart);
 }
 
@@ -51,6 +59,17 @@ router.post('/getCart', (req, res) => {
   let cart = getCart(req);
   if (cart === undefined) cart = [];
   res.jsonp({ cart });
+});
+
+/**
+ * Post request for adding order to database
+ * Ideally, this would happen in the index.js for the cart route, but the functionality is set up
+ */
+router.post('/submitOrder', (req, res) => {
+  const { body } = req;
+  const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
+  db.addNewPayment(info);
+  res.status(204).send();
 });
 
 module.exports = router;

@@ -195,7 +195,7 @@ window.onload = function() {
                 div.innerHTML += element['name'] += '<br><br>';
                 document.getElementById('cart-items-modal').appendChild(div);
             }
-        })
+        })c
     })
 
     /**

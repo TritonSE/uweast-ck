@@ -135,6 +135,11 @@ window.onload = function() {
         $(':checkbox, :radio').prop('checked', false);
     }
 
+    // $('.clear-btn').click(function() {
+    //     ("fixed-scroll").removeChild();
+    //        deleteAllCookies();
+    // })
+
     $('.submit-btn').click(function() {
         const form = $('.submitOrder');
         var responses = form.serializeArray();

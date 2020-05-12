@@ -148,6 +148,7 @@
                             <div class="fixed-scroll">
                             <% var count = 1; %>
                             <% cart.forEach(function(item) { %>
+                                <!-- <% location.reload() %> -->
                                 <div class="summary-item row">
                                     <span class="thumbnail thumb-img"><%= count %></span>
                                     <p> Food Name<br>
@@ -160,6 +161,9 @@
                                 <hr class="divider">
                                 <% count = count + 1; %>
                                 <% }); %>
+                                <!-- <button class="btn btn-dark clear-btn">
+                                    <div class="clear-cart"><span class="clear-text">Clear Cart</span>
+                                </button> -->
                         <div class="order-summary">
                             <span>Total Price</span><span class="add-price">$00.00</span>
                         </div>

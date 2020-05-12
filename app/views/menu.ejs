@@ -203,13 +203,38 @@
                                 Subtotal: $00.00<br>
                                 Tax: $00.00
                             </div>
-                            <button id="cart-submit">Submit order</button>
+                            <button id="cart-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">
+                                Review order
+                            </button>
                         </div>
                         <div class="order-summary">
                             <span>Total Price</span><span class="add-price">$00.00</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- TODO: Set up ejs and/or restyle remove item button(s) -->
+        <!-- Cart Modal -->
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Cart</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div id="cart-items-modal">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
+                  <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>
+                </div>
+              </div>
             </div>
         </div>
 

@@ -178,10 +178,34 @@ window.onload = function() {
 
         clearForms(); 
         
-        $.post("/menu", {item}).then(function() {
+        $.post("/menu/addCart", {item}).then(function() {
             $('.modal').modal('hide');
         }); 
 
+    })
+
+    $('#cart-modal').click(function() {
+        $.post("/menu/getCart").then(function(res) {
+            console.log(res);
+            $('#cart-items-modal').html('');
+            for (let index = 0; index < res['cart'].length; index++) {
+                var div = document.createElement('div');
+                const element = res['cart'][index];
+                div.id = element['name'].split(' ').join('_');
+                div.className = 'modal-items';
+                div.innerHTML += element['name'] + '<br><br>';
+                document.getElementById('cart-items-modal').appendChild(div);
+            }
+        });
+    })
+
+    /**
+     * TODO: Set this up properly on the front-end
+     */
+    $('.remove-item').click(function() {
+        /* TODO: Figure out which element to remove by index */
+        index = 0;
+        $.post("/menu/removeCart", {index});
     })
 
     /**

@@ -43,12 +43,29 @@ function updateCart(req, res) {
   res.cookie('cart', cart);
 }
 
+function removeCartItem(req, res) {
+  const cart = getCart(req);
+  /* Make sure to implement check for null cart
+      in remove call from menu.js */
+  const index = parseInt(req.body.index, 10);
+  cart.splice(index, 1);
+  res.cookie('cart', cart);
+}
+
 /**
  * Post request for adding menu item to cart
  */
-router.post('/', (req, res, next) => {
+router.post('/addCart', (req, res) => {
   updateCart(req, res);
   // res.jsonp({ error: null });
+  res.status(204).send();
+});
+
+/**
+ * Post request for removing menu item from cart
+ */
+router.post('/removeCart', (req, res) => {
+  removeCartItem(req, res);
   res.status(204).send();
 });
 

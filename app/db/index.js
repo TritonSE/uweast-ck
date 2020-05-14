@@ -22,4 +22,21 @@ function addNewPayment(info) {
   });
 }
 
-module.exports = { getAllMenuItems, addNewPayment };
+function addNewItem(info){
+  Item.create({
+    id: info.id,
+    name: info.name,
+    description: info.description,
+    price: info.price,
+    category: info.category,
+    image: info.image,
+    cuisine: info.cuisine,
+    tags: info.tags,
+    vegan: info.vegan,
+    vegetarian: info.vegetarian,
+    glutenFree: info.glutenFree,
+    ingredients: info.ingredients,
+  })
+}
+
+module.exports = { getAllMenuItems, addNewPayment, addNewItem };

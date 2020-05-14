@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   console.log(req.body.item)
   db.addNewItem(req.body.item)
-  res.json({ error: null });
+  res.send(200);
 
 });
 

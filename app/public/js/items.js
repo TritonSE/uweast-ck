@@ -48,6 +48,7 @@ $('.random').click(function() {
     const item = new Item(id, name, description, category);
 
     $.post("/menu", {item}).then(function() {
+        window.location = '/items';
     })
 
 })

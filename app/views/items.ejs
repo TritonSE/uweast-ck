@@ -1,40 +1,115 @@
+<!DOCTYPE html>
 <html>
-  <%- include partials/navbar.ejs %>
-  <form class="createItem">
-    <p>id</p>
-    <textarea name = "id"></textarea>
-    <p>name</p>
-    <textarea name = "name"></textarea>
-    <p>description</p>
-    <textarea name = "description"></textarea>
-    <p>price</p>
-    <textarea name = "price"></textarea>
-    <p>category</p>
-    <select id="category" name="category">
-      <option value="appetizer">Appetizer</option>
-      <option value="main">Main</option>
-      <option value="side">Side</option>
-      <option value="drink">Drink</option>
-    </select>
-    <p>image</p>
-    <textarea name = "image"></textarea>
-    <p>vegan</p>
-    <select id="vegan" name="vegan">
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <head>
+      <title>Add New Item</title>
+      <meta charset="utf-8">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="/css/items.css">
+    </head>
+    <body>
+      <!-- Takes navbar ejs and inserts it here. -->
+      <%- include partials/navbar.ejs %>
+      <div class="new-item-section">
+        <div class="col-12">
+          <h2 class="form-title">Fill out the form to add a new item!</h2>
+        </div>
+
+        <div class="col-lg-8">
+          <form class="new-item-form">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea class = "form-control" name="id" placeholder="Enter ID"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea class = "form-control" name="name" placeholder="Enter Item Name"></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <textarea class = "form-control" name="description" rows="5" placeholder="Description"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea class = "form-control" name="price" placeholder="Enter Price"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea class = "form-control" name="image" placeholder="Enter Image Link"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <textarea class = "form-control" name="cuisine" placeholder="Enter Cuisine"></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class = "dropdown">
+                  <select id="category" name="category">
+                    <option value="0">Choose Category</option>
+                    <option value="appetizer">Appetizer</option>
+                    <option value="main">Main</option>
+                    <option value="side">Side</option>
+                    <option value="drink">Drink</option>
+                  </select>
+                </div>
+              </div>
+             
+              <div class="col-sm-6">
+                <div class = "dropdown">
+                  <select id="vegan" name="vegan">
+                    <option value="0">Vegan?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class = "dropdown">
+                  <select id="vegetarian" name="vegetarian">
+                    <option value="0">Vegetarian?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class = "dropdown">
+                  <select id="glutenFree" name="glutenFree">
+                    <option value="0">Gluten-Free?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <textarea class = "form-control" name="ingredients" rows="5" placeholder="Enter Ingredients"></textarea>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <button class="submit-button">
+                  <span>submit</span>
+                </button>
+              </div>
+            
+            </div>
+
+          </form>
+        </div>
+      </div>
 
 
-
-
-    <button class="random">
-      <span>submit</span>
-    </button>
-
-
-  </form>
+  </body>
   <script src="/js/items.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</html> 
+</html>

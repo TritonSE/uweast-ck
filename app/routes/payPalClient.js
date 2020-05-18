@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  *
@@ -6,15 +5,8 @@
  */
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
 
-/**
- *
- * Returns PayPal HTTP client instance with environment that has access
- * credentials context. Use this instance to invoke PayPal APIs, provided the
- * credentials have access.
- */
-function client() {
-    return new checkoutNodeJssdk.core.PayPalHttpClient(environment());
-}
+const CLIENT_ID = 'AbNqWpbV5U5ZLifwBXVD6_DDItmOHCt0_NIfblHNgESIsrKo2O7wZxGufduacyc99C9yjFQdrNPgUQIy';
+const SECRET_ID = 'EBeH6QRWjg2y5pvoA6CXLHCh99MTbPNrRU3IO7V3azdxYHOEM0REGplBQbnMi1m5ePK67FYcg2pKJVH4';
 
 /**
  *
@@ -23,36 +15,42 @@ function client() {
  *
  */
 function environment() {
-    let clientId = process.env.PAYPAL_CLIENT_ID || 'AbNqWpbV5U5ZLifwBXVD6_DDItmOHCt0_NIfblHNgESIsrKo2O7wZxGufduacyc99C9yjFQdrNPgUQIy';
-    let clientSecret = process.env.PAYPAL_CLIENT_SECRET || 'EBeH6QRWjg2y5pvoA6CXLHCh99MTbPNrRU3IO7V3azdxYHOEM0REGplBQbnMi1m5ePK67FYcg2pKJVH4';
+  const clientId = process.env.PAYPAL_CLIENT_ID || CLIENT_ID;
+  const clientSecret = process.env.PAYPAL_CLIENT_SECRET || SECRET_ID;
 
-    return new checkoutNodeJssdk.core.SandboxEnvironment(
-        clientId, clientSecret
-    );
+  return new checkoutNodeJssdk.core.SandboxEnvironment(
+    clientId, clientSecret,
+  );
 }
 
-async function prettyPrint(jsonData, pre=""){
-    let pretty = "";
-    function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    }
-    for (let key in jsonData){
-        if (jsonData.hasOwnProperty(key)){
-            if (isNaN(key))
-              pretty += pre + capitalize(key) + ": ";
-            else
-              pretty += pre + (parseInt(key) + 1) + ": ";
-            if (typeof jsonData[key] === "object"){
-                pretty += "\n";
-                pretty += await prettyPrint(jsonData[key], pre + "    ");
-            }
-            else {
-                pretty += jsonData[key] + "\n";
-            }
-
-        }
-    }
-    return pretty;
+/**
+ *
+ * Returns PayPal HTTP client instance with environment that has access
+ * credentials context. Use this instance to invoke PayPal APIs, provided the
+ * credentials have access.
+ */
+function client() {
+  return new checkoutNodeJssdk.core.PayPalHttpClient(environment());
 }
 
-module.exports = {client: client, prettyPrint:prettyPrint};
+async function prettyPrint(jsonData, pre = '') {
+  let pretty = '';
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+  for (const key in jsonData) {
+    if (jsonData.hasOwnProperty(key)) {
+      if (isNaN(key)) pretty += `${pre + capitalize(key)}: `;
+      else pretty += `${pre + (parseInt(key) + 1)}: `;
+      if (typeof jsonData[key] === 'object') {
+        pretty += '\n';
+        pretty += await prettyPrint(jsonData[key], `${pre}    `);
+      } else {
+        pretty += `${jsonData[key]}\n`;
+      }
+    }
+  }
+  return pretty;
+}
+
+module.exports = { client, prettyPrint };

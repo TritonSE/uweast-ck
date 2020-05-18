@@ -246,6 +246,12 @@
                             }).then(function(res) {
                                 return res.json();
                             }).then(function(data) {
+                                const id = data.orderID;
+                                const items = data.items;
+                                const subtotal = data.subtotal;
+                                const tax = data.tax;
+                                const total = data.total;
+                                $.post("/menu/submitOrder", {id, items, subtotal, tax, total});
                                 return data.orderID; // Use the same key name for order ID on the client and server
                             });
                             }

@@ -10,10 +10,29 @@ const paypal = require('@paypal/checkout-server-sdk');
  */
 const payPalClient = require('../payPalClient');
 
+function calculateSubtotal(array) {
+  let subtotal = 0.0;
+  for (const element in array['cart']) {
+      const item = array['cart'][element];
+      subtotal += item.quantity*item.price;
+  }
+  return subtotal;
+}
+
+function calculateTax(subtotal) {
+  return parseFloat((0.08*subtotal).toFixed(2));  // CA tax is 8%
+}
+
+function calculateTotal(subtotal) {
+  return (subtotal+parseFloat(calculateTax(subtotal))).toFixed(2);   // CA tax is 8%
+}
+
+
 // 2. Set up your server to receive a call from the client
 module.exports = async function handleRequest(req, res) {
   // 3. Call PayPal to set up a transaction
-  console.log(req.cookies);
+  let subtotal = calculateSubtotal(req.cookies);
+  let total = calculateTotal(subtotal);
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
@@ -21,7 +40,7 @@ module.exports = async function handleRequest(req, res) {
     purchase_units: [{
       amount: {
         currency_code: 'USD',
-        value: '220.00'
+        value: total
       }
     }]
   });
@@ -37,6 +56,10 @@ module.exports = async function handleRequest(req, res) {
   }
   // 5. Return a successful response to the client with the order ID
   res.status(200).json({
-    orderID: order.result.id
+    orderID: order.result.id,
+    items: req.cookies,
+    subtotal: subtotal,
+    tax: calculateTax(subtotal),
+    total: total
   });
 }

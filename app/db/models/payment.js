@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema({
-  items: [Object], // item ID?
+  id: String,
+  items: [Object],
   subtotal: Number,
   tax: Number,
   total: Number,

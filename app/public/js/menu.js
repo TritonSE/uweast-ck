@@ -186,7 +186,6 @@ window.onload = function() {
 
     $('#cart-modal').click(function() {
         $.post("/menu/getCart").then(function(res) {
-            console.log(res);
             $('#cart-items-modal').html('');
             for (let index = 0; index < res['cart'].length; index++) {
                 var div = document.createElement('div');
@@ -207,20 +206,4 @@ window.onload = function() {
         index = 0;
         $.post("/menu/removeCart", {index});
     })
-
-    /**
-     * Order gets posted
-     */
-    $('#cart-submit').click(function() {
-        $.post("/menu/getCart").then(function(res) {
-            var items = res;
-            var subtotal = calculateSubtotal(items);
-            var tax = calculateTax(subtotal);
-            var total = calculateTotal(subtotal);
-            $.post("/menu/submitOrder", {items, subtotal, tax, total});
-                // maybe change this URL to be to the cart page
-        });
-    })
-
-    
 }

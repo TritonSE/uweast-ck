@@ -236,8 +236,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
                   <script>
-                        paypal.Buttons().render('.modal-footer');
-                        // This function displays Smart Payment Buttons on your web page.
+                        paypal.Buttons(createOrder()).render('.modal-footer');
                     </script>
                   <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
                 </div>

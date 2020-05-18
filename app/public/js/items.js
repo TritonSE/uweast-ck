@@ -1,5 +1,5 @@
 class Item {
-    constructor(id, name, description, category) {
+    constructor(id, name, description, price, category, image, cuisine, vegan, vegetarian, glutenFree, ingredients) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -11,6 +11,7 @@ class Item {
         this.vegetarian = vegetarian;
         this.glutenFree = glutenFree
         this.ingredients = ingredients;
+        this.tags = tags;
     }
 }
 
@@ -26,7 +27,15 @@ $('.submit-button').click(function() {
     var id = '';
     var name = '';
     var description = '';
+    var price = '';
     var category = '';
+    var image = '';
+    var cuisine = '';
+    var vegan = '';
+    var glutenFree = '';
+    var vegetarian = '';
+    var ingredients = [];
+    var tags = [];
 
     for (var key in responses){
         if (responses[key].name === 'id' && responses[key].value !== '') {
@@ -62,9 +71,12 @@ $('.submit-button').click(function() {
         if (responses[key].name === 'ingredients' && responses[key].value !== '') {
             ingredients = responses[key].value;
         }
+        if (responses[key].name === 'tags' && responses[key].value !== '') {
+            tags = responses[key].value;
+        }
     }
 
-    const item = new Item(id, name, description, price, category, image, cuisine, vegan, vegetarian, glutenFree, ingredients);
+    const item = new Item(id, name, description, price, category, image, cuisine, vegan, vegetarian, glutenFree, ingredients, tags);
 
     $.post("/items", {item}).then(function() {
         window.location = '/items';

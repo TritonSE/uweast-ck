@@ -7,6 +7,7 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
+
 .new-item-form .form-group {
 margin-bottom: 30px;
 }
@@ -21,6 +22,11 @@ margin-bottom: 30px;
   }
 
 .new-item-form textarea {
+    border-radius: 0px;
+    height: 100% !important;
+  }
+
+.new-item-form input {
     border-radius: 0px;
     height: 100% !important;
   }
@@ -54,4 +60,10 @@ margin-bottom: 30px;
 .dropdown{
     margin-right: 30px;
     margin-bottom: 20px;
+}
+
+.form-check {
+  padding-left: 15px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }

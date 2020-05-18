@@ -221,4 +221,6 @@ window.onload = function() {
                 // maybe change this URL to be to the cart page
         });
     })
+
+    
 }

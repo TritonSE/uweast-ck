@@ -236,7 +236,20 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
                   <script>
-                        paypal.Buttons(createOrder()).render('.modal-footer');
+                        paypal.Buttons({
+                            createOrder: function() {
+                            return fetch('menu/submitOrder', {
+                                method: 'post',
+                                headers: {
+                                'content-type': 'application/json'
+                                }
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(data) {
+                                return data.orderID; // Use the same key name for order ID on the client and server
+                            });
+                            }
+                        }).render('.modal-footer');
                     </script>
                   <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
                 </div>

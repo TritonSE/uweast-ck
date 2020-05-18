@@ -238,7 +238,7 @@
                   <script>
                         paypal.Buttons({
                             createOrder: function() {
-                            return fetch('menu/submitOrder', {
+                            return fetch('/paypal', {
                                 method: 'post',
                                 headers: {
                                 'content-type': 'application/json'

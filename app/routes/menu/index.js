@@ -5,7 +5,8 @@ const log = require('../../logger');
 const router = express.Router();
 
 class Info {
-  constructor(items, subtotal, tax, total) {
+  constructor(id, items, subtotal, tax, total) {
+    this.id = id;
     this.items = items;
     this.subtotal = subtotal;
     this.tax = tax;
@@ -84,7 +85,7 @@ router.post('/getCart', (req, res) => {
  */
 router.post('/submitOrder', (req, res) => {
   const { body } = req;
-  const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
+  const info = new Info(body.id, body.items.cart, body.subtotal, body.tax, body.total);
   db.addNewPayment(info);
   res.status(204).send();
 });

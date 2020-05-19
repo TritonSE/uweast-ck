@@ -10,6 +10,9 @@
     </head>
 
     <body>
+        <script 
+        src="https://www.paypal.com/sdk/js?client-id=AbNqWpbV5U5ZLifwBXVD6_DDItmOHCt0_NIfblHNgESIsrKo2O7wZxGufduacyc99C9yjFQdrNPgUQIy">
+        </script>
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
 
@@ -232,7 +235,29 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
-                  <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>
+                  <script>
+                        paypal.Buttons({
+                            createOrder: function() {
+                            return fetch('/paypal', {
+                                method: 'post',
+                                headers: {
+                                'content-type': 'application/json'
+                                }
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(data) {
+                                const id = data.orderID;
+                                const items = data.items;
+                                const subtotal = data.subtotal;
+                                const tax = data.tax;
+                                const total = data.total;
+                                $.post("/menu/submitOrder", {id, items, subtotal, tax, total});
+                                return data.orderID; // Use the same key name for order ID on the client and server
+                            });
+                            }
+                        }).render('.modal-footer');
+                    </script>
+                  <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
                 </div>
               </div>
             </div>
@@ -359,7 +384,7 @@
     
 
     
-
+    
     <script src="/js/menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

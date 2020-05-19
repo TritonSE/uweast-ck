@@ -13,21 +13,6 @@ class Info {
     this.total = total;
   }
 }
-
-// Regular get, no params or extra routing.
-router.get('/', (req, res, next) => {
-  const items = [];
-  db.getAllMenuItems().then((allItems) => {
-    for (const key in allItems) {
-      const childData = allItems[key];
-      items.push(childData);
-    }
-    res.render('menu', { items });
-  }).catch((error) => {
-    log.error(error);
-  });
-});
-
 function getCart(req) {
   try {
     const { cart } = req.cookies;
@@ -53,12 +38,29 @@ function removeCartItem(req, res) {
   res.cookie('cart', cart);
 }
 
+// Regular get, no params or extra routing.
+router.get('/', (req, res, next) => {
+  const items = [];
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  // console.log(cart);
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+      items.push(childData);
+    }
+    res.render('menu', { items, cart });
+  }).catch((error) => {
+    log.error(error);
+  });
+});
+
+
 /**
  * Post request for adding menu item to cart
  */
 router.post('/addCart', (req, res) => {
   updateCart(req, res);
-  // res.jsonp({ error: null });
   res.status(204).send();
 });
 

@@ -209,7 +209,7 @@ window.onload = function() {
     })
 
     $('.remove-all').click(function() {
-        $.post("/menu/removeAll", {index});
+        $.post("/menu/removeAll");
     })
     /**
      * Order gets posted

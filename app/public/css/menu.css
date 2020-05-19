@@ -87,7 +87,6 @@ h2 {
     border-radius: 20px;
 }
 
-
 .add-cart {
     font-weight: bold;
 }
@@ -312,8 +311,4 @@ hr.divider {
 .submit-btn {
     width: 200px;
     margin-left: 35%;
-}
-
-.clear-btn {
-    width: 100px;
 }

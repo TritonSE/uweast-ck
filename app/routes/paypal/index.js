@@ -50,7 +50,7 @@ module.exports = async function handleRequest(req, res) {
     order = await payPalClient.client().execute(request);
   } catch (err) {
     // 4. Handle any errors from the call
-    console.error(err);
+    // console.error(err);
     return res.send(500);
   }
   // 5. Return a successful response to the client with the order ID

@@ -39,12 +39,12 @@ async function prettyPrint(jsonData, pre = '') {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   }
   for (const key in jsonData) {
-    if (jsonData.hasOwnProperty(key)) {
-      if (isNaN(key)) pretty += `${pre + capitalize(key)}: `;
-      else pretty += `${pre + (parseInt(key) + 1)}: `;
+    if (jsonData.hasOwnProperty(key)) { // eslint-disable-line
+      if (isNaN(key)) pretty += `${pre + capitalize(key)}: `;	// eslint-disable-line
+      else pretty += `${pre + (parseInt(key) + 1)}: `;	// eslint-disable-line
       if (typeof jsonData[key] === 'object') {
         pretty += '\n';
-        pretty += await prettyPrint(jsonData[key], `${pre}    `);
+        pretty += await prettyPrint(jsonData[key], `${pre}    `); // eslint-disable-line
       } else {
         pretty += `${jsonData[key]}\n`;
       }

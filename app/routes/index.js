@@ -12,5 +12,7 @@ router.use('/menu', require('./menu'));
 router.use('/contact', require('./contact'));
 router.use('/about', require('./about'));
 router.use('/orders', require('./orders'));
+router.use('/paypal', require('./paypal'));
+router.use('/items', require('./items'));
 
 module.exports = router;

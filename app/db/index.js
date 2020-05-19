@@ -12,14 +12,24 @@ function getAllMenuItems() {
 }
 
 function addNewPayment(info) {
-  Payment.create({
-    quantity: info.quantity,
-    items: info.items,
-    subtotal: info.subtotal,
-    tax: info.tax,
-    tip: info.tip,
-    total: info.total,
+  Payment.create(info);
+}
+
+function addNewItem(info) {
+  Item.create({
+    id: info.id,
+    name: info.name,
+    description: info.description,
+    price: info.price,
+    category: info.category,
+    image: info.image,
+    cuisine: info.cuisine,
+    tags: info.tags,
+    vegan: info.vegan,
+    vegetarian: info.vegetarian,
+    glutenFree: info.glutenFree,
+    ingredients: info.ingredients,
   });
 }
 
-module.exports = { getAllMenuItems, addNewPayment };
+module.exports = { getAllMenuItems, addNewPayment, addNewItem };

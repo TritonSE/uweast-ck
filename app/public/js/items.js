@@ -1,5 +1,5 @@
 class Item {
-    constructor(id, name, description, price, category, image, cuisine, vegan, vegetarian, glutenFree, ingredients) {
+    constructor(id, name, description, price, category, image, cuisine, vegan, vegetarian, glutenFree, ingredients, tags) {
         this.id = id;
         this.name = name;
         this.description = description;

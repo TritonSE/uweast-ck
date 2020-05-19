@@ -36,7 +36,6 @@ function addNewItem(info){
     vegetarian: info.vegetarian,
     glutenFree: info.glutenFree,
     ingredients: info.ingredients,
-    tags: info.tags,
   });
 }
 

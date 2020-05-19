@@ -16,12 +16,13 @@ class Info {
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
+  const cart = [];
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
       items.push(childData);
     }
-    res.render('menu', { items });
+    res.render('menu', { items, cart });
   }).catch((error) => {
     log.error(error);
   });
@@ -52,6 +53,12 @@ function removeCartItem(req, res) {
   res.cookie('cart', cart);
 }
 
+function removeAllCartItem(req, res) {
+  const cart = getCart(req);
+  cart.splice(0, cart.length);
+  res.cookie('cart', cart);
+}
+
 /**
  * Post request for adding menu item to cart
  */
@@ -69,6 +76,10 @@ router.post('/removeCart', (req, res) => {
   res.status(204).send();
 });
 
+router.post('/removeAll', (req, res) => {
+  removeAllCartItem(req, res);
+  res.status(204).send();
+});
 /**
  * Post request for requesting the JSON of the current cart
  */

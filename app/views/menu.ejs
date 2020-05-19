@@ -166,37 +166,29 @@
         
                 <!-- Sample order summary (right) -->
                 <div class = "lower-right-container">
+                    <% var added = 0; %>
                     <div id="order-summary-div" class="col-3">
                         <div class="order-summary">
                             Order Summary
                         </div>
                         <div>
                             <div class="fixed-scroll">
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">1</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <hr class="divider">
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">2</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">3</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">4</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
+                                <% var count = 1; %>
+                                <% cart.forEach(function(item) { %>
+                                    <% added = 1; %>
+                                    <div class="summary-item row">
+                                        <span class="thumbnail thumb-img"><%= count %></span>
+                                        <p> Food Name<br>
+                                        <span style="font-style: italic;"><%= item.size %>
+                                        <%= item.sides %>
+                                        <%= item.quantity %>
+                                        <%= item.instructions %> 
+                                        </span></p>
+                                        <span class="thumbnail summary-price">$00.00</span>
+                                    </div>
+                                    <hr class="divider">
+                                    <% count = count + 1; %>
+                               <% }); %>
                             </div>
                             <div class="order-totals">
                                 <br>
@@ -232,6 +224,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
+                  <button type="button" class="btn btn-danger remove-all" data-dismiss="modal">Remove All</button>
                   <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>
                 </div>
               </div>

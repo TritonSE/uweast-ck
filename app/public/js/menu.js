@@ -208,6 +208,9 @@ window.onload = function() {
         $.post("/menu/removeCart", {index});
     })
 
+    $('.remove-all').click(function() {
+        $.post("/menu/removeAll", {index});
+    })
     /**
      * Order gets posted
      */

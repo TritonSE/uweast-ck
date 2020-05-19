@@ -22,7 +22,7 @@ function addNewPayment(info) {
   });
 }
 
-function addNewItem(info){
+function addNewItem(info) {
   Item.create({
     id: info.id,
     name: info.name,

@@ -178,12 +178,12 @@
                             <% cart.forEach(function(item) { %>
                                 <div class="summary-item row">
                                     <span class="thumbnail thumb-img"><%= count %></span>
-                                    <p> Food Name<br>
+                                    <p> <%= item.name%><br>
                                     <span style="font-style: italic;"> <%= item.size %></span>
                                     <%= item.sides%>
                                     <%= item.quantity%>
                                     <%= item.instructions%></span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
+                                    <span class="thumbnail summary-price"><%= item.price %></span>
                                 </div>
                                 <hr class="divider">
                                 <% count = count + 1; %>

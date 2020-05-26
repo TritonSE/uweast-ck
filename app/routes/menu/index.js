@@ -13,6 +13,7 @@ class Info {
     this.total = total;
   }
 }
+
 function getCart(req) {
   try {
     const { cart } = req.cookies;
@@ -21,6 +22,37 @@ function getCart(req) {
     return [];
   }
 }
+
+// Regular get, no params or extra routing.
+router.get('/', (req, res, next) => {
+  const items = [];
+  let cart = getCart();
+  if (cart === undefined) cart = [];
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+
+
+      items.push({
+        name: childData.name,
+        description: childData.description,
+        price: childData.price,
+        category: childData.category,
+        image: childData.image,
+        cuisine: childData.cuisine,
+        tags: childData.tags,
+        vegan: childData.vegan,
+        vegetarian: childData.vegetarian,
+        glutenFree: childData.glutenFree,
+        ingredients: childData.ingredients,
+      });
+      items.push(childData);
+    }
+    res.render('menu', { items, cart });
+  }).catch((error) => {
+    log.error(error);
+  });
+});
 
 function updateCart(req, res) {
   let cart = getCart(req);

@@ -107,6 +107,15 @@ window.onload = function() {
         setQuantity(quantity);
     });
 
+
+
+    
+
+
+
+
+    
+
     function setQuantity(quant) {
         $('.quantity').html(quant);
         $('.hidden-input').val(quant);

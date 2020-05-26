@@ -5,7 +5,8 @@ const log = require('../../logger');
 const router = express.Router();
 
 class Info {
-  constructor(items, subtotal, tax, total) {
+  constructor(id, items, subtotal, tax, total) {
+    this.id = id;
     this.items = items;
     this.subtotal = subtotal;
     this.tax = tax;
@@ -59,12 +60,46 @@ function updateCart(req, res) {
   res.cookie('cart', cart);
 }
 
+function removeCartItem(req, res) {
+  const cart = getCart(req);
+  /* Make sure to implement check for null cart
+      in remove call from menu.js */
+  const index = parseInt(req.body.index, 10);
+  cart.splice(index, 1);
+  res.cookie('cart', cart);
+}
+
+// Regular get, no params or extra routing.
+router.get('/', (req, res, next) => {
+  const items = [];
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  // console.log(cart);
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+      items.push(childData);
+    }
+    res.render('menu', { items, cart });
+  }).catch((error) => {
+    log.error(error);
+  });
+});
+
+
 /**
  * Post request for adding menu item to cart
  */
-router.post('/', (req, res, next) => {
+router.post('/addCart', (req, res) => {
   updateCart(req, res);
-  // res.jsonp({ error: null });
+  res.status(204).send();
+});
+
+/**
+ * Post request for removing menu item from cart
+ */
+router.post('/removeCart', (req, res) => {
+  removeCartItem(req, res);
   res.status(204).send();
 });
 
@@ -83,7 +118,7 @@ router.post('/getCart', (req, res) => {
  */
 router.post('/submitOrder', (req, res) => {
   const { body } = req;
-  const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
+  const info = new Info(body.id, body.items.cart, body.subtotal, body.tax, body.total);
   db.addNewPayment(info);
   res.status(204).send();
 });

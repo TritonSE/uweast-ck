@@ -17,6 +17,8 @@ class Info {
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
+  var cart = getCart();
+  if (cart === undefined) cart = [];
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
@@ -37,11 +39,10 @@ router.get('/', (req, res, next) => {
       });
       items.push(childData);
     }
-    res.render('menu', { items });
+    res.render('menu', { items, cart });
   }).catch((error) => {
     log.error(error);
   });
-  // res.render('menu');
 });
 
 function getCart(req) {

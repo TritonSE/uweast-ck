@@ -14,10 +14,19 @@ class Info {
   }
 }
 
+function getCart(req) {
+  try {
+    const { cart } = req.cookies;
+    return cart;
+  } catch (TypeError) {
+    return [];
+  }
+}
+
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];
-  var cart = getCart();
+  let cart = getCart();
   if (cart === undefined) cart = [];
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
@@ -44,15 +53,6 @@ router.get('/', (req, res, next) => {
     log.error(error);
   });
 });
-
-function getCart(req) {
-  try {
-    const { cart } = req.cookies;
-    return cart;
-  } catch (TypeError) {
-    return [];
-  }
-}
 
 function updateCart(req, res) {
   let cart = getCart(req);

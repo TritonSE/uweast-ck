@@ -11,8 +11,8 @@
     "test": "./node_modules/.bin/jest --config jest.config.json"
   },
   "dependencies": {
-    "bcrypt": "^4.0.1",
     "@paypal/checkout-server-sdk": "^1.0.2",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -22,6 +22,7 @@
     "http-errors": "~1.6.2",
     "mongoose": "^5.9.2",
     "morgan": "^1.9.1",
+    "paypal-checkout": "^4.0.314",
     "winston": "^3.2.1"
   },
   "devDependencies": {

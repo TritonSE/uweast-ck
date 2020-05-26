@@ -43,5 +43,4 @@ function addNewItem(info) {
   });
 }
 
-module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser };
-
+module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem };

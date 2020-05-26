@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
   db.getAllMenuItems().then((allItems) => {
     for (const key in allItems) {
       const childData = allItems[key];
-
+      
 
       items.push({
         name: childData.name,

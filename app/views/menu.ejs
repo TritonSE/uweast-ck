@@ -141,6 +141,7 @@
         
                 <!-- Sample order summary (right) -->
                 <div class = "lower-right-container">
+                    <% var added = 0; %>
                     <div id="order-summary-div" class="col-3">
                         <!-- use the foreach loop from line 74 from the second live weller link-->
 
@@ -221,6 +222,8 @@
                         }).render('.modal-footer');
                     </script>
                   <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
+                  <button type="button" class="btn btn-danger remove-all" data-dismiss="modal">Remove All</button>
+                  <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>
                 </div>
               </div>
             </div>

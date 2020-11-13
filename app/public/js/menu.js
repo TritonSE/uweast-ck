@@ -107,6 +107,15 @@ window.onload = function() {
         setQuantity(quantity);
     });
 
+
+
+    
+
+
+
+
+    
+
     function setQuantity(quant) {
         $('.quantity').html(quant);
         $('.hidden-input').val(quant);
@@ -186,7 +195,6 @@ window.onload = function() {
 
     $('#cart-modal').click(function() {
         $.post("/menu/getCart").then(function(res) {
-            console.log(res);
             $('#cart-items-modal').html('');
             for (let index = 0; index < res['cart'].length; index++) {
                 var div = document.createElement('div');
@@ -208,6 +216,9 @@ window.onload = function() {
         $.post("/menu/removeCart", {index});
     })
 
+    $('.remove-all').click(function() {
+        $.post("/menu/removeAll");
+    })
     /**
      * Order gets posted
      */

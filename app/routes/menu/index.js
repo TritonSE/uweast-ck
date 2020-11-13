@@ -5,27 +5,14 @@ const log = require('../../logger');
 const router = express.Router();
 
 class Info {
-  constructor(items, subtotal, tax, total) {
+  constructor(id, items, subtotal, tax, total) {
+    this.id = id;
     this.items = items;
     this.subtotal = subtotal;
     this.tax = tax;
     this.total = total;
   }
 }
-
-// Regular get, no params or extra routing.
-router.get('/', (req, res, next) => {
-  const items = [];
-  db.getAllMenuItems().then((allItems) => {
-    for (const key in allItems) {
-      const childData = allItems[key];
-      items.push(childData);
-    }
-    res.render('menu', { items });
-  }).catch((error) => {
-    log.error(error);
-  });
-});
 
 function getCart(req) {
   try {
@@ -35,6 +22,41 @@ function getCart(req) {
     return [];
   }
 }
+
+// Regular get, no params or extra routing.
+// router.get('/', (req, res, next) => {
+//   const items = [];
+// <<<<<<< HEAD
+//   let cart = getCart();
+//   if (cart === undefined) cart = [];
+// =======
+//   const cart = [];
+// >>>>>>> New-Menu-Items
+//   db.getAllMenuItems().then((allItems) => {
+//     for (const key in allItems) {
+//       const childData = allItems[key];
+
+
+//       items.push({
+//         name: childData.name,
+//         description: childData.description,
+//         price: childData.price,
+//         category: childData.category,
+//         image: childData.image,
+//         cuisine: childData.cuisine,
+//         tags: childData.tags,
+//         vegan: childData.vegan,
+//         vegetarian: childData.vegetarian,
+//         glutenFree: childData.glutenFree,
+//         ingredients: childData.ingredients,
+//       });
+//       items.push(childData);
+//     }
+//     res.render('menu', { items, cart });
+//   }).catch((error) => {
+//     log.error(error);
+//   });
+// });
 
 function updateCart(req, res) {
   let cart = getCart(req);
@@ -52,12 +74,34 @@ function removeCartItem(req, res) {
   res.cookie('cart', cart);
 }
 
+// Regular get, no params or extra routing.
+router.get('/', (req, res, next) => {
+  const items = [];
+  let cart = getCart(req);
+  if (cart === undefined) cart = [];
+  // console.log(cart);
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      const childData = allItems[key];
+      items.push(childData);
+    }
+    res.render('menu', { items, cart });
+  }).catch((error) => {
+    log.error(error);
+  });
+});
+
+function removeAllCartItem(req, res) {
+  const cart = getCart(req);
+  cart.splice(0, cart.length);
+  res.cookie('cart', cart);
+}
+
 /**
  * Post request for adding menu item to cart
  */
 router.post('/addCart', (req, res) => {
   updateCart(req, res);
-  // res.jsonp({ error: null });
   res.status(204).send();
 });
 
@@ -69,6 +113,10 @@ router.post('/removeCart', (req, res) => {
   res.status(204).send();
 });
 
+router.post('/removeAll', (req, res) => {
+  removeAllCartItem(req, res);
+  res.status(204).send();
+});
 /**
  * Post request for requesting the JSON of the current cart
  */
@@ -84,7 +132,7 @@ router.post('/getCart', (req, res) => {
  */
 router.post('/submitOrder', (req, res) => {
   const { body } = req;
-  const info = new Info(body.items.cart, body.subtotal, body.tax, body.total);
+  const info = new Info(body.id, body.items.cart, body.subtotal, body.tax, body.total);
   db.addNewPayment(info);
   res.status(204).send();
 });

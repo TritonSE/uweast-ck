@@ -10,36 +10,11 @@
     </head>
 
     <body>
+        <script 
+        src="https://www.paypal.com/sdk/js?client-id=AbNqWpbV5U5ZLifwBXVD6_DDItmOHCt0_NIfblHNgESIsrKo2O7wZxGufduacyc99C9yjFQdrNPgUQIy">
+        </script>
         <!-- Takes navbar ejs and inserts it here. -->
         <%- include partials/navbar.ejs %>
-
-         <!--    DUMMY TABLE
-        **** Databse testing ****
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th> 
-                    <th>Category</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody>
-
-           
-                <% items.forEach(function(item) { %>
-                    <tr>
-                        <td><%= item.name %></td>
-                        <td><%= item.description %></td>
-                        <td><%= item.price %></td>
-                        <td><%= item.category %></td>
-                        <td><%= item.image %></td>  // Must insert into <img src=> tag for this to work
-                    </tr>
-                <% }); %> 
-
-            </tbody>
-        </table> -->
 
         <!-- Jumbotron -->
     <div class="main-content-container">
@@ -166,37 +141,29 @@
         
                 <!-- Sample order summary (right) -->
                 <div class = "lower-right-container">
+                    <% var added = 0; %>
                     <div id="order-summary-div" class="col-3">
+                        <!-- use the foreach loop from line 74 from the second live weller link-->
+
                         <div class="order-summary">
                             Order Summary
                         </div>
                         <div>
                             <div class="fixed-scroll">
+                            <% var count = 1; %>
+                            <% cart.forEach(function(item) { %>
                                 <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">1</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
+                                    <span class="thumbnail thumb-img"><%= count %></span>
+                                    <p> <%= item.name%><br>
+                                    <span style="font-style: italic;"> <%= item.size %></span>
+                                    <%= item.sides%>
+                                    <%= item.quantity%>
+                                    <%= item.instructions%></span></p>
+                                    <span class="thumbnail summary-price"><%= item.price %></span>
                                 </div>
                                 <hr class="divider">
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">2</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">3</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
-                                <div class="summary-item row">
-                                    <span class="thumbnail thumb-img">4</span>
-                                    <p> Food Name<br>
-                                    <span style="font-style: italic;">Options</span></p>
-                                    <span class="thumbnail summary-price">$00.00</span>
-                                </div>
+                                <% count = count + 1; %>
+                            <% }); %>
                             </div>
                             <div class="order-totals">
                                 <br>
@@ -231,8 +198,31 @@
                   </div>
                 </div>
                 <div class="modal-footer">
+                  <script>
+                        paypal.Buttons({
+                            createOrder: function() {
+                            return fetch('/paypal', {
+                                method: 'post',
+                                headers: {
+                                'content-type': 'application/json'
+                                }
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(data) {
+                                const id = data.orderID;
+                                const items = data.items;
+                                const subtotal = data.subtotal;
+                                const tax = data.tax;
+                                const total = data.total;
+                                $.post("/menu/submitOrder", {id, items, subtotal, tax, total});
+                                return data.orderID; // Use the same key name for order ID on the client and server
+                            });
+                            }
+                        }).render('.modal-footer');
+                    </script>
+                  <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
                   <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
-                  <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>
+                  <button type="button" class="btn btn-danger remove-all" data-dismiss="modal">Remove All</button>
                 </div>
               </div>
             </div>
@@ -359,7 +349,7 @@
     
 
     
-
+    
     <script src="/js/menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

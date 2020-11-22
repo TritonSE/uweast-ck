@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongodb = require('mongodb');
 const config = require('../config');
 const { Item } = require('./models/item');
 const { Payment } = require('./models/payment');
@@ -28,7 +29,6 @@ function findOneUser(candidateUsername) {
 
 function addNewItem(info) {
   Item.create({
-    id: info.id,
     name: info.name,
     description: info.description,
     price: info.price,
@@ -43,4 +43,8 @@ function addNewItem(info) {
   });
 }
 
-module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem };
+function deleteItem(id) {
+  Item.deleteOne({ _id: new mongodb.ObjectID(id) }, (err, results) => {});
+}
+
+module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, deleteItem };

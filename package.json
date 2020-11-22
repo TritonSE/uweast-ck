@@ -20,6 +20,7 @@
     "ejs": "2.6.1",
     "express": "4.16.4",
     "http-errors": "~1.6.2",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.9.2",
     "morgan": "^1.9.1",
     "paypal-checkout": "^4.0.314",

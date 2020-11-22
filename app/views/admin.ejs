@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sample Contact Page</title>
+        <title>Admin Panel</title>
         <meta charset="utf-8">
 
         <link rel="stylesheet" type="text/css" href="/css/admin.css">
@@ -44,11 +44,13 @@
             </div>
         </div>
 
+        <!-- ADD MENU ITEM MODAL -->
+
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="addModalLabel">Add Menu Item</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -147,6 +149,8 @@
             </div>
         </div>
 
+        <!-- EDIT MODAL -->
+
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -167,27 +171,44 @@
             </div>
         </div>
 
+        <!-- DELETE MODAL -->
+
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Menu Item</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Delete Item Here
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <% const categories = ["Appetizers", "Main Dishes", "Sides", "Drinks"] %>
+                        <% categories.forEach(function(category) { %>
+                            <h6><%= category %></h6>
+                            <form action="/admin/deleteItem" method="POST">
+                                <div class="list-group">
+                                    <% items.forEach(function(item) { %>
+                                        <% var itemVar = item.name.replace(/\s/g, ''); %>
+                                        <% if (item.category === category) { %>
+                                            <button class="btn btn-light text-left" type="button" data-toggle="collapse" data-target="#collapse-<%= item._id %>" aria-expanded="false" aria-controls="collapse-<%= item._id %>">
+                                                Delete <%= item.name %>
+                                            </button>
+                                            <div class="collapse" id="collapse-<%= item._id %>">
+                                                <button name="id" value="<%= item._id %>" type="submit" class="list-group-item list-group-item-action list-group-item-danger btn btn-danger">
+                                                    Confirm Delete
+                                                </button>
+                                            </div>
+                                        <% } %>
+                                    <% }); %>
+                                </div>
+                            </form>
+                            <br>
+                        <% }); %>
                     </div>
                 </div>
             </div>
         </div>
 
     </body>
-
-    <script src="/js/admin.js"></script>
 </html>

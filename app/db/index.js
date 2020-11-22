@@ -44,7 +44,7 @@ function addNewItem(info) {
 }
 
 function deleteItem(id) {
-  Item.deleteOne({ _id: new mongodb.ObjectID(id) }, function(err, results) {});
+  Item.deleteOne({ _id: new mongodb.ObjectID(id) }, (err, results) => {});
 }
 
 module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, deleteItem };

@@ -27,8 +27,8 @@ function findOneUser(candidateUsername) {
 }
 
 function addNewItem(info) {
+  console.log(info);
   Item.create({
-    id: info.id,
     name: info.name,
     description: info.description,
     price: info.price,

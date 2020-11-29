@@ -15,6 +15,10 @@ function getAllMenuItems() {
   return Item.find({}).exec();
 }
 
+function getAllOrders(){
+  return Order.find({}).exec();
+}
+
 function addNewPayment(info) {
   Payment.create(info);
 }
@@ -54,8 +58,8 @@ function addNewOrder(info) {
   });
 }
 
-function makeOrderComplete(){
-  
+function completeOrder(id){
+  Order.updateOne({_id: new mongodb.ObjectId(id) }, { $set: {completed: true}}, (err, results) => {});
 }
 
 function deleteItem(id) {

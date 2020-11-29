@@ -6,7 +6,6 @@ const orderSchema = new mongoose.Schema( {
     items: [Object],
     completed: Boolean,
     total: Number,
-    date: Number,
   });
   const Order = mongoose.model('Order', orderSchema);
 

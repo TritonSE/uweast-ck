@@ -14,6 +14,6 @@ router.use('/about', require('./about'));
 router.use('/orders', require('./orders'));
 router.use('/auth', require('./auth'));
 router.use('/paypal', require('./paypal'));
-router.use('/items', require('./items'));
+router.use('/admin', require('./admin'));
 
 module.exports = router;

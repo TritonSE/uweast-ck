@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('../../db');
 
 const router = express.Router();
 
@@ -9,7 +10,9 @@ router.get('/', (req, res, next) => {
 
 // Post data, log data to terminal.
 router.post('/', (req, res) => {
-  res.json({ error: null });
+  db.addNewOrder(req.body.order);
+  res.send(200);
+  //res.json({ error: null });
 });
 
 module.exports = router;

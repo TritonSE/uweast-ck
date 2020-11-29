@@ -3,7 +3,8 @@ const config = require('../config');
 const { Item } = require('./models/item');
 const { Payment } = require('./models/payment');
 const { User } = require('./models/user');
-
+const { Order } = require('./models/order');
+const { info } = require('winston');
 
 const { uri } = config.db;
 
@@ -43,4 +44,20 @@ function addNewItem(info) {
   });
 }
 
-module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem };
+function addNewOrder(info) {
+  Order.create({
+    id: info.id,
+    name: info.name,
+    items: info.items,
+    completed: false,
+    total: info.total,
+  });
+}
+
+function makeOrderComplete(){
+  
+}
+
+
+
+module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, addNewOrder};

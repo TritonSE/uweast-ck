@@ -133,6 +133,7 @@ router.post('/getCart', (req, res) => {
 router.post('/submitOrder', (req, res) => {
   const { body } = req;
   const info = new Info(body.id, body.items.cart, body.subtotal, body.tax, body.total);
+  db.addNewOrder(info);
   db.addNewPayment(info);
   res.status(204).send();
 });

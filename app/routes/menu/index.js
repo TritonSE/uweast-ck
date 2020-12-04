@@ -70,6 +70,11 @@ function removeCartItem(req, res) {
   res.cookie('cart', cart);
 }
 
+// function editCartItem(req, res) {
+//   const cart = getCart(req);
+//   const index = parseInt(req.body.index, 10);
+// }
+
 // Regular get, no params or extra routing.
 router.get('/', (req, res, next) => {
   const items = [];

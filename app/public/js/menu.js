@@ -309,6 +309,4 @@ window.onload = function() {
             document.getElementById('cart-items-modal').appendChild(subtotal);
         });
     })
-
-
 }

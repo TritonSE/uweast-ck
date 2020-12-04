@@ -141,6 +141,7 @@
         
                 <!-- Sample order summary (right) -->
                 <div class = "lower-right-container">
+                    <% var added = 0; %>
                     <div id="order-summary-div" class="col-3">
                         <!-- use the foreach loop from line 74 from the second live weller link-->
 
@@ -209,7 +210,6 @@
                   </table>
                 </div>
                 <div class="modal-footer">
-                  <!-- <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button> -->
                   <script>
                         paypal.Buttons({
                             createOrder: function() {
@@ -232,6 +232,7 @@
                             }
                         }).render('.modal-footer');
                     </script>
+
                   <!-- <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button> -->
                 </div>
               </div>

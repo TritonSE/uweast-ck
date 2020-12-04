@@ -24,35 +24,39 @@ function getCart(req) {
 }
 
 // Regular get, no params or extra routing.
-router.get('/', (req, res, next) => {
-  const items = [];
-  let cart = getCart();
-  if (cart === undefined) cart = [];
-  db.getAllMenuItems().then((allItems) => {
-    for (const key in allItems) {
-      const childData = allItems[key];
+// router.get('/', (req, res, next) => {
+//   const items = [];
+// <<<<<<< HEAD
+//   let cart = getCart();
+//   if (cart === undefined) cart = [];
+// =======
+//   const cart = [];
+// >>>>>>> New-Menu-Items
+//   db.getAllMenuItems().then((allItems) => {
+//     for (const key in allItems) {
+//       const childData = allItems[key];
 
 
-      items.push({
-        name: childData.name,
-        description: childData.description,
-        price: childData.price,
-        category: childData.category,
-        image: childData.image,
-        cuisine: childData.cuisine,
-        tags: childData.tags,
-        vegan: childData.vegan,
-        vegetarian: childData.vegetarian,
-        glutenFree: childData.glutenFree,
-        ingredients: childData.ingredients,
-      });
-      items.push(childData);
-    }
-    res.render('menu', { items, cart });
-  }).catch((error) => {
-    log.error(error);
-  });
-});
+//       items.push({
+//         name: childData.name,
+//         description: childData.description,
+//         price: childData.price,
+//         category: childData.category,
+//         image: childData.image,
+//         cuisine: childData.cuisine,
+//         tags: childData.tags,
+//         vegan: childData.vegan,
+//         vegetarian: childData.vegetarian,
+//         glutenFree: childData.glutenFree,
+//         ingredients: childData.ingredients,
+//       });
+//       items.push(childData);
+//     }
+//     res.render('menu', { items, cart });
+//   }).catch((error) => {
+//     log.error(error);
+//   });
+// });
 
 function updateCart(req, res) {
   let cart = getCart(req);
@@ -92,6 +96,11 @@ router.get('/', (req, res, next) => {
   });
 });
 
+function removeAllCartItem(req, res) {
+  const cart = getCart(req);
+  cart.splice(0, cart.length);
+  res.cookie('cart', cart);
+}
 
 /**
  * Post request for adding menu item to cart
@@ -109,6 +118,10 @@ router.post('/removeCart', (req, res) => {
   res.status(204).send();
 });
 
+router.post('/removeAll', (req, res) => {
+  removeAllCartItem(req, res);
+  res.status(204).send();
+});
 /**
  * Post request for requesting the JSON of the current cart
  */

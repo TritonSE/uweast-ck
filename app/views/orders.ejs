@@ -21,20 +21,78 @@
       <body>
         <table id="example">
           <thead>
-            <tr><th>Orders to be fulfilled</th><th>Name</th><th>Contact Info</th><th>Date Ordered</th></tr>
+            <tr><th>Name</th><th>Date</th><th>Order ID</th><th>Completed</th></tr>
           </thead>
           <tbody>
-            <tr><td>Food name</td></tr>
-            <tr><td>Food name</td></tr>
-            <tr><td>Food name</td></tr>
+            <tr class="breakrow"><td>Name1</td><td>Date1</td><td>PlaceHolder</td><td>Complete</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+
+            <tr class="breakrow"><td>Name2</td><td>Date2</td><td>PlaceHolder</td><td>Complete</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+
+            <tr class="breakrow"><td>Name3</td><td>Date3</td><td>PlaceHolder</td><td>Complete</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+
+            <tr class="breakrow"><td>Name4</td><td>Date4</td><td>PlaceHolder</td><td>Complete</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+
+            <tr class="breakrow"><td>Name5</td><td>Date5</td><td>PlaceHolder</td><td>Complete</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
+            <tr class="datarow"><td>Food Name</td><td>Price</td><td>Quantity</td><td>Sides</td></tr>
           </tbody>
         </table>
+        <button id = "button1" type="button">Load</button>
         <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
         <script>
+          $( document ).ready(function() {
+  
+              $('#button1').click(function () {
+                  $("#example").append('<tr class="breakrow"><td>customer 04</td><td></td><td></td><td></td></tr>');
+                  $("#example").append('<tr class="datarow"><td>customer 04</td><td>product 01</td><td>30 10 2017</td><td>974.57</td></tr>');
+                  $("#example").append('<tr class="datarow"><td>customer 04</td><td>product 02</td><td>04 12 2017</td><td>634.50</td></tr>');
+                  $("#example").append('<tr class="datarow"><td>customer 04</td><td>product 03</td><td>30 10 2017</td><td>974.57</td></tr>');
+                  $("#example").append('<tr class="datarow"><td>customer 04</td><td>product 04</td><td>04 12 2017</td><td>634.50</td></tr>');
+                  $("#example").append('<tr class="datarow"><td>customer 04</td><td>product 05</td><td>30 10 2017</td><td>974.57</td></tr>');
+              });
+  
+  
+              //collapse and expand sections
+  
+              //$('.breakrow').click(function(){
+        $('#example').on('click', 'tr.breakrow',function(){
+                  $(this).nextUntil('tr.breakrow').slideToggle(200);
+              });
+          });
+      </script>
+        <script>          
         $(function(){
-          $("#example").dataTable();
+          $("#example").dataTable({
+        // "aaData":[
+        //   ["Name1","Date1","placeholder","complete"],
+        //   ["Name2","Date2","placeholder","complete"],
+        //   ["Name3","Date3","placeholder","complete"],
+        //   ["Name4","Date4","placeholder","complete"],
+        //   ["Name5","Date5","placeholder","complete"]
+        // ],
+        "aoColumnDefs":[{
+              "sTitle":"Site name"
+            , "aTargets": [ "site_name" ]
+        },{
+              "aTargets":[ 3 ]
+            , "sType": "date"
+            , "mRender": function(date, type, full) {
+                return '<a class="btn btn-primary disabled btn-sm" href=#/' + full[0] + '>' + 'Completed' + '</a>';
+            }  
+        }]
+      });
         })
+      
         </script>
       </body>
 </html>

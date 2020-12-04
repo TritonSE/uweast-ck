@@ -13,6 +13,7 @@ const itemSchema = new mongoose.Schema({
   vegetarian: Boolean,
   glutenFree: Boolean,
   ingredients: [String],
+  completed: Boolean,
 });
 const Item = mongoose.model('Item', itemSchema);
 

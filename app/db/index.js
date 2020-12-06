@@ -57,10 +57,24 @@ function editItem(id, info) {
     (err, results) => {});
 }
 
+function setFeatured(id) {
+  Item.updateOne({ _id: new mongodb.ObjectID(id) },
+  { $set: { "featured": true } },
+  (err, results) => {});
+}
+
+function setNotFeatured(id) {
+  Item.updateOne({ _id: new mongodb.ObjectID(id) },
+  { $set: { "featured": false } },
+  (err, results) => {});
+}
+
 module.exports = { getAllMenuItems,
   addNewPayment,
   addNewUser,
   findOneUser,
   addNewItem,
   deleteItem,
-  editItem };
+  editItem,
+  setFeatured,
+  setNotFeatured };

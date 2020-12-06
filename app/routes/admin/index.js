@@ -41,4 +41,15 @@ router.post('/editItem', (req, res, next) => {
   res.redirect('/admin');
 });
 
+router.post('/featuredItem', (req, res, next) => {
+  console.log(req.body);
+  db.getAllMenuItems().then((allItems) => {
+    for (const key in allItems) {
+      if (req.body[allItems[key]._id]) db.setFeatured(allItems[key]._id);
+      else db.setNotFeatured(allItems[key]._id);
+    }
+    res.redirect('/admin');
+  }).catch((error) => {});
+});
+
 module.exports = router;

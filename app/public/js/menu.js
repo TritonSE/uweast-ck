@@ -103,10 +103,18 @@ window.onload = function() {
         curPrice = parseFloat(($(this).siblings()[2].innerText).substring(1)); 
             // [2] matches to item-price
         $('#itemModal-' + parent.id).modal('show');
-        quantity = 1;
+        // quantity = 1;
         setQuantity(quantity);
+        setInstructions('');
+        clearForms();
     });
 
+    // resets the modal every time it is clicked off
+    // $('#itemModal').on('hide.bs.modal', function() {
+    //     clearForms();
+    //     setQuantity(1);
+    // })
+
 
 
     
@@ -114,7 +122,30 @@ window.onload = function() {
 
 
 
-    
+    function setSize(size) {
+        var sizes = document.forms['submitOrder'].elements['size'];
+        for (i = 0; i < sizes.length; i++) {
+            if (size == sizes[i].value) {
+                document.getElementsByName('size')[i].checked = true;  
+                break;
+            }
+        }
+    }
+
+    function setSides(sides) {
+        var allSides = document.forms['submitOrder'].elements['side'];
+        for (i = 0; i < sides.length; i++) {
+            for (j = 0; j < allSides.length; j++) {
+                if (sides[i] == allSides[j].value) {
+                    document.getElementsByName('side')[j].checked = true;
+                }
+            }
+        }
+    }
+
+    function setInstructions(instructions) {
+        $("textarea[name='special']").val(instructions);
+    }
 
     function setQuantity(quant) {
         $('.quantity').html(quant);
@@ -190,46 +221,92 @@ window.onload = function() {
         $.post("/menu/addCart", {item}).then(function() {
             $('.modal').modal('hide');
         }); 
-
     })
 
-    $('#cart-modal').click(function() {
-        $.post("/menu/getCart").then(function(res) {
-            $('#cart-items-modal').html('');
-            for (let index = 0; index < res['cart'].length; index++) {
-                var div = document.createElement('div');
-                const element = res['cart'][index];
-                div.id = element['name'].split(' ').join('_');
-                div.className = 'modal-items';
-                div.innerHTML += element['name'] + '<br><br>';
-                document.getElementById('cart-items-modal').appendChild(div);
-            }
-        });
-    })
-
-    /**
-     * TODO: Set this up properly on the front-end
-     */
-    $('.remove-item').click(function() {
-        /* TODO: Figure out which element to remove by index */
-        index = 0;
+    // remove item
+    $(document).on("click", ".remove-item", function() {
+        var index = $(this).attr('id');
         $.post("/menu/removeCart", {index});
     })
 
-    $('.remove-all').click(function() {
-        $.post("/menu/removeAll");
+    // edit item
+    $(document).on("click", ".edit-item", function() {
+        var index = $(this).attr('id');
+
+        // open up auto filled modal
+        $.post("menu/getCart").then(function(res) {
+            var item = res['cart'][index];
+            $('#editModal').modal('show');
+            $('#editModalLabel').text(index + ". Edit " + item['name']);
+            setSize(item['size']);
+            setSides(item['sides']);
+            setInstructions(item['instructions']);
+            setQuantity(item['quantity']);
+            
+            console.log(index);
+        })
     })
-    /**
-     * Order gets posted
-     */
-    $('#cart-submit').click(function() {
+
+    // edit item submit
+    $('.edit-btn-submit').click(function() {
+        var index = $('#editModalLabel').text().substring(0, 1);
+        $.post("menu/getCart").then(function(res) {
+            var foodItem = res['cart'][index];
+
+            const form = $('.editCart');
+            let responses = form.serializeArray();
+
+            // let itemName = foodItem['name'];
+            // let itemPrice = foodItem['price'];
+            curName = foodItem['name'];
+            curPrice = foodItem['price'];
+            let size = '';
+            let sides = [];
+            let instructions = '';
+
+            for (var key in responses) {
+                if (responses[key].name === 'side') sides.push(responses[key].value);
+                if (responses[key].name === 'size') size = responses[key].value;
+                if (responses[key].name === 'special' && responses[key].value !== '') {
+                    instructions = responses[key].value;
+                }
+            }
+
+            // add new item
+            const item = new Item(curName, curPrice, size, sides, instructions, quantity);
+            curName = '';
+            curPrice = 0.0;
+            $.post("/menu/addCart", {item}).then(function() {
+                $('.modal').modal('hide');
+                $('.modal-backdrop').remove();
+            }); 
+        })
+
+        // remove old item
+        $.post("/menu/removeCart", {index});
+    })
+
+    $('#cart-modal').click(function() {
+        $('#cart-items-modal').html('');
         $.post("/menu/getCart").then(function(res) {
-            var items = res;
-            var subtotal = calculateSubtotal(items);
-            var tax = calculateTax(subtotal);
-            var total = calculateTotal(subtotal);
-            $.post("/menu/submitOrder", {items, subtotal, tax, total});
-                // maybe change this URL to be to the cart page
+            
+            for (let index = 0; index < res['cart'].length; index++) {
+                var tr = document.createElement('tr');
+                const element = res['cart'][index];
+                tr.id = element['name'].split(' ').join('_');
+                const size = '<dd><b>Size: </b>' + element['size'] + '</dd>';
+                const sides = '<dd><b>Sides: </b>' + element['sides'] + '</dd>';
+                const instructions = '<dd>' + element['instructions'] + '</dd>';
+                tr.innerHTML += '<td>' + element['name'] + '</td>';
+                tr.innerHTML += '<td>' + element['quantity'] + '</td>';
+                tr.innerHTML += '<td> <button id="' + index + '" type="button" class="btn btn-primary edit-item">Edit</button> </td>';
+                tr.innerHTML += '<td> <button id="' + index + '" type="button" class="btn btn-danger remove-item" data-dismiss="modal">&times;</button> </td>';
+                tr.innerHTML += '<td> $' + element['quantity'] * element['price'] + '</td>';
+                document.getElementById('cart-items-modal').appendChild(tr);
+            }
+            var subtotal = document.createElement('div');
+            subtotal.innerHTML += "<p>Subtotal: " + calculateSubtotal(res) + "</p></div>";
+            document.getElementById('cart-items-modal').appendChild(subtotal);
         });
     })
 }

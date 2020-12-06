@@ -36,4 +36,9 @@ router.post('/deleteItem', (req, res, next) => {
   res.redirect('/admin');
 });
 
+router.post('/editItem', (req, res, next) => {
+  db.editItem(req.body.id, buildItemJSON(req.body));
+  res.redirect('/admin');
+});
+
 module.exports = router;

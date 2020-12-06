@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="/css/admin.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -41,6 +42,157 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
                     Delete
                 </button>
+            </div>
+
+            <br>
+
+            <div class="col-12">
+                <h2 class="admin-title">Featured Item</h2>
+                <p>Choose the featured item to display at the top of the site.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#featuredModal">
+                    Edit
+                </button>
+            </div>
+        </div>
+
+        <!-- EDIT MODAL -->
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <% const editCategories = ["Appetizers", "Main Dishes", "Sides", "Drinks"] %>
+                        <% editCategories.forEach(function(category) { %>
+                            <h6><%= category %></h6>
+                            <div class="list-group">
+                                <% items.forEach(function(item) { %>
+                                    <% var itemVar = item.name.replace(/\s/g, ''); %>
+                                    <% if (item.category === category) { %>
+                                        <button id="<%= item._id %>" onclick="handleEdit('<%= JSON.stringify(item) %>')" class="btn btn-light text-left" data-dismiss="modal" type="button">
+                                            Edit <%= item.name %>
+                                        </button>
+                                    <% } %>
+                                <% }); %>
+                            </div>
+                            <br>
+                        <% }); %>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIT MODAL -->
+
+        <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editItemModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editItemForm" action="/admin/editItem" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input name="name" type="text" class="form-control" id="editName" placeholder="Enter name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name">Description</label>
+                                <input name="description" type="text" class="form-control" id="editDescription" placeholder="Enter description" required>
+                            </div>
+
+                            <label for="description">Category</label>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="category" type="radio" name="category" id="categoryAppetizers" value="Appetizers" required>
+                                <label class="form-check-label" for="Appetizers">
+                                    Appetizers
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="category" type="radio" name="category" id="categoryMainDishes" value="Main Dishes" required>
+                                <label class="form-check-label" for="Main Dishes">
+                                    Main Dishes
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="category" type="radio" name="category" id="categorySides" value="Sides" required>
+                                <label class="form-check-label" for="Sides">
+                                    Sides
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="category" type="radio" name="category" id="categoryDrinks" value="Drinks" required>
+                                <label class="form-check-label" for="Drinks">
+                                    Drinks
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input name="price" type="number" step="0.01" class="form-control" id="editPrice" placeholder="Enter price" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Image Link</label>
+                                <input name="image" type="text" class="form-control" id="editImage" placeholder="Enter link" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cuisine">Cuisine</label>
+                                <input name="cuisine" type="text" class="form-control" id="editCuisine" placeholder="Enter cuisine" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ingredients">Ingredients</label>
+                                <input name="ingredients" type="text" class="form-control" id="editIngredients" placeholder="Enter ingredients, separated by commas" required>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input name="vegan" class="form-check-input" type="checkbox" value="" id="editVegan">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Vegan
+                                </label>
+                            </div>
+                            
+                            <div class="form-check form-check-inline">
+                                <input name="vegetarian" class="form-check-input" type="checkbox" value="" id="editVegetarian">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    Vegetarian
+                                </label>
+                            </div>
+                            
+                            <div class="form-check form-check-inline">
+                                <input name="glutenFree" class="form-check-input" type="checkbox" value="" id="editGlutenFree">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    Gluten Free
+                                </label>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="id" id="editItemSubmit">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -149,28 +301,6 @@
             </div>
         </div>
 
-        <!-- EDIT MODAL -->
-
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Edit Item Here
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- DELETE MODAL -->
 
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
@@ -211,4 +341,6 @@
         </div>
 
     </body>
+
+    <script src="/js/admin.js"></script>
 </html>

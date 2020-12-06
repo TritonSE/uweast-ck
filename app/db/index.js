@@ -33,8 +33,8 @@ function findOneUser(candidateUsername) {
   return User.findOne({ username: candidateUsername }).exec();
 }
 
-function addNewItem(info) {
-  Item.create({
+function itemFromInfo(info) {
+  return {
     name: info.name,
     description: info.description,
     price: info.price,
@@ -46,7 +46,11 @@ function addNewItem(info) {
     vegetarian: info.vegetarian,
     glutenFree: info.glutenFree,
     ingredients: info.ingredients,
-  });
+  };
+}
+
+function addNewItem(info) {
+  Item.create(itemFromInfo(info));
 }
 
 function addNewOrder(info) {
@@ -72,4 +76,19 @@ function deleteItem(id) {
   Item.deleteOne({ _id: new mongodb.ObjectID(id) }, (err, results) => {});
 }
 
-module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, deleteItem, getAllOrders, addNewOrder,  completeOrder, };
+function editItem(id, info) {
+  Item.updateOne({ _id: new mongodb.ObjectID(id) },
+    { $set: itemFromInfo(info) },
+    (err, results) => {});
+}
+
+module.exports = { getAllMenuItems,
+  addNewPayment,
+  addNewUser,
+  findOneUser,
+  addNewItem,
+  deleteItem,
+  editItem,
+  getAllOrders,
+  addNewOrder,
+  completeOrder, };

@@ -28,6 +28,32 @@
         <div class="lower-content-container">
             <div class="lower-mid-container">
 
+                <!-- Featured -->
+                <div class="featured menu-category">
+                    <h1>Featured Items!</h1>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.featured) { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
+                                    </div>
+                                    
+                                    <div class="item-right" id="<%= itemVar %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                            +
+                                        </button>
+                                        <div class="item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
+                </div>
+
                 <!-- Appetizers -->
                 <div class="appetizers menu-category">
                     <h1>Appetizers</h1>

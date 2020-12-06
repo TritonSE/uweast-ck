@@ -22,3 +22,7 @@ function handleEdit(event) {
 
     $("#editItemModal").modal("show");
 }
+
+function handleFetured(event) {
+    
+}

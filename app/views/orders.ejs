@@ -22,17 +22,17 @@
         <table id="example">
 
           <thead>
-            <tr><th>Order ID</th><th>Name</th><th>Date</th><th>Details</th></tr>
+            <tr><th>Order ID</th><th>Total</th><th>Date</th><th>Details</th></tr>
           </thead>
           <tbody>
-            <% orders.forEach(function(order) { %>
-            <tr><td> order.id</td><td>order.total</td><td>order.date</td><td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">
+           <% orders.forEach(function(order) { %>
+            <tr><td> <%= order.id %></td><td>$<%= order.total %></td><td><%= order.date %></td><td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">
               Details
           </button></td></tr>
-          <% }); %>
-          <!--<tr><td> example</td><td>nameExample</td><td>today</td><td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">
+           <% }); %>
+          <tr><td> example</td><td>nameExample</td><td>today</td><td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal">
             Details
-        </button></td></tr>-->
+        </button></td></tr> 
           </tbody>
         </table>
 
@@ -46,7 +46,13 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                    <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Make Complete</a>
+                    <div class = "Items" >
+                    </div>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitches">
+                      <label class="custom-control-label" for="customSwitches">Complete Order</label>
+                    </div>
+
                   </div>
               </div>
           </div>
@@ -60,4 +66,4 @@
         })
         </script>
       </body>
-</html>
+</html>-->

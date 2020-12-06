@@ -20,8 +20,10 @@
     "ejs": "2.6.1",
     "express": "4.16.4",
     "http-errors": "~1.6.2",
+    "mongo": "^0.1.0",
     "mongodb": "^3.6.3",
     "mongoose": "^5.9.2",
+    "mongoose-datatable": "^2.2.2",
     "morgan": "^1.9.1",
     "paypal-checkout": "^4.0.314",
     "winston": "^3.2.1"

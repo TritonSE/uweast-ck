@@ -6,7 +6,8 @@ const orderSchema = new mongoose.Schema( {
     items: [Object],
     completed: Boolean,
     total: Number,
+    date: String,
   });
   const Order = mongoose.model('Order', orderSchema);
 
-  module.exports = { Order };
+  module.exports = { Order};

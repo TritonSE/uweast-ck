@@ -6,6 +6,7 @@ const { Payment } = require('./models/payment');
 const { User } = require('./models/user');
 const { Order } = require('./models/order');
 const { info } = require('winston');
+//var DataTable = require('mongoose-datatable');
 
 const { uri } = config.db;
 
@@ -49,12 +50,17 @@ function addNewItem(info) {
 }
 
 function addNewOrder(info) {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
   Order.create({
     id: info.id,
     name: info.name,
     items: info.items,
     completed: false,
     total: info.total,
+    date: mm + '/' + dd + '/' + yyyy,
   });
 }
 
@@ -66,4 +72,4 @@ function deleteItem(id) {
   Item.deleteOne({ _id: new mongodb.ObjectID(id) }, (err, results) => {});
 }
 
-module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, deleteItem };
+module.exports = { getAllMenuItems, addNewPayment, addNewUser, findOneUser, addNewItem, deleteItem, getAllOrders, addNewOrder,  completeOrder, };

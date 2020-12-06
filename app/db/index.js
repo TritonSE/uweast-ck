@@ -59,14 +59,14 @@ function editItem(id, info) {
 
 function setFeatured(id) {
   Item.updateOne({ _id: new mongodb.ObjectID(id) },
-  { $set: { "featured": true } },
-  (err, results) => {});
+    { $set: { featured: true } },
+    (err, results) => {});
 }
 
 function setNotFeatured(id) {
   Item.updateOne({ _id: new mongodb.ObjectID(id) },
-  { $set: { "featured": false } },
-  (err, results) => {});
+    { $set: { featured: false } },
+    (err, results) => {});
 }
 
 module.exports = { getAllMenuItems,

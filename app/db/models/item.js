@@ -14,7 +14,7 @@ const itemSchema = new mongoose.Schema({
   glutenFree: Boolean,
   ingredients: [String],
   completed: Boolean,
-  featured: Boolean
+  featured: Boolean,
 });
 const Item = mongoose.model('Item', itemSchema);
 

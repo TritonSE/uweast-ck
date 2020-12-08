@@ -18,7 +18,8 @@ router.get('/', (req, res, next) => {
 
 // Post data, log data to terminal.
 router.post('/updateOrder', (req, res, next) => {
-  db.completeOrder(req.body.id);
+
+  db.completeOrder(req.body.name);
   res.redirect('/orders');
 });
 

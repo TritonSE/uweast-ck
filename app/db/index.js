@@ -69,6 +69,7 @@ function addNewOrder(info) {
 }
 
 function completeOrder(id){
+  console.log(id);
   Order.updateOne({_id: new mongodb.ObjectId(id) }, { $set: {completed: true}}, (err, results) => {});
 }
 

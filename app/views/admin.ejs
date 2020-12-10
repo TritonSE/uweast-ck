@@ -72,7 +72,6 @@
                                 <h6><%= category %></h6>
                                 <div class="list-group">
                                     <% items.forEach(function(item) { %>
-                                        <% console.log(item); %>
                                         <% var itemVar = item.name.replace(/\s/g, ''); %>
                                         <% if (item.category === category) { %>
                                             <div class="form-check">
@@ -92,7 +91,7 @@
                             <% }); %>
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="id" id="editItemSubmit">Submit</button>
+                            <button type="submit" class="btn btn-primary" name="id" id="featuredItemSubmit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -224,7 +223,7 @@
                             
                             <div class="form-check form-check-inline">
                                 <input name="glutenFree" class="form-check-input" type="checkbox" value="" id="editGlutenFree">
-                                <label class="form-check-label" for="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck3">
                                     Gluten Free
                                 </label>
                             </div>
@@ -329,7 +328,7 @@
                             
                             <div class="form-check form-check-inline">
                                 <input name="glutenFree" class="form-check-input" type="checkbox" value="" id="glutenFree">
-                                <label class="form-check-label" for="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck3">
                                     Gluten Free
                                 </label>
                             </div>

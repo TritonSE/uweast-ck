@@ -1,8 +1,6 @@
 function handleEdit(event) {
     const item = JSON.parse(event);
 
-    console.log(item);
-
     $("#editName").val(item.name)
     $("#editDescription").val(item.description)
     $("#editPrice").val(item.price)
@@ -17,12 +15,7 @@ function handleEdit(event) {
     if (item.vegan) $("#editVegan").prop('checked', true);
     
     $("#editItemSubmit").attr('value', item._id);
-
-    console.log($("#editItemSubmit"))
+    $("#editItemModal").attr('value', item._id);
 
     $("#editItemModal").modal("show");
-}
-
-function handleFetured(event) {
-    
 }

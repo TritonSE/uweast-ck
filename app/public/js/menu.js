@@ -96,31 +96,18 @@ window.onload = function() {
      * 1 - item-cuisine
      * 2 - item-price
      */
-    $(document).on('click', '.modal-trig', function() {
+    $(document).on('click', '.add-item', function() {
         let parent = $(this).parent().get(0);
         curName = $(this).siblings()[0].innerText;  
             // [0] matches to item-name
         curPrice = parseFloat(($(this).siblings()[2].innerText).substring(1)); 
             // [2] matches to item-price
         $('#itemModal-' + parent.id).modal('show');
-        // quantity = 1;
+        quantity = 1; // setting quantity because it's a global variable
         setQuantity(quantity);
         setInstructions('');
         clearForms();
     });
-
-    // resets the modal every time it is clicked off
-    // $('#itemModal').on('hide.bs.modal', function() {
-    //     clearForms();
-    //     setQuantity(1);
-    // })
-
-
-
-    
-
-
-
 
     function setSize(size) {
         var sizes = document.forms['submitOrder'].elements['size'];
@@ -241,7 +228,8 @@ window.onload = function() {
             setSize(item['size']);
             setSides(item['sides']);
             setInstructions(item['instructions']);
-            setQuantity(item['quantity']);
+            quantity = item['quantity'];
+            setQuantity(quantity);
             
             console.log(index);
         })
@@ -256,8 +244,6 @@ window.onload = function() {
             const form = $('.editCart');
             let responses = form.serializeArray();
 
-            // let itemName = foodItem['name'];
-            // let itemPrice = foodItem['price'];
             curName = foodItem['name'];
             curPrice = foodItem['price'];
             let size = '';
@@ -294,9 +280,12 @@ window.onload = function() {
                 var tr = document.createElement('tr');
                 const element = res['cart'][index];
                 tr.id = element['name'].split(' ').join('_');
+
+                // if you want to include these in the edit cart modal (took too much space)
                 const size = '<dd><b>Size: </b>' + element['size'] + '</dd>';
                 const sides = '<dd><b>Sides: </b>' + element['sides'] + '</dd>';
                 const instructions = '<dd>' + element['instructions'] + '</dd>';
+
                 tr.innerHTML += '<td>' + element['name'] + '</td>';
                 tr.innerHTML += '<td>' + element['quantity'] + '</td>';
                 tr.innerHTML += '<td> <button id="' + index + '" type="button" class="btn btn-primary edit-item">Edit</button> </td>';

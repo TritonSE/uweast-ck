@@ -43,7 +43,7 @@
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig add-item">
                                             +
                                         </button>
                                         <div class="item-price">$<%= item.price %></div>
@@ -68,7 +68,7 @@
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig add-item">
                                             +
                                         </button>
                                         <div class="item-price">$<%= item.price %></div>
@@ -93,7 +93,7 @@
                                     <div class="item-right" id="<%= itemVar %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig add-item">
                                             +
                                         </button>
                                         <div class="item-price">$<%= item.price %></div>
@@ -118,7 +118,7 @@
                                     <div class="item-right" id="<%= itemVar; %>">
                                         <div class="item-name"><%= item.name %></div>
                                         <div class="item-cuisine"><%= item.cuisine %></div>
-                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig add-item">
                                             +
                                         </button>
                                         <div class="item-price">$<%= item.price %></div>
@@ -325,7 +325,7 @@
                         </div>
                         <div class="quantity-buttons d-flex justify-content-center">
                             <div class="num subtract">-</div>
-                                <span class="quantity">1</span>
+                                <span id="edit-quantity" class="quantity">1</span>
                             <div class="num add">+</div>
                         </div>
                     </div>

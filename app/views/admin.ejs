@@ -55,6 +55,50 @@
             </div>
         </div>
 
+        <!-- FEATURED MODAL -->
+        <div class="modal fade" id="featuredModal" tabindex="-1" role="dialog" aria-labelledby="featuredModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="featuredModalLabel">Featured Menu Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/admin/featuredItem" method="POST">
+                            <% const featuredCategories = ["Appetizers", "Main Dishes", "Sides", "Drinks"] %>
+                            <% featuredCategories.forEach(function(category) { %>
+                                <h6><%= category %></h6>
+                                <div class="list-group">
+                                    <% items.forEach(function(item) { %>
+                                        <% console.log(item); %>
+                                        <% var itemVar = item.name.replace(/\s/g, ''); %>
+                                        <% if (item.category === category) { %>
+                                            <div class="form-check">
+                                                <% if (item.featured) { %>
+                                                    <input name="<%= item._id %>" class="form-check-input" type="checkbox" value="<%= item.featured %>" id="<%= item._id %>" checked>
+                                                <% } else { %>
+                                                    <input name="<%= item._id %>" class="form-check-input" type="checkbox" value="<%= item.featured %>" id="<%= item._id %>">
+                                                <% } %>
+                                                <label class="form-check-label" for="<%= item._id %>">
+                                                    <%= item.name %>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% }); %>
+                                </div>
+                                <br>
+                            <% }); %>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="id" id="editItemSubmit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- EDIT MODAL -->
 
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
@@ -313,8 +357,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <% const categories = ["Appetizers", "Main Dishes", "Sides", "Drinks"] %>
-                        <% categories.forEach(function(category) { %>
+                        <% const deleteCategories = ["Appetizers", "Main Dishes", "Sides", "Drinks"] %>
+                        <% deleteCategories.forEach(function(category) { %>
                             <h6><%= category %></h6>
                             <form action="/admin/deleteItem" method="POST">
                                 <div class="list-group">

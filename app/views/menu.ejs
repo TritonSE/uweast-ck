@@ -28,6 +28,32 @@
         <div class="lower-content-container">
             <div class="lower-mid-container">
 
+                <!-- Featured -->
+                <div class="featured menu-category">
+                    <h1>Featured Items!</h1>
+                    <div class="category-body">
+                        <% items.forEach(function(item) { %>
+                            <% var itemVar = item.name.replace(/\s/g, ''); %>
+                            <% if (item.featured) { %>
+                                <div class="menu-thumbnail">
+                                    <div class="item-left">
+                                        <img src="images/<%= item.image %>" alt="<%= item.name %>">
+                                    </div>
+                                    
+                                    <div class="item-right" id="<%= itemVar %>">
+                                        <div class="item-name"><%= item.name %></div>
+                                        <div class="item-cuisine"><%= item.cuisine %></div>
+                                        <button type="button" class="btn btn-primary modal-btn modal-trig">
+                                            +
+                                        </button>
+                                        <div class="item-price">$<%= item.price %></div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    </div>
+                </div>
+
                 <!-- Appetizers -->
                 <div class="appetizers menu-category">
                     <h1>Appetizers</h1>
@@ -194,8 +220,20 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div id="cart-items-modal">
-                  </div>
+                  <table>
+                      <thead>
+                          <tr>
+                              <th>Item</th>
+                              <th>Quantity</th>
+                              <th>Edit</th>
+                              <th>Remove</th>
+                              <th>Price</th>
+                          </tr>
+                      </thead>
+                      <tbody id="cart-items-modal">
+                          <!-- cart items get added here dynamically -->
+                      </tbody>
+                  </table>
                 </div>
                 <div class="modal-footer">
                   <script>
@@ -220,16 +258,114 @@
                             }
                         }).render('.modal-footer');
                     </script>
-                  <!--<button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button>-->
-                  <button type="button" class="btn btn-secondary remove-item" data-dismiss="modal">Remove Item</button>
-                  <button type="button" class="btn btn-danger remove-all" data-dismiss="modal">Remove All</button>
+
+                  <!-- <button type="button" id="cart-submit" class="btn btn-primary"  data-dismiss="modal">Pay</button> -->
                 </div>
               </div>
             </div>
         </div>
 
+        <!-- Edit Item Modal -->
+        <form class="editCart" name="editCart">
+        <div class="modal fade" id="editModal" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!-- modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Modal Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                
+
+                <!--modal body-->
+                <div class="modal-body">
+                    <div class="item-details"> <!--Choosing Size with radio buttons-->
+                        <div class="item-details-box">
+                            <p class="detail">Choose Size</p>
+                            <p class="req-or-opt">Required</p>
+                        </div>
+                        <div class="forms">
+                            <div class="form-check"> 
+                                <input class="form-check-input" type="radio" name="size" value="Small" required>
+                                <label class="form-check-label" for="sizeRadios1">
+                                    Small
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" value="Medium">
+                                <label class="form-check-label" for="sizeRadios2">
+                                    Medium
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="size" value="Large">
+                                <label class="form-check-label" for="sizeRadios3">
+                                    Large
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="item-details"> <!--Choosing Sides with checkboxes-->
+                        <div class="item-details-box">
+                            <p class="detail">Sides</p>
+                            <p class="req-or-opt">Optional</p>
+                        </div>
+                        <div class="forms">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="side" value="XX">
+                                <label class="form-check-label" for="sideBox1">
+                                    XX
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="side" value="YY">
+                                <label class="form-check-label" for="sideBox2">
+                                    YY
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="side" value="ZZ">
+                                <label class="form-check-label" for="sideBox3">
+                                    ZZ
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="item-details"> <!--Providing special instructions-->
+                        <div class="item-details-box">
+                            <p class="detail">Special Instructions</p>
+                            <p class="req-or-opt">Optional</p>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="special"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="item-details"> <!--Controlling quantity-->
+                        <div class="item-details-box">
+                            <p class="detail">Quantity</p>
+                        </div>
+                        <div class="quantity-buttons d-flex justify-content-center">
+                            <div class="num subtract">-</div>
+                                <span class="quantity">1</span>
+                            <div class="num add">+</div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-dark edit-btn-submit">
+                        <div class="add-cart"><span class="cart-text">Save Item</span><span class="add-price">$00.00</span></div>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </form>
+
         <!-- Modal -->
-        <form class="submitOrder">
+        <form class="submitOrder" name="submitOrder">
         <% items.forEach(function(item) { %>
         <% var itemVar = item.name.replace(/\s/g, ''); %>
         <div class="modal fade bd-example-modal-lg" id="itemModal-<%= itemVar; %>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">

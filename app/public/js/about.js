@@ -4,12 +4,10 @@ window.onload = function() {
     
     // Post request to page.
     button.onclick = function() {
-        console.log("clicked!");
         $.post('/about', {
             example: 'text',
             otherExample: 'moreText'
         }, function(data) {
-            console.log(data);
         });
 
         para.innerText = 'Data sent!';

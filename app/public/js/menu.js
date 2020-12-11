@@ -9,22 +9,7 @@ class Item {
     }
 }
 
-window.onload = function() { 
-    /*const button = this.document.getElementById('sendMenuData'); /// Example code
-    const para = this.document.getElementById('menuInfo');
-    
-    // Post request to page.
-    button.onclick = function() {
-        console.log("clicked!");
-        $.post('/menu', {
-            menuExample: 'fries',
-            otherMenuExample: 'moreFries'
-        }, function(data) {
-            console.log(data);
-        });
-
-        para.innerText = 'Data sent!';
-    }*/
+window.onload = function() {
 
     /* Every menu category item is associated with a particular class that matches
     the id of the filter item element. 
@@ -220,13 +205,16 @@ window.onload = function() {
         
         $.post("/menu/addCart", {item}).then(function() {
             $('.modal').modal('hide');
+            window.location.href = "/menu";
         }); 
     })
 
     // remove item
     $(document).on("click", ".remove-item", function() {
         var index = $(this).attr('id');
-        $.post("/menu/removeCart", {index});
+        $.post("/menu/removeCart", {index}).then(function() {
+            window.location.href = "/menu";
+        });
     })
 
     // edit item
@@ -242,8 +230,6 @@ window.onload = function() {
             setSides(item['sides']);
             setInstructions(item['instructions']);
             setQuantity(item['quantity']);
-            
-            console.log(index);
         })
     })
 
@@ -279,6 +265,7 @@ window.onload = function() {
             $.post("/menu/addCart", {item}).then(function() {
                 $('.modal').modal('hide');
                 $('.modal-backdrop').remove();
+                window.location.href = "/menu";
             }); 
         })
 

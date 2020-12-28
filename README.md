@@ -7,7 +7,6 @@ Community Kitchens website for United Women of East Africa - Support Team
 3. Set up a database called uweastdb in Mongo.
 
 # To Develop
-
 1. Pull the repo.
 2. Create a .env file in the root level of the repo with the following line:
   - MONGODB_URI=mongodb://localhost:27017/uweastdb/
